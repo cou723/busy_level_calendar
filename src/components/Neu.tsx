@@ -1,34 +1,57 @@
 import { FunctionComponent } from "react";
 import { css } from "@emotion/react";
+import { transparentize } from "color2k";
 
-interface NeuProps {
+export interface NeuProps {
   children: React.ReactNode;
+  margin?: number;
+  padding?: 4 | 8 | 16 | 32 | 64;
   radius?: 0 | 1 | 2 | 3 | 4;
-  intensity?: 1 | 2 | 3 | 4 | 5;
+  intensity?: 0 | 1 | 2 | 3 | 4;
   inset?: boolean;
   concave?: boolean;
+  height?: string;
+  [key: string]: unknown;
 }
 
-const actualRadius = [0, 2, 5, 10, 15];
+const actualRadius = [0, 5, 10, 15, 30];
+const actualIntensity = [0.2, 0.4, 0.6, 0.8, 1];
 
 const Neu: FunctionComponent<NeuProps> = ({
-  children,
+  children = null,
+  margin = 0,
+  padding = 8,
   radius = 2,
   intensity = 1,
   inset = false,
   concave = false,
+  height = "auto",
+  ...props
 }) => {
+  const shadow = transparentize("black", 1.2 - actualIntensity[intensity]);
+  const highlight = transparentize("white", 0.5 - actualIntensity[intensity]);
+  const neuStyleObject = {
+    background: concave
+      ? `linear-gradient(145deg,rgba(240, 248, 255, 0.1),rgba(6, 6, 7, 0.1) )`
+      : undefined,
+    borderRadius: actualRadius[radius],
+    boxShadow: `${inset ? "inset" : ""} 5px 5px 8px ${shadow}, ${
+      inset ? "inset" : ""
+    } -5px -5px 8px ${highlight}`,
+  };
+
+  const neuStyle = css({
+    ...neuStyleObject,
+    margin,
+    padding,
+    height,
+  });
+
   return (
-    <div
-      css={css({
-        radius: actualRadius[radius],
-        boxShadow:
-          "11.71px 11.71px 26px #C2C4C7, -11.71px -11.71px 26px #FFFFFF",
-      })}
-    >
+    <div {...props} css={[neuStyle]}>
       {children}
     </div>
-  );
+  ); // css propを適用
 };
 
 export default Neu;
