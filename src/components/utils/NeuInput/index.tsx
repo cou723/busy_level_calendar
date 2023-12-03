@@ -1,33 +1,39 @@
-import Neu from "@/components/Neu";
+import Neu from "@/components/utils/Neu";
 import { css } from "@emotion/react";
 import { FunctionComponent, InputHTMLAttributes } from "react";
+import { UseFormRegisterReturn } from "react-hook-form";
 
 export interface NeuInputProps {
   type: InputHTMLAttributes<HTMLInputElement>["type"];
-  value: InputHTMLAttributes<HTMLInputElement>["value"];
-  onChange: InputHTMLAttributes<HTMLInputElement>["onChange"];
+  id: string;
+  register: UseFormRegisterReturn<string>;
+  disabled?: boolean;
   placeholder?: string;
+  [key: string]: unknown;
 }
 
 const NeuInput: FunctionComponent<NeuInputProps> = ({
   type,
-  value,
-  onChange,
+  id,
+  register,
   placeholder,
+  disabled = false,
+  ...props
 }) => {
+  // console.log("NeuInput:", type, value, onChange, placeholder, disabled, props);
   return (
-    <Neu inset>
+    <Neu inset {...props}>
       <input
         css={css`
-          width: 100%;
-          height: 100%;
           border: none;
           outline: none;
           background: none;
+          width: 100%;
         `}
+        disabled={disabled}
         type={type}
-        onChange={onChange}
-        value={value}
+        {...register}
+        id={id}
         placeholder={placeholder}
       />
     </Neu>

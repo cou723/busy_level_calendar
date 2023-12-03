@@ -14,7 +14,7 @@ export const GlobalEmotion = () => {
           -webkit-font-smoothing: antialiased;
           font-smoothing: antialiased;
         }
-        background-color: ${backgroundColor};
+        /* background-color: ${backgroundColor}; */
       `}
     />
   );

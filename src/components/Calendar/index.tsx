@@ -1,4 +1,4 @@
-import Neu from "@/components/Neu";
+import Neu from "@/components/utils/Neu";
 import { getCalendarDates } from "@/libs/getCalendarDates";
 import { type Calendar } from "@/types/calendar";
 import { FunctionComponent } from "react";

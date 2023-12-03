@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import Neu from "@/components/Neu";
+import Neu from "@/components/utils/Neu";
 import { MdError } from "react-icons/md";
 import { MdWarning } from "react-icons/md";
 import { MdInfo } from "react-icons/md";

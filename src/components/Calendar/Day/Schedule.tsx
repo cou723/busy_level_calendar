@@ -1,4 +1,4 @@
-import Neu from "@/components/Neu";
+import Neu from "@/components/utils/Neu";
 import { Schedule } from "@/types/schedule";
 import { FunctionComponent } from "react";
 

@@ -1,5 +1,5 @@
 import CreateScheduleForm from "@/components/CreateScheduleForm";
-import Neu from "@/components/Neu";
+import Neu from "@/components/utils/Neu";
 
 export const CreateSchedule = () => {
   return (

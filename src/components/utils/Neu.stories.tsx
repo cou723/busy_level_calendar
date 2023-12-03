@@ -1,4 +1,3 @@
-import React from "react";
 import { Meta, StoryFn } from "@storybook/react";
 import Neu, { NeuProps } from "./Neu";
 
@@ -105,4 +104,22 @@ export const Intensity4 = Template.bind({});
 Intensity4.args = {
   ...commonArgs,
   intensity: 4,
+};
+
+export const Small = Template.bind({});
+Small.args = {
+  ...commonArgs,
+  size: "small",
+};
+
+export const Medium = Template.bind({});
+Medium.args = {
+  ...commonArgs,
+  size: "medium",
+};
+
+export const Large = Template.bind({});
+Large.args = {
+  ...commonArgs,
+  size: "large",
 };

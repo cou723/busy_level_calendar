@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import Neu from "../Neu";
+import Neu from "../utils/Neu";
 import { type Notification } from "@/types";
 import NotificationView from "./Notification";
 
