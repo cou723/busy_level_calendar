@@ -1,6 +1,7 @@
 import ScheduleView from "./Schedule";
 import Neu from "@/components/utils/Neu";
 import { Schedule } from "@/types/schedule";
+import { css } from "@emotion/react";
 import React from "react";
 import { FunctionComponent } from "react";
 
@@ -10,9 +11,17 @@ interface DayProps {
 }
 
 const Day: FunctionComponent<DayProps> = React.memo(({ day, schedules }) => {
+  console.log("Day:", day, "Schedules:", schedules);
+
   return (
     <Neu inset height="10rem" padding={16}>
-      {day}
+      <p
+        css={css`
+          margin-bottom: 0.5rem;
+        `}
+      >
+        {day}
+      </p>
       {schedules.map((schedule: Schedule) => (
         <ScheduleView key={schedule.id} schedule={schedule} />
       ))}

@@ -5,6 +5,7 @@ import { FunctionComponent } from "react";
 import Header from "@/components/Calendar/Header";
 import Grids from "@/components/Calendar/Grids";
 import { YearMonth } from "@/types/yearMonth";
+import { css } from "@emotion/react";
 
 interface CalendarProps {
   yearMonth: YearMonth;
@@ -22,7 +23,12 @@ const Calendar: FunctionComponent<CalendarProps> = ({
   ...props
 }) => {
   return (
-    <Neu padding={32} {...props}>
+    <Neu
+      css={css`
+        padding: 1rem;
+      `}
+      {...props}
+    >
       <Header month={month} onNext={onNext} onPre={onPre} />
       <Grids
         dates={getCalendarDates(year, month)}

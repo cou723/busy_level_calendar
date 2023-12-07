@@ -29,6 +29,8 @@ const NeuInput: FunctionComponent<NeuInputProps> = ({
           outline: none;
           background: none;
           width: 100%;
+          padding: 0.25rem 0.5rem;
+          height: auto;
         `}
         disabled={disabled}
         type={type}

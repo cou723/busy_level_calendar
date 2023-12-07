@@ -1,14 +1,20 @@
 import { useForm } from "react-hook-form";
 import { scheduleFormSchema, ScheduleForm } from "@/types/scheduleForm";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { calendarAdapter } from "@/global";
+import { generate } from "@/types/schedule";
+import { useNavigate } from "react-router-dom";
 
-export const useScheduleForm = () => {
+export const useScheduleForm = (init?: ScheduleForm) => {
+  const navigation = useNavigate();
   const { register, handleSubmit, formState } = useForm<ScheduleForm>({
     resolver: zodResolver(scheduleFormSchema),
+    defaultValues: init,
   });
 
   const onSubmit = (data: ScheduleForm) => {
-    console.log(data);
+    calendarAdapter.add(generate(data));
+    navigation("/");
   };
 
   return {

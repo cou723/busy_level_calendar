@@ -26,6 +26,15 @@ export class LocalStorageDB implements CalendarAdapter {
     return parseBySchema(CalendarSchema, calendar.val);
   }
 
+  getSchedule(id: Schedule["id"]): Result<Schedule, Error> {
+    const calendar = this.get();
+    if (calendar.err) return Err(calendar.val);
+
+    const schedule = calendar.val.schedules.find((e) => e.id === id);
+    if (schedule === undefined) return Err(new Error("not found"));
+    return Ok(schedule);
+  }
+
   add(schedule: Schedule): Result<void, Error> {
     const calendar = this.get();
     if (calendar.err) return Err(calendar.val);
@@ -52,6 +61,11 @@ export class LocalStorageDB implements CalendarAdapter {
       dist.id === target.id ? target : dist
     );
     LocalStorage.set(LocalStorageDB.key, JSON.stringify(calendar.val));
+    return Ok.EMPTY;
+  }
+
+  clear(): Result<void, Error> {
+    LocalStorage.set(LocalStorageDB.key, "");
     return Ok.EMPTY;
   }
 }

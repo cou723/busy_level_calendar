@@ -1,9 +1,15 @@
 import CreateScheduleForm from "@/components/CreateScheduleForm";
 import Neu from "@/components/utils/Neu";
+import { css } from "@emotion/react";
 
 export const CreateSchedule = () => {
   return (
-    <Neu padding={32} radius={4}>
+    <Neu
+      radius={4}
+      css={css`
+        padding: 1rem 10rem;
+      `}
+    >
       <h1>予定作成</h1>
       <CreateScheduleForm />
     </Neu>

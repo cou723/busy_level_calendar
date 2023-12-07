@@ -4,9 +4,11 @@ import { z } from "zod";
 
 export interface CalendarAdapter {
   get(): Result<Calendar, Error>;
+  getSchedule(id: Schedule["id"]): Result<Schedule, Error>;
   add(schedule: Schedule): Result<void, Error>;
   remove(id: string): Result<void, Error>;
   edit(schedule: Schedule): Result<void, Error>;
+  clear(): Result<void, Error>;
 }
 
 export const CalendarSchema = z.object({

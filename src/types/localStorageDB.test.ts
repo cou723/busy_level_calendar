@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { LocalStorageDB } from "./localStorageDB";
-import { Schedule, create } from "@/types/schedule";
+import { Schedule, generate } from "@/types/schedule";
 import { Calendar } from "@/types/calendar";
 import { afterEach, describe, expect, test } from "vitest";
 import { localStorageMock } from "@/types/localStorageMock";
@@ -22,7 +22,7 @@ describe("localStorageDB", () => {
 
   test("add and get", () => {
     const localStorageDB = new LocalStorageDB();
-    const schedule: Schedule = create({
+    const schedule: Schedule = generate({
       title: "test",
       description: "test",
       date: new Date(),
@@ -42,7 +42,7 @@ describe("localStorageDB", () => {
 
   test("remove", () => {
     const localStorageDB = new LocalStorageDB();
-    const schedule: Schedule = create({
+    const schedule: Schedule = generate({
       title: "test",
       description: "test",
       date: new Date(),
@@ -65,7 +65,7 @@ describe("localStorageDB", () => {
 
   test("edit", () => {
     const localStorageDB = new LocalStorageDB();
-    const schedule: Schedule = create({
+    const schedule: Schedule = generate({
       title: "test",
       description: "test",
       date: new Date(),

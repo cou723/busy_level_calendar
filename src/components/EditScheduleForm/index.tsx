@@ -1,13 +1,18 @@
 import NeuButton from "@/components/utils/NeuButton";
 import TextBox from "@/components/utils/TextBox";
 import { useScheduleForm } from "@/hooks/useScheduleForm";
+import { Schedule } from "@/types/schedule";
 import { css } from "@emotion/react";
 import { FunctionComponent } from "react";
 
-interface CreateScheduleFormProps {}
+interface EditScheduleFormProps {
+  schedule: Schedule;
+}
 
-const CreateScheduleForm: FunctionComponent<CreateScheduleFormProps> = () => {
-  const { register, onSubmit, formState } = useScheduleForm();
+const EditScheduleForm: FunctionComponent<EditScheduleFormProps> = ({
+  schedule,
+}) => {
+  const { register, onSubmit, formState } = useScheduleForm(schedule);
   console.log("parent:", register("title"));
 
   return (
@@ -56,4 +61,4 @@ const CreateScheduleForm: FunctionComponent<CreateScheduleFormProps> = () => {
   );
 };
 
-export default CreateScheduleForm;
+export default EditScheduleForm;

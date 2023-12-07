@@ -35,6 +35,7 @@ export interface TextBoxProps {
   errorMessage?: string;
   id: string;
   disabled?: boolean;
+  [key: string]: unknown;
 }
 
 const TextBox: FunctionComponent<TextBoxProps> = ({
@@ -44,6 +45,7 @@ const TextBox: FunctionComponent<TextBoxProps> = ({
   id,
   type,
   register,
+  ...props
 }) => {
   return (
     <div>
@@ -51,13 +53,14 @@ const TextBox: FunctionComponent<TextBoxProps> = ({
         {label}
       </Label>
       <NeuInput
-        css={css({
-          width: "100%",
-        })}
+        css={css`
+          padding: 0.5rem;
+        `}
         id={id}
         type={type}
         register={register}
         disabled={disabled}
+        {...props}
       />
       <ErrorMessage message={errorMessage} />
     </div>

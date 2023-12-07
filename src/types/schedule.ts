@@ -1,4 +1,5 @@
 import { DefaultSchema } from "@/types/defaultSchema";
+import { ScheduleForm } from "@/types/scheduleForm";
 import { v4 } from "uuid";
 import { z } from "zod";
 
@@ -17,20 +18,18 @@ export function extractNonCompletedSchedules(
   return schedules.filter((schedule) => schedule.requiredDays == undefined);
 }
 
-export function create({
+export function generate({
   title,
   description,
   date,
-}: {
-  title: string;
-  description: string;
-  date: Date;
-}): Schedule {
+  requiredDays,
+}: ScheduleForm): Schedule {
   return {
     id: v4(),
     title,
-    description,
+    description: description ?? "",
     date,
+    requiredDays,
     createdAt: new Date(),
     updateAt: new Date(),
   };
