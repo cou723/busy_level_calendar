@@ -18,14 +18,12 @@ export function extractNonCompletedSchedules(
   return schedules.filter((schedule) => schedule.requiredDays == undefined);
 }
 
-export function generate({
-  title,
-  description,
-  date,
-  requiredDays,
-}: ScheduleForm): Schedule {
+export function generate(
+  { title, description, date, requiredDays }: ScheduleForm,
+  id?: Schedule["id"]
+): Schedule {
   return {
-    id: v4(),
+    id: id ?? v4(),
     title,
     description: description ?? "",
     date,

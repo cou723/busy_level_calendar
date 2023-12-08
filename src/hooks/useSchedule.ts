@@ -4,7 +4,10 @@ import { useQuery } from "@tanstack/react-query";
 
 function fetchSchedule(id: Schedule["id"]) {
   const result = calendarAdapter.getSchedule(id);
-  if (result.err) throw result.val;
+  if (result.err) {
+    console.error(result.val);
+    throw result.val;
+  }
   return result.val;
 }
 

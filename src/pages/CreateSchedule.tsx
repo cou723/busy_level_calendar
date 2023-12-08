@@ -1,4 +1,4 @@
-import CreateScheduleForm from "@/components/CreateScheduleForm";
+import ScheduleForm from "@/components/ScheduleForm";
 import Neu from "@/components/utils/Neu";
 import { css } from "@emotion/react";
 
@@ -11,7 +11,7 @@ export const CreateSchedule = () => {
       `}
     >
       <h1>予定作成</h1>
-      <CreateScheduleForm />
+      <ScheduleForm />
     </Neu>
   );
 };

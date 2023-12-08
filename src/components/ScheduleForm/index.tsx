@@ -1,14 +1,18 @@
 import NeuButton from "@/components/utils/NeuButton";
 import TextBox from "@/components/utils/TextBox";
 import { useScheduleForm } from "@/hooks/useScheduleForm";
+import { Schedule } from "@/types/schedule";
 import { css } from "@emotion/react";
 import { FunctionComponent } from "react";
 
-interface CreateScheduleFormProps {}
+interface ScheduleFormProps {
+  defaultValue?: Schedule;
+}
 
-const CreateScheduleForm: FunctionComponent<CreateScheduleFormProps> = () => {
-  const { register, onSubmit, formState } = useScheduleForm();
-  console.log("parent:", register("title"));
+const ScheduleForm: FunctionComponent<ScheduleFormProps> = ({
+  defaultValue,
+}) => {
+  const { register, onSubmit, formState } = useScheduleForm(defaultValue);
 
   return (
     <form onSubmit={onSubmit}>
@@ -50,10 +54,13 @@ const CreateScheduleForm: FunctionComponent<CreateScheduleFormProps> = () => {
           errorMessage={formState.errors.date?.message}
           register={register("date")}
         />
-        <NeuButton css={css({ width: "200px" })} label={"作成"} />
+        <NeuButton
+          css={css({ width: "200px" })}
+          label={defaultValue ? "編集" : "作成"}
+        />
       </div>
     </form>
   );
 };
 
-export default CreateScheduleForm;
+export default ScheduleForm;

@@ -1,4 +1,5 @@
 import { Month } from "@/types/month";
+import { YearMonth } from "@/types/yearMonth";
 import {
   startOfMonth,
   endOfMonth,
@@ -7,7 +8,7 @@ import {
   eachDayOfInterval,
 } from "date-fns";
 
-export function getCalendarDates(year: number, month: Month) {
+export function getCalendarDates({ year, month }: YearMonth) {
   // 月の最初の日と最後の日を取得
   const start = startOfMonth(new Date(year, month - 1));
   const end = endOfMonth(new Date(year, month - 1));

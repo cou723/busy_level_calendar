@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { LocalStorageDB } from "./localStorageDB";
+import { LocalStorageAdapter } from "./localStorageAdapter";
 import { Schedule, generate } from "@/types/schedule";
 import { Calendar } from "@/types/calendar";
 import { afterEach, describe, expect, test } from "vitest";
@@ -13,7 +13,7 @@ describe("localStorageDB", () => {
   });
 
   test("get init", () => {
-    const localStorageDB = new LocalStorageDB();
+    const localStorageDB = new LocalStorageAdapter();
     expect(localStorageDB.get().val).toEqual({
       id: "origin",
       schedules: [],
@@ -21,7 +21,7 @@ describe("localStorageDB", () => {
   });
 
   test("add and get", () => {
-    const localStorageDB = new LocalStorageDB();
+    const localStorageDB = new LocalStorageAdapter();
     const schedule: Schedule = generate({
       title: "test",
       description: "test",
@@ -33,7 +33,7 @@ describe("localStorageDB", () => {
     };
 
     localStorageDB.add(schedule);
-    expect(localStorage.getItem(LocalStorageDB.key)).toEqual(
+    expect(localStorage.getItem(LocalStorageAdapter.key)).toEqual(
       JSON.stringify(calendar)
     );
 
@@ -41,7 +41,7 @@ describe("localStorageDB", () => {
   });
 
   test("remove", () => {
-    const localStorageDB = new LocalStorageDB();
+    const localStorageDB = new LocalStorageAdapter();
     const schedule: Schedule = generate({
       title: "test",
       description: "test",
@@ -52,10 +52,10 @@ describe("localStorageDB", () => {
       schedules: [schedule],
     };
 
-    localStorage.setItem(LocalStorageDB.key, JSON.stringify(calendar));
+    localStorage.setItem(LocalStorageAdapter.key, JSON.stringify(calendar));
 
     localStorageDB.remove(schedule.id);
-    expect(localStorage.getItem(LocalStorageDB.key)).toEqual(
+    expect(localStorage.getItem(LocalStorageAdapter.key)).toEqual(
       JSON.stringify({
         id: "origin",
         schedules: [],
@@ -64,7 +64,7 @@ describe("localStorageDB", () => {
   });
 
   test("edit", () => {
-    const localStorageDB = new LocalStorageDB();
+    const localStorageDB = new LocalStorageAdapter();
     const schedule: Schedule = generate({
       title: "test",
       description: "test",
@@ -83,10 +83,10 @@ describe("localStorageDB", () => {
       schedules: [updatedSchedule],
     };
 
-    localStorage.setItem(LocalStorageDB.key, JSON.stringify(calendar));
+    localStorage.setItem(LocalStorageAdapter.key, JSON.stringify(calendar));
 
     localStorageDB.edit(updatedSchedule);
-    expect(localStorage.getItem(LocalStorageDB.key)).toEqual(
+    expect(localStorage.getItem(LocalStorageAdapter.key)).toEqual(
       JSON.stringify(updatedCalendar)
     );
   });

@@ -14,8 +14,6 @@ export const Grids: FunctionComponent<GridsProps> = ({ dates, schedules }) => {
     "Schedules:",
     schedules.map((schedule) => schedule.date)
   );
-  console.log("Dates:", dates);
-
   return (
     <div
       css={css`

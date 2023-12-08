@@ -7,7 +7,6 @@ export interface CalendarAdapter {
   getSchedule(id: Schedule["id"]): Result<Schedule, Error>;
   add(schedule: Schedule): Result<void, Error>;
   remove(id: string): Result<void, Error>;
-  edit(schedule: Schedule): Result<void, Error>;
   clear(): Result<void, Error>;
 }
 

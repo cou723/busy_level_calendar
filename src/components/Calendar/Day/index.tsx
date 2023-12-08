@@ -11,8 +11,6 @@ interface DayProps {
 }
 
 const Day: FunctionComponent<DayProps> = React.memo(({ day, schedules }) => {
-  console.log("Day:", day, "Schedules:", schedules);
-
   return (
     <Neu inset height="10rem" padding={16}>
       <p
