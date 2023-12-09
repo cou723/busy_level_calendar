@@ -1,14 +1,10 @@
 import { calendarAdapter } from "@/global";
 import { Schedule } from "@/types/schedule";
+import { resultToTryCatch } from "@/utils/resultToTryCatch";
 import { useQuery } from "@tanstack/react-query";
 
 function fetchSchedule(id: Schedule["id"]) {
-  const result = calendarAdapter.getSchedule(id);
-  if (result.err) {
-    console.error(result.val);
-    throw result.val;
-  }
-  return result.val;
+  return resultToTryCatch(calendarAdapter.schedule.get(id));
 }
 
 export function useSchedule(id: Schedule["id"]) {

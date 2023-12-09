@@ -16,6 +16,7 @@ describe("localStorageDB", () => {
     const localStorageDB = new LocalStorageAdapter();
     expect(localStorageDB.get().val).toEqual({
       id: "origin",
+      peaceOfMinds: [],
       schedules: [],
     });
   });
@@ -29,10 +30,11 @@ describe("localStorageDB", () => {
     });
     const calendar: Calendar = {
       id: "origin",
+      peaceOfMinds: [],
       schedules: [schedule],
     };
 
-    localStorageDB.add(schedule);
+    localStorageDB.schedule.add(schedule);
     expect(localStorage.getItem(LocalStorageAdapter.key)).toEqual(
       JSON.stringify(calendar)
     );
@@ -49,15 +51,17 @@ describe("localStorageDB", () => {
     });
     const calendar: Calendar = {
       id: "origin",
+      peaceOfMinds: [],
       schedules: [schedule],
     };
 
     localStorage.setItem(LocalStorageAdapter.key, JSON.stringify(calendar));
 
-    localStorageDB.remove(schedule.id);
+    localStorageDB.schedule.remove(schedule.id);
     expect(localStorage.getItem(LocalStorageAdapter.key)).toEqual(
       JSON.stringify({
         id: "origin",
+        peaceOfMinds: [],
         schedules: [],
       })
     );
@@ -76,16 +80,18 @@ describe("localStorageDB", () => {
     };
     const calendar: Calendar = {
       id: "origin",
+      peaceOfMinds: [],
       schedules: [schedule],
     };
     const updatedCalendar: Calendar = {
       id: "origin",
+      peaceOfMinds: [],
       schedules: [updatedSchedule],
     };
 
     localStorage.setItem(LocalStorageAdapter.key, JSON.stringify(calendar));
 
-    localStorageDB.edit(updatedSchedule);
+    localStorageDB.schedule.edit(updatedSchedule);
     expect(localStorage.getItem(LocalStorageAdapter.key)).toEqual(
       JSON.stringify(updatedCalendar)
     );

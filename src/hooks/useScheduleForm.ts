@@ -16,7 +16,9 @@ export const useScheduleForm = (editTargetSchedule?: Schedule) => {
   });
 
   const onSubmit = (data: ScheduleForm) => {
-    const result = calendarAdapter.add(generate(data, editTargetSchedule?.id));
+    const result = calendarAdapter.schedule.add(
+      generate(data, editTargetSchedule?.id)
+    );
     if (result.err) {
       console.log("error", result.val);
       return;
