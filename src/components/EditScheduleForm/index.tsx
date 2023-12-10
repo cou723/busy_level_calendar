@@ -1,13 +1,18 @@
-import RhfTextBox from "@/components/utils";
 import NeuButton from "@/components/utils/NeuButton";
+import TextBox from "@/components/utils/TextBox";
 import { useScheduleForm } from "@/hooks/useScheduleForm";
+import { Schedule } from "@/types/schedule";
 import { css } from "@emotion/react";
 import { FunctionComponent } from "react";
 
-interface CreateScheduleFormProps {}
+interface EditScheduleFormProps {
+  schedule: Schedule;
+}
 
-const CreateScheduleForm: FunctionComponent<CreateScheduleFormProps> = () => {
-  const { register, onSubmit, formState } = useScheduleForm();
+const EditScheduleForm: FunctionComponent<EditScheduleFormProps> = ({
+  schedule,
+}) => {
+  const { register, onSubmit, formState } = useScheduleForm(schedule);
   console.log("parent:", register("title"));
 
   return (
@@ -19,28 +24,31 @@ const CreateScheduleForm: FunctionComponent<CreateScheduleFormProps> = () => {
           gap: "1rem",
         })}
       >
-        <RhfTextBox
+        <TextBox
           id="title"
           label="タスクタイトル"
           type="text"
           errorMessage={formState.errors.title?.message}
           register={register("title")}
         />
-        <RhfTextBox
+        <TextBox
           id="description"
           label="詳細(任意)"
           type="text"
           errorMessage={formState.errors.description?.message}
           register={register("description", { required: false })}
         />
-        <RhfTextBox
+        <TextBox
           id="requiredDays"
           label="必要日数"
           type="number"
           errorMessage={formState.errors.requiredDays?.message}
-          register={register("requiredDays", { valueAsNumber: true })}
+          register={register("requiredDays", {
+            setValueAs: (v) => (v === "" ? undefined : parseInt(v, 10)),
+            required: false,
+          })}
         />
-        <RhfTextBox
+        <TextBox
           id="date"
           label="締切日"
           type="date"
@@ -53,4 +61,4 @@ const CreateScheduleForm: FunctionComponent<CreateScheduleFormProps> = () => {
   );
 };
 
-export default CreateScheduleForm;
+export default EditScheduleForm;

@@ -2,9 +2,11 @@ import Neu from "@/components/utils/Neu";
 import { getCalendarDates } from "@/libs/getCalendarDates";
 import { type Calendar } from "@/types/calendar";
 import { FunctionComponent } from "react";
-import Header from "@/components/Calendar/Header";
 import Grids from "@/components/Calendar/Grids";
 import { YearMonth } from "@/types/yearMonth";
+import { css } from "@emotion/react";
+import Header from "@/components/Calendar/Header";
+import { generateBusyLevels } from "@/types/busyLevel";
 
 interface CalendarProps {
   yearMonth: YearMonth;
@@ -15,18 +17,24 @@ interface CalendarProps {
 }
 
 const Calendar: FunctionComponent<CalendarProps> = ({
-  yearMonth: { year, month },
+  yearMonth,
   calendar,
   onPre,
   onNext,
   ...props
 }) => {
   return (
-    <Neu padding={32} {...props}>
-      <Header month={month} onNext={onNext} onPre={onPre} />
+    <Neu
+      css={css`
+        padding: 1rem;
+      `}
+      {...props}
+    >
+      <Header yearMonth={yearMonth} onNext={onNext} onPre={onPre} />
       <Grids
-        dates={getCalendarDates(year, month)}
+        dates={getCalendarDates(yearMonth)}
         schedules={calendar.schedules}
+        busyLevels={generateBusyLevels(calendar)}
       />
     </Neu>
   );

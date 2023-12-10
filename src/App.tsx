@@ -1,5 +1,4 @@
 import { GlobalEmotion } from "@/components/GlobalEmotion";
-import NeuButton from "@/components/utils/NeuButton";
 import { backgroundColor } from "@/constants";
 import { CreateSchedule } from "@/pages/CreateSchedule";
 import { Edit } from "@/pages/Edit";
@@ -16,6 +15,7 @@ function App() {
       css={css({
         padding: "2rem",
         backgroundColor,
+        height: "100%",
       })}
     >
       <QueryClientProvider client={apiClient}>

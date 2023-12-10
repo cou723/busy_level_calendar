@@ -3,7 +3,8 @@ import { css } from "@emotion/react";
 import { FunctionComponent, useState } from "react";
 
 export interface NeuButtonProps {
-  label: string;
+  label?: string;
+  children?: React.ReactNode;
   onClick?: () => void;
   disabled?: boolean;
   concave?: boolean;
@@ -22,6 +23,7 @@ const NeuButton: FunctionComponent<NeuButtonProps> = ({
   onClick,
   disabled = false,
   concave = false,
+  children,
   ...rest
 }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -47,14 +49,14 @@ const NeuButton: FunctionComponent<NeuButtonProps> = ({
     >
       <Neu
         intensity={isHovered ? 2 : 1}
-        padding={4}
         inset={isActive}
         concave={concave}
-        css={css({
-          padding: "8px 16px",
-        })}
+        css={css`
+          padding: 0.6rem;
+        `}
       >
         {label}
+        {children}
       </Neu>
     </button>
   );

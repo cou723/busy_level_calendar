@@ -1,15 +1,22 @@
 import Day from "@/components/Calendar/Day";
+import { BusyLevel } from "@/types/busyLevel";
+import { Level } from "@/types/level";
 import { Schedule } from "@/types/schedule";
 import { css } from "@emotion/react";
-import { getDate } from "date-fns";
+import { getDate, isSameDay } from "date-fns";
 import { FunctionComponent } from "react";
 
 interface GridsProps {
   dates: Date[];
   schedules: Schedule[];
+  busyLevels: BusyLevel[];
 }
 
-export const Grids: FunctionComponent<GridsProps> = ({ dates, schedules }) => {
+export const Grids: FunctionComponent<GridsProps> = ({
+  dates,
+  schedules,
+  busyLevels,
+}) => {
   return (
     <div
       css={css`
@@ -23,7 +30,13 @@ export const Grids: FunctionComponent<GridsProps> = ({ dates, schedules }) => {
         <Day
           day={getDate(date)}
           key={date.toISOString()}
-          schedules={schedules.filter((schedule) => date == schedule.date)}
+          schedules={schedules.filter((schedule) =>
+            isSameDay(date, schedule.date)
+          )}
+          busyLevel={
+            busyLevels.find((busyLevel) => isSameDay(date, busyLevel.date))
+              ?.level
+          }
         ></Day>
       ))}
     </div>

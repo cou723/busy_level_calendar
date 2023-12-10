@@ -1,4 +1,6 @@
 import { DefaultSchema } from "@/types/defaultSchema";
+import { ScheduleForm } from "@/types/scheduleForm";
+import { subDays } from "date-fns";
 import { v4 } from "uuid";
 import { z } from "zod";
 
@@ -17,21 +19,28 @@ export function extractNonCompletedSchedules(
   return schedules.filter((schedule) => schedule.requiredDays == undefined);
 }
 
-export function create({
-  title,
-  description,
-  date,
-}: {
-  title: string;
-  description: string;
-  date: Date;
-}): Schedule {
+export function generate(
+  { title, description, date, requiredDays }: ScheduleForm,
+  id?: Schedule["id"]
+): Schedule {
   return {
-    id: v4(),
+    id: id ?? v4(),
     title,
-    description,
+    description: description ?? "",
     date,
+    requiredDays,
     createdAt: new Date(),
     updateAt: new Date(),
   };
+}
+
+export function getAllDatesUntilSchedule(schedule: Schedule): Date[] {
+  if (schedule.requiredDays == undefined) {
+    return [];
+  }
+  const result: Date[] = [];
+  for (let i = 0; i < schedule.requiredDays; i++) {
+    result.push(subDays(schedule.date, i));
+  }
+  return result;
 }

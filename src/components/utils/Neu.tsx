@@ -2,29 +2,20 @@ import { FunctionComponent } from "react";
 import { css } from "@emotion/react";
 import { transparentize } from "color2k";
 
-type Size = "small" | "medium" | "large";
+export type NeuSize = "small" | "medium" | "large";
 
 export interface NeuProps {
   children: React.ReactNode;
-  margin?: number;
-  padding?: 4 | 8 | 16 | 32 | 64;
   radius?: 0 | 1 | 2 | 3 | 4;
   intensity?: 0 | 1 | 2 | 3 | 4;
   inset?: boolean;
   concave?: boolean;
-  height?: string;
-  size?: Size;
+  size?: NeuSize;
   [key: string]: unknown;
 }
 
 const actualRadius = [0, 5, 10, 15, 30];
 const actualIntensity = [0.2, 0.4, 0.6, 0.8, 1];
-
-const shadowSize = {
-  small: { offset: 2, blur: 4 },
-  medium: { offset: 3, blur: 5 },
-  large: { offset: 10, blur: 16 },
-};
 
 const generateBackground = (concave: boolean) => {
   return concave
@@ -36,8 +27,13 @@ const generateBoxShadow = (
   inset: boolean,
   shadow: string,
   highlight: string,
-  size: Size
+  size: NeuSize
 ) => {
+  const shadowSize = {
+    small: { offset: 2, blur: 4 },
+    medium: { offset: 3, blur: 5 },
+    large: { offset: 10, blur: 16 },
+  };
   const { offset, blur } = shadowSize[size];
 
   return `${
@@ -49,13 +45,10 @@ const generateBoxShadow = (
 
 const Neu: FunctionComponent<NeuProps> = ({
   children = null,
-  margin = 0,
-  padding = 8,
   radius = 2,
   intensity = 1,
   inset = false,
   concave = false,
-  height = "auto",
   size = "medium",
   ...props
 }) => {
@@ -65,17 +58,15 @@ const Neu: FunctionComponent<NeuProps> = ({
     background: generateBackground(concave),
     borderRadius: actualRadius[radius],
     boxShadow: generateBoxShadow(inset, shadow, highlight, size),
+    padding: "1rem",
   };
 
   const neuStyle = css({
     ...neuStyleObject,
-    margin,
-    padding,
-    height,
   });
 
   return (
-    <div {...props} css={[neuStyle]}>
+    <div css={[neuStyle]} {...props}>
       {children}
     </div>
   ); // css propを適用

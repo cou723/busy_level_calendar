@@ -4,9 +4,18 @@ import { z } from "zod";
 
 export interface CalendarAdapter {
   get(): Result<Calendar, Error>;
-  add(schedule: Schedule): Result<void, Error>;
-  remove(id: string): Result<void, Error>;
-  edit(schedule: Schedule): Result<void, Error>;
+  schedule: {
+    get(id: Schedule["id"]): Result<Schedule, Error>;
+    add(schedule: Schedule): Result<void, Error>;
+    remove(id: string): Result<void, Error>;
+  };
+  // peaceOfMind: {
+  //   getAll(): Result<PeaceOfMind[], Error>;
+  //   get(date: Date): Result<number, Error>;
+  //   add(peaceOfMind: PeaceOfMind): Result<void, Error>;
+  //   remove(date: Date): Result<void, Error>;
+  // };
+  clear(): Result<void, Error>;
 }
 
 export const CalendarSchema = z.object({

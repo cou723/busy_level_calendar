@@ -1,8 +1,8 @@
 import { Meta, StoryFn } from "@storybook/react";
-import Notification, { NotificationProps } from "./Notification";
+import Notification, { NotificationProps } from ".";
 
 export default {
-  title: "Alert",
+  title: "Notification",
   component: Notification,
 } as Meta;
 

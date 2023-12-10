@@ -2,6 +2,7 @@ import { FunctionComponent } from "react";
 import Neu from "../utils/Neu";
 import { type Notification } from "@/types";
 import NotificationView from "./Notification";
+import { css } from "@emotion/react";
 
 interface NotificationsProps {
   notifications: Notification[];
@@ -13,13 +14,21 @@ const Notifications: FunctionComponent<NotificationsProps> = ({
   ...props
 }) => {
   return (
-    <Neu {...props}>
+    <Neu
+      {...props}
+      css={css({
+        display: "flex",
+        flexDirection: "column",
+        gap: "1rem",
+      })}
+    >
       {notifications.map((notification: Notification) => (
         <NotificationView
           key={notification.id}
           title={notification.title}
           message={notification.message}
           level={notification.level}
+          to={"/edit/" + notification.target}
         />
       ))}
     </Neu>
