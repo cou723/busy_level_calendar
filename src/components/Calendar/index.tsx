@@ -6,6 +6,7 @@ import Grids from "@/components/Calendar/Grids";
 import { YearMonth } from "@/types/yearMonth";
 import { css } from "@emotion/react";
 import Header from "@/components/Calendar/Header";
+import { generateBusyLevels } from "@/types/busyLevel";
 
 interface CalendarProps {
   yearMonth: YearMonth;
@@ -33,6 +34,7 @@ const Calendar: FunctionComponent<CalendarProps> = ({
       <Grids
         dates={getCalendarDates(yearMonth)}
         schedules={calendar.schedules}
+        busyLevels={generateBusyLevels(calendar)}
       />
     </Neu>
   );

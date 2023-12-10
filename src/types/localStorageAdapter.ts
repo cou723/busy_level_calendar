@@ -2,7 +2,6 @@ import {
   Calendar,
   CalendarAdapter,
   CalendarSchema,
-  PeaceOfMind,
   calendarInit,
 } from "@/types/calendar";
 import { Schedule } from "@/types/schedule";
@@ -56,72 +55,6 @@ export class LocalStorageAdapter implements CalendarAdapter {
 
       calendar.val.schedules = calendar.val.schedules.map((dist) =>
         dist.id === target.id ? target : dist
-      );
-      LocalStorage.set(LocalStorageAdapter.key, JSON.stringify(calendar.val));
-      return Ok.EMPTY;
-    },
-  };
-
-  peaceOfMind = {
-    getAll: (): Result<PeaceOfMind[], Error> => {
-      const calendar = this.get();
-      if (calendar.err) return Err(calendar.val);
-
-      return Ok(calendar.val.peaceOfMinds);
-    },
-
-    get: (date: Date): Result<number, Error> => {
-      const calendar = this.get();
-      if (calendar.err) return Err(calendar.val);
-
-      const peaceOfMind = calendar.val.peaceOfMinds.find(
-        (e) => e.date.getTime() === date.getTime()
-      );
-      if (peaceOfMind === undefined) return Err(new Error("not found"));
-      return Ok(peaceOfMind.level);
-    },
-
-    add: (peaceOfMind: PeaceOfMind): Result<void, Error> => {
-      const calendar = this.get();
-      if (calendar.err) return Err(calendar.val);
-
-      if (!this.peaceOfMind.get(peaceOfMind.date).err) {
-        this.peaceOfMind.edit(peaceOfMind);
-        return Ok.EMPTY;
-      }
-
-      calendar.val.peaceOfMinds.push(peaceOfMind);
-      LocalStorage.set(LocalStorageAdapter.key, JSON.stringify(calendar.val));
-      return Ok.EMPTY;
-    },
-
-    addLevel: (date: Date, addition: number): Result<void, Error> => {
-      if (addition < 0)
-        return Err(new Error("addition must be positive number"));
-
-      const target = this.peaceOfMind.get(date);
-
-      if (target.err) return this.peaceOfMind.add({ date, level: addition });
-      return this.peaceOfMind.edit({ date, level: target.val + addition });
-    },
-
-    remove: (date: Date): Result<void, Error> => {
-      const calendar = this.get();
-      if (calendar.err) return Err(calendar.val);
-
-      calendar.val.peaceOfMinds = calendar.val.peaceOfMinds.filter(
-        (e) => e.date.getTime() !== date.getTime()
-      );
-      LocalStorage.set(LocalStorageAdapter.key, JSON.stringify(calendar.val));
-      return Ok.EMPTY;
-    },
-
-    edit: ({ date, level }: PeaceOfMind): Result<void, Error> => {
-      const calendar = this.get();
-      if (calendar.err) return Err(calendar.val);
-
-      calendar.val.peaceOfMinds = calendar.val.peaceOfMinds.map((dist) =>
-        dist.date.getTime() === date.getTime() ? { date, level } : dist
       );
       LocalStorage.set(LocalStorageAdapter.key, JSON.stringify(calendar.val));
       return Ok.EMPTY;

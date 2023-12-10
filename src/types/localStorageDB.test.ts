@@ -16,7 +16,6 @@ describe("localStorageDB", () => {
     const localStorageDB = new LocalStorageAdapter();
     expect(localStorageDB.get().val).toEqual({
       id: "origin",
-      peaceOfMinds: [],
       schedules: [],
     });
   });
@@ -30,7 +29,6 @@ describe("localStorageDB", () => {
     });
     const calendar: Calendar = {
       id: "origin",
-      peaceOfMinds: [],
       schedules: [schedule],
     };
 
@@ -51,7 +49,6 @@ describe("localStorageDB", () => {
     });
     const calendar: Calendar = {
       id: "origin",
-      peaceOfMinds: [],
       schedules: [schedule],
     };
 
@@ -61,7 +58,6 @@ describe("localStorageDB", () => {
     expect(localStorage.getItem(LocalStorageAdapter.key)).toEqual(
       JSON.stringify({
         id: "origin",
-        peaceOfMinds: [],
         schedules: [],
       })
     );
@@ -80,12 +76,10 @@ describe("localStorageDB", () => {
     };
     const calendar: Calendar = {
       id: "origin",
-      peaceOfMinds: [],
       schedules: [schedule],
     };
     const updatedCalendar: Calendar = {
       id: "origin",
-      peaceOfMinds: [],
       schedules: [updatedSchedule],
     };
 

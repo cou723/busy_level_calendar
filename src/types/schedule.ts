@@ -1,6 +1,6 @@
 import { DefaultSchema } from "@/types/defaultSchema";
 import { ScheduleForm } from "@/types/scheduleForm";
-import { startOfYesterday, subDays } from "date-fns";
+import { subDays } from "date-fns";
 import { v4 } from "uuid";
 import { z } from "zod";
 
@@ -34,15 +34,13 @@ export function generate(
   };
 }
 
-export function toNDaysAgo(schedule: Schedule): { date: Date; n: number }[] {
+export function getAllDatesUntilSchedule(schedule: Schedule): Date[] {
   if (schedule.requiredDays == undefined) {
     return [];
   }
-  let date = new Date(schedule.date);
-  const result: { date: Date; n: number }[] = [];
-  for (let i = 0; i < schedule.requiredDays + 1; i++) {
-    result.push({ date, n: i });
-    date = subDays(date, 1);
+  const result: Date[] = [];
+  for (let i = 0; i < schedule.requiredDays; i++) {
+    result.push(subDays(schedule.date, i));
   }
   return result;
 }
