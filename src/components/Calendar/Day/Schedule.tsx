@@ -1,4 +1,3 @@
-import Neu from "@/components/utils/Neu";
 import NeuButton from "@/components/utils/NeuButton";
 import { Schedule } from "@/types/schedule";
 import { css } from "@emotion/react";

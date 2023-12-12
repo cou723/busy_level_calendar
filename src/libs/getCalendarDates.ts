@@ -1,4 +1,3 @@
-import { Month } from "@/types/month";
 import { YearMonth } from "@/types/yearMonth";
 import {
   startOfMonth,
