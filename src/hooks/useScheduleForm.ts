@@ -3,12 +3,12 @@ import { scheduleFormSchema, ScheduleForm } from "@/types/scheduleForm";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { calendarAdapter } from "@/global";
 import { Schedule, generate } from "@/types/schedule";
-import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 
 export const useScheduleForm = (editTargetSchedule?: Schedule) => {
   const queryClient = useQueryClient();
-  const navigation = useNavigate();
+  const router = useRouter();
 
   const { register, handleSubmit, formState } = useForm<ScheduleForm>({
     resolver: zodResolver(scheduleFormSchema),
@@ -24,7 +24,7 @@ export const useScheduleForm = (editTargetSchedule?: Schedule) => {
       return;
     }
     queryClient.invalidateQueries({ queryKey: ["calendar"] });
-    navigation("/");
+    router.push("/");
   };
 
   return {

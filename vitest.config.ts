@@ -7,7 +7,7 @@ import {
   mergeConfig,
   type UserConfig,
 } from "vitest/config";
-import viteConfig from "./vite.config";
+import viteConfig from "./old/vite.config";
 
 const config = mergeConfig(
   viteConfig, // Extending from an existing Vite configuration (`vite.config.ts` file)

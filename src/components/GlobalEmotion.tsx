@@ -1,3 +1,4 @@
+"use client";
 import { backgroundColor } from "@/constants";
 import { Global, css } from "@emotion/react";
 import emotionReset from "emotion-reset";
@@ -14,7 +15,7 @@ export const GlobalEmotion = () => {
           -webkit-font-smoothing: antialiased;
           font-smoothing: antialiased;
         }
-        /* background-color: ${backgroundColor}; */
+        background-color: #999;
       `}
     />
   );

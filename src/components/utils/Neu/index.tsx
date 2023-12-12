@@ -1,3 +1,4 @@
+"use client";
 import { FunctionComponent } from "react";
 import { css } from "@emotion/react";
 import { transparentize } from "color2k";

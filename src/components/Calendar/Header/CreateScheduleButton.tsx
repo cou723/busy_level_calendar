@@ -1,17 +1,17 @@
 import NeuButton from "@/components/utils/NeuButton";
 import { css } from "@emotion/react";
+import { useRouter } from "next/navigation";
 import { FunctionComponent } from "react";
 import { MdAdd } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
 
 export const CreateScheduleButton: FunctionComponent = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return (
     <NeuButton
       padding={0}
       onClick={() => {
-        navigate("/create");
+        router.push("/create");
       }}
     >
       <MdAdd

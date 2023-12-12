@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from "@storybook/react";
-import Neu, { NeuProps } from "./Neu";
+import Neu, { NeuProps } from ".";
 
 export default {
   title: "Neu",

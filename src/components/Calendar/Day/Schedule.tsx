@@ -1,15 +1,15 @@
 import NeuButton from "@/components/utils/NeuButton";
 import { Schedule } from "@/types/schedule";
 import { css } from "@emotion/react";
+import { useRouter } from "next/navigation";
 import { FunctionComponent } from "react";
-import { useNavigate } from "react-router-dom";
 
 interface ScheduleProps {
   schedule: Schedule;
 }
 
 const ScheduleView: FunctionComponent<ScheduleProps> = ({ schedule }) => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return (
     <NeuButton
@@ -17,7 +17,7 @@ const ScheduleView: FunctionComponent<ScheduleProps> = ({ schedule }) => {
         width: 100%;
         text-align: left;
       `}
-      onClick={() => navigate("/edit/" + schedule.id)}
+      onClick={() => router.push("/edit/" + schedule.id)}
     >
       <div
         css={css`
