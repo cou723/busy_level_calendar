@@ -1,34 +1,35 @@
-import {
-  Calendar,
-  CalendarAdapter,
-  CalendarSchema,
-  calendarInit,
-} from "@/types/calendar";
+import { Calendar, ApiAdapter, CalendarSchema, calendarInit } from "@/types/calendar";
 import { Schedule } from "@/types/schedule";
 import { jsonParse } from "@/utils/jsonParse";
 import { LocalStorage } from "@/utils/localStorage";
 import { parseBySchema } from "@/utils/parseBySchema";
 import { Err, Ok, Result } from "ts-results";
 
-export class LocalStorageAdapter implements CalendarAdapter {
+export class LocalStorageAdapter implements ApiAdapter {
   static key: string = "busyLevelCalendar";
 
   schedule = {
-    get: (id: Schedule["id"]): Result<Schedule, Error> => {
-      const calendar = this.get();
+    get: async (id: Schedule["id"]): Promise<Result<Schedule, Error>> => {
+      const calendar = await this.get();
       if (calendar.err) return Err(calendar.val);
 
-      console.log("calendar", calendar.val.schedules, id);
       const schedule = calendar.val.schedules.find((e) => e.id == id);
       if (schedule === undefined) return Err(new Error("not found"));
       return Ok(schedule);
     },
 
-    add: (schedule: Schedule): Result<void, Error> => {
-      const calendar = this.get();
+    getAll: async (): Promise<Result<Schedule[], Error>> => {
+      const calendar = await this.get();
       if (calendar.err) return Err(calendar.val);
 
-      if (!this.schedule.get(schedule.id).err) {
+      return Ok(calendar.val.schedules);
+    },
+
+    add: async (schedule: Schedule): Promise<Result<void, Error>> => {
+      const calendar = await this.get();
+      if (calendar.err) return Err(calendar.val);
+
+      if (!(await this.schedule.get(schedule.id)).err) {
         this.schedule.edit(schedule);
         return Ok.EMPTY;
       }
@@ -38,31 +39,27 @@ export class LocalStorageAdapter implements CalendarAdapter {
       return Ok.EMPTY;
     },
 
-    remove: (id: string): Result<void, Error> => {
-      const calendar = this.get();
+    remove: async (id: string): Promise<Result<void, Error>> => {
+      const calendar = await this.get();
       if (calendar.err) return Err(calendar.val);
 
-      calendar.val.schedules = calendar.val.schedules.filter(
-        (e) => e.id !== id
-      );
+      calendar.val.schedules = calendar.val.schedules.filter((e) => e.id !== id);
       LocalStorage.set(LocalStorageAdapter.key, JSON.stringify(calendar.val));
       return Ok.EMPTY;
     },
 
-    edit: (target: Schedule): Result<void, Error> => {
-      const calendar = this.get();
+    edit: async (target: Schedule): Promise<Result<void, Error>> => {
+      const calendar = await this.get();
       if (calendar.err) return Err(calendar.val);
 
-      calendar.val.schedules = calendar.val.schedules.map((dist) =>
-        dist.id === target.id ? target : dist
-      );
+      calendar.val.schedules = calendar.val.schedules.map((dist) => (dist.id === target.id ? target : dist));
       LocalStorage.set(LocalStorageAdapter.key, JSON.stringify(calendar.val));
       return Ok.EMPTY;
     },
   };
 
   // 初期値の場合はcalendarの初期状態のオブジェクトを返す
-  get(): Result<Calendar, Error> {
+  get = async (): Promise<Result<Calendar, Error>> => {
     const res = LocalStorage.get(LocalStorageAdapter.key);
     if (res.err) return Err(res.val);
 
@@ -72,10 +69,10 @@ export class LocalStorageAdapter implements CalendarAdapter {
     if (calendar.err) return Err(calendar.val);
 
     return parseBySchema(CalendarSchema, calendar.val);
-  }
+  };
 
-  clear(): Result<void, Error> {
+  clear = async (): Promise<Result<void, Error>> => {
     LocalStorage.set(LocalStorageAdapter.key, "");
     return Ok.EMPTY;
-  }
+  };
 }

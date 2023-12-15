@@ -1,7 +1,6 @@
-import { LocalStorageAdapter } from "@/types/localStorageAdapter";
-import { CalendarAdapter } from "@/types/calendar";
+import { ApiAdapter } from "@/types/calendar";
+import { FetchAdapter } from "@/types/fetchAdapter";
 
-export const calendarAdapter: CalendarAdapter = new LocalStorageAdapter();
+export const calendarAdapter: ApiAdapter = new FetchAdapter();
 
-export const googleCalendarApiEndpoint =
-  "https://www.googleapis.com/calendar/v3";
+export const googleCalendarApiEndpoint = "https://www.googleapis.com/calendar/v3";
