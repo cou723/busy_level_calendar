@@ -13,11 +13,7 @@ interface HeaderProps {
   onPre: () => void;
 }
 
-export const Header: FunctionComponent<HeaderProps> = ({
-  yearMonth: { year, month },
-  onNext,
-  onPre,
-}) => {
+const Header: FunctionComponent<HeaderProps> = ({ yearMonth: { year, month }, onNext, onPre }) => {
   return (
     <HeaderBox>
       <div>{year}</div>

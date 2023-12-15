@@ -1,4 +1,4 @@
-import { DefaultSchema } from "@/types/defaultSchema";
+import { Default, DefaultSchema } from "@/types/defaultSchema";
 import { ScheduleForm } from "@/types/scheduleForm";
 import { subDays } from "date-fns";
 import { v4 } from "uuid";
@@ -12,6 +12,7 @@ export const ScheduleSchema = DefaultSchema.extend({
 });
 
 export type Schedule = z.infer<typeof ScheduleSchema>;
+export type ScheduleWithoutDefault = Omit<Schedule, keyof Default>;
 
 export function extractNonCompletedSchedules(
   schedules: Schedule[]
@@ -30,7 +31,7 @@ export function generate(
     date,
     requiredDays,
     createdAt: new Date(),
-    updateAt: new Date(),
+    updatedAt: new Date(),
   };
 }
 

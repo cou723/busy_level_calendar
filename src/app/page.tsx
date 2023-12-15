@@ -5,6 +5,7 @@ import Notifications from "@/components/Notifications";
 import { useCalendar } from "@/hooks/useCalendar";
 import { defaultState, useYearMonth } from "@/hooks/useYearMonth";
 import { fromCalendar } from "@/types";
+import { Box } from "@mui/material";
 import { css } from "@emotion/react";
 
 const Home = () => {
@@ -13,13 +14,9 @@ const Home = () => {
 
   if (isLoading) {
     return (
-      <div
-        css={css`
-          flex: auto;
-        `}
-      >
+      <Box sx={{ display: "flex" }}>
         <p>Loading...</p>
-      </div>
+      </Box>
     );
   }
 
@@ -28,11 +25,11 @@ const Home = () => {
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <div
-          css={css({
+        <Box
+          sx={{
             display: "flex",
             gap: "2rem",
-          })}
+          }}
         >
           <Calendar
             css={css({
@@ -51,7 +48,7 @@ const Home = () => {
               !isError && data != undefined ? fromCalendar(data.schedules) : []
             }
           />
-        </div>
+        </Box>
       )}
     </div>
   );

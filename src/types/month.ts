@@ -1,12 +1,8 @@
 import { AtLeastTwoElementsArray } from "@/types/atLeastTwoElementsArray";
 import { z } from "zod";
 
-export const monthList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const;
-export const MonthSchema = z.union(
-  monthList.map((x) => z.literal(x)) as AtLeastTwoElementsArray<
-    z.ZodLiteral<Month>
-  >
-);
+const monthList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const;
+export const MonthSchema = z.union(monthList.map((x) => z.literal(x)) as AtLeastTwoElementsArray<z.ZodLiteral<Month>>);
 
 export function getMonth(date: Date): Month {
   return (date.getMonth() + 1) as Month;

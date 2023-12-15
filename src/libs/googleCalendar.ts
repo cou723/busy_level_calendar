@@ -1,13 +1,5 @@
 import { Event } from "@/types/gapiCalendar";
 import { Schedule, generate } from "@/types/schedule";
-import { Result } from "ts-results";
-
-export function getGoogleCalendarEvents(): Result<Event[], Error> {
-  if (result.err) {
-    return result;
-  }
-  return result;
-}
 
 export function GoogleCalendarEventToSchedule(e: Event): Schedule | null {
   if (!isAllDayEvent(e)) return null;

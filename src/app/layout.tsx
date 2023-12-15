@@ -1,10 +1,13 @@
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import React from "react";
 import { Providers } from "@/providers";
-import { backgroundColor } from "@/constants";
-import { css } from "@emotion/react";
-import { GlobalEmotion } from "@/components/GlobalEmotion";
+import "the-new-css-reset/css/reset.css";
+import { Container } from "@mui/material";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,9 +23,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <GlobalEmotion />
       <body className={inter.className}>
-        <Providers>{children}</Providers>
+        <Container sx={{ padding: "2rem" }}>
+          <Providers>{children}</Providers>
+        </Container>
       </body>
     </html>
   );

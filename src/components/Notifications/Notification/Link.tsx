@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import { Link as RrdLink } from "react-router-dom";
+import { default as NextLink } from "next/link";
 
 export const Link = ({
   to,
@@ -9,8 +9,8 @@ export const Link = ({
   children: React.ReactNode;
 }) => {
   return (
-    <RrdLink
-      to={to}
+    <NextLink
+      href={to}
       css={css`
         font-size: 0.95rem;
         color: #006fd6;
@@ -18,6 +18,6 @@ export const Link = ({
       `}
     >
       {children}
-    </RrdLink>
+    </NextLink>
   );
 };

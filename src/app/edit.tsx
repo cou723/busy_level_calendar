@@ -2,13 +2,14 @@
 import ScheduleForm from "@/components/ScheduleForm";
 import Neu from "@/components/utils/Neu";
 import { useSchedule } from "@/hooks/useSchedule";
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "next/navigation";
+import { notFound } from "next/navigation";
 
 export const EditPage = () => {
-  const { id } = useParams<{ id: string }>();
-  const { data: schedule, isError } = useSchedule(id!);
+  const param = useParams<{ id: string }>();
 
-  if (!id) return <Navigate replace to="/" />;
+  if (!param) notFound();
+  const { data: schedule, isError } = useSchedule(param.id);
 
   return (
     <Neu padding={32} radius={4}>
