@@ -1,18 +1,15 @@
 import { user } from "@/app/api/service/user";
-import { NextApiRequest, NextApiResponse } from "next";
+import { makeErrorResponse } from "@/types/server/ErrorResponse";
+import { NextApiRequest } from "next";
 
-export async function DELETE(req: NextApiRequest, res: NextApiResponse) {
-  if (!req.query.id) {
-    res.status(400).send("id is required");
-    return;
-  }
+export async function DELETE(req: NextApiRequest) {
+  if (!req.query.id) return makeErrorResponse(400, "id is required");
+
   return await user.delete(req.query.id as string);
 }
 
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
-  if (!req.query.id) {
-    res.status(400).send("id is required");
-    return;
-  }
-  return res.json(await user.get(req.query.id as string));
+export async function GET(req: NextApiRequest) {
+  if (!req.query.id) return makeErrorResponse(400, "id is required");
+
+  return await user.get(req.query.id as string);
 }
