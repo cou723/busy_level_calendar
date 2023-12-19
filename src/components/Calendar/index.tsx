@@ -16,13 +16,8 @@ interface CalendarProps {
   [key: string]: unknown;
 }
 
-const Calendar: FunctionComponent<CalendarProps> = ({
-  yearMonth,
-  calendar,
-  onPre,
-  onNext,
-  ...props
-}) => {
+const Calendar: FunctionComponent<CalendarProps> = ({ yearMonth, calendar, onPre, onNext, ...props }) => {
+  console.log("calendar", calendar);
   return (
     <Neu
       css={css`

@@ -8,22 +8,18 @@ export const ScheduleSchema = DefaultSchema.extend({
   title: z.string(),
   description: z.string(),
   date: z.coerce.date(),
-  requiredDays: z.number().optional(),
+  requiredDays: z.number().optional().nullable(),
+  userId: z.string(),
 });
 
 export type Schedule = z.infer<typeof ScheduleSchema>;
 export type ScheduleWithoutDefault = Omit<Schedule, keyof Default>;
 
-export function extractNonCompletedSchedules(
-  schedules: Schedule[]
-): Schedule[] {
+export function extractNonCompletedSchedules(schedules: Schedule[]): Schedule[] {
   return schedules.filter((schedule) => schedule.requiredDays == undefined);
 }
 
-export function generate(
-  { title, description, date, requiredDays }: ScheduleForm,
-  id?: Schedule["id"]
-): Schedule {
+export function generate({ title, description, date, requiredDays }: ScheduleForm, id?: Schedule["id"]): Schedule {
   return {
     id: id ?? v4(),
     title,
@@ -32,6 +28,7 @@ export function generate(
     requiredDays,
     createdAt: new Date(),
     updatedAt: new Date(),
+    userId: "",
   };
 }
 

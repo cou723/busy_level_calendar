@@ -1,12 +1,15 @@
-import { makeErrorResponse } from "@/types/server/ErrorResponse";
-import { checkSession } from "@/utils/server/checkSession";
+import { checkSession } from "@/libs/server/checkSession";
+import { ErrorResponse, makeErrorResponse } from "@/types/server/ErrorResponse";
 import { NextApiRequest } from "next";
 import { User } from "next-auth";
 import { NextResponse } from "next/server";
-import { Result, Err, Ok } from "ts-results";
+import { Result, Err } from "ts-results";
 
-export async function getUserData(req: NextApiRequest): Promise<Result<User, NextResponse>> {
+export async function getUserData(req: NextApiRequest): Promise<Result<User, NextResponse<ErrorResponse>>> {
   const user = await checkSession(req);
-  if (!user) return Err(makeErrorResponse(500, "getServerSessionでuserが取得できませんでした"));
-  return Ok(user);
+  if (user.err) {
+    if (user.val.status === 401) return Err(user.val);
+    return Err(makeErrorResponse(500, "getServerSessionでuserが取得できませんでした"));
+  }
+  return user;
 }

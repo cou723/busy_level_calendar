@@ -10,11 +10,7 @@ export interface LabelProps {
   inputId: string;
 }
 
-const Label: FunctionComponent<LabelProps> = ({
-  children,
-  disabled,
-  inputId,
-}) => {
+const Label: FunctionComponent<LabelProps> = ({ children, disabled, inputId }) => {
   return (
     <label
       htmlFor={inputId}

@@ -9,9 +9,7 @@ interface EditScheduleFormProps {
   schedule: Schedule;
 }
 
-const EditScheduleForm: FunctionComponent<EditScheduleFormProps> = ({
-  schedule,
-}) => {
+const EditScheduleForm: FunctionComponent<EditScheduleFormProps> = ({ schedule }) => {
   const { register, onSubmit, formState } = useScheduleForm(schedule);
   console.log("parent:", register("title"));
 

@@ -9,9 +9,7 @@ interface ScheduleFormProps {
   defaultValue?: Schedule;
 }
 
-const ScheduleForm: FunctionComponent<ScheduleFormProps> = ({
-  defaultValue,
-}) => {
+const ScheduleForm: FunctionComponent<ScheduleFormProps> = ({ defaultValue }) => {
   const { register, onSubmit, formState } = useScheduleForm(defaultValue);
 
   return (
@@ -54,10 +52,7 @@ const ScheduleForm: FunctionComponent<ScheduleFormProps> = ({
           errorMessage={formState.errors.date?.message}
           register={register("date")}
         />
-        <NeuButton
-          css={css({ width: "200px" })}
-          label={defaultValue ? "編集" : "作成"}
-        />
+        <NeuButton css={css({ width: "200px" })} label={defaultValue ? "編集" : "作成"} />
       </div>
     </form>
   );

@@ -20,7 +20,7 @@ export interface ApiAdapter {
 }
 
 export const CalendarSchema = z.object({
-  id: z.literal("origin"),
+  id: z.string(),
   schedules: ScheduleSchema.array(),
 });
 

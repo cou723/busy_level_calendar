@@ -1,4 +1,6 @@
-import { Account, Profile, Session, User, JWT, AuthOptions } from "next-auth";
+import { isJwt } from "@/libs/server/parseJwt";
+import { db } from "@/utils/server/db";
+import { Account, JWT, Profile, Session, User, AuthOptions } from "next-auth";
 import { AdapterUser } from "next-auth/adapters";
 import { DefaultJWT } from "next-auth/jwt";
 import GoogleProvider from "next-auth/providers/google";
@@ -17,26 +19,31 @@ type SessionArgs = { session: Session; token: JWT; user: AdapterUser } & {
 };
 
 export const options: AuthOptions = {
+  secret: process.env.NEXTAUTH_SECRET!,
   providers: [
+    /* CredentialsProvider({
+
+    }) */
     GoogleProvider({
-      clientId: import.meta.env.VITE_CLIENT_ID,
-      clientSecret: import.meta.env.VITE_SECRET,
+      clientId: process.env.NEXT_PUBLIC_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_SECRET!,
     }),
   ],
+  pages: {
+    signIn: "/auth/signin",
+  },
   callbacks: {
-    jwt: ({ token, user, account }: JwtArgs): JWT => {
-      token.user = user;
-      const customToken: JWT = {
-        ...token,
-        accessToken: account?.access_token,
-      };
-
-      return customToken;
+    jwt: ({ token }: JwtArgs): JWT => {
+      return token;
     },
     session: ({ session, token }: SessionArgs): Session => {
       return {
         ...session,
-        user: token.user,
+        user: {
+          name: token.name!,
+          id: token.email!,
+          email: token.email!,
+        },
       };
     },
   },

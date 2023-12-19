@@ -1,5 +1,5 @@
 import NeuButton from "@/components/utils/NeuButton";
-import { calendarAdapter } from "@/global";
+import { apiAdapter } from "@/global";
 import { YearMonth } from "@/types/yearMonth";
 import { css } from "@emotion/react";
 import { FunctionComponent } from "react";
@@ -40,7 +40,7 @@ const Header: FunctionComponent<HeaderProps> = ({ yearMonth: { year, month }, on
       <div id="button_group">
         <NeuButton
           onClick={() => {
-            calendarAdapter.clear();
+            apiAdapter.clear();
           }}
           padding={0}
         >

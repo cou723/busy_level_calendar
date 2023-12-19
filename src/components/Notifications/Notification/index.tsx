@@ -15,12 +15,7 @@ export interface NotificationProps {
   to: string;
 }
 
-const Notification: FunctionComponent<NotificationProps> = ({
-  title,
-  message,
-  level,
-  to,
-}) => {
+const Notification: FunctionComponent<NotificationProps> = ({ title, message, level, to }) => {
   return (
     <Neu inset padding={16}>
       <div css={css(flexRow)}>

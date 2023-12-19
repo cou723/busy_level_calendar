@@ -1,3 +1,4 @@
+"use client";
 import Neu from "@/components/utils/Neu";
 import { css } from "@emotion/react";
 import { FunctionComponent, useState } from "react";
@@ -37,7 +38,7 @@ const NeuButton: FunctionComponent<NeuButtonProps> = ({
     setIsActive(false);
   };
   return (
-    <button
+    <Neu
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onMouseDown={handleMouseDown}
@@ -46,19 +47,13 @@ const NeuButton: FunctionComponent<NeuButtonProps> = ({
       onClick={onClick}
       disabled={disabled}
       {...rest}
+      intensity={isHovered ? 2 : 1}
+      inset={isActive}
+      concave={concave}
     >
-      <Neu
-        intensity={isHovered ? 2 : 1}
-        inset={isActive}
-        concave={concave}
-        css={css`
-          padding: 0.6rem;
-        `}
-      >
-        {label}
-        {children}
-      </Neu>
-    </button>
+      {label}
+      {children}
+    </Neu>
   );
 };
 

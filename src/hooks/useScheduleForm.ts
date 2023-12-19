@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { scheduleFormSchema, ScheduleForm } from "@/types/scheduleForm";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { calendarAdapter } from "@/global";
+import { apiAdapter } from "@/global";
 import { Schedule, generate } from "@/types/schedule";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
@@ -15,10 +15,8 @@ export const useScheduleForm = (editTargetSchedule?: Schedule) => {
     defaultValues: editTargetSchedule,
   });
 
-  const onSubmit = (data: ScheduleForm) => {
-    const result = calendarAdapter.schedule.add(
-      generate(data, editTargetSchedule?.id)
-    );
+  const onSubmit = async (data: ScheduleForm) => {
+    const result = await apiAdapter.schedule.add(generate(data, editTargetSchedule?.id));
     if (result.err) {
       console.log("error", result.val);
       return;

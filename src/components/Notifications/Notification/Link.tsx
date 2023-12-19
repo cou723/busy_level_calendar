@@ -1,13 +1,7 @@
 import { css } from "@emotion/react";
 import { default as NextLink } from "next/link";
 
-export const Link = ({
-  to,
-  children,
-}: {
-  to: string;
-  children: React.ReactNode;
-}) => {
+export const Link = ({ to, children }: { to: string; children: React.ReactNode }) => {
   return (
     <NextLink
       href={to}

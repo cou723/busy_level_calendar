@@ -9,10 +9,7 @@ interface NotificationsProps {
   [key: string]: unknown;
 }
 
-const Notifications: FunctionComponent<NotificationsProps> = ({
-  notifications,
-  ...props
-}) => {
+const Notifications: FunctionComponent<NotificationsProps> = ({ notifications, ...props }) => {
   return (
     <Neu
       {...props}

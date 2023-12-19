@@ -1,19 +1,20 @@
 "use client";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import * as React from "react";
 import { ReactQueryStreamedHydration } from "@tanstack/react-query-next-experimental";
-import { ThemeProvider } from "@mui/material";
-import theme from "@/theme/theme";
+import { SessionProvider } from "next-auth/react";
+import React from "react";
 
 export function Providers(props: { children: React.ReactNode }) {
   const [queryClient] = React.useState(() => new QueryClient());
 
   return (
     <QueryClientProvider client={queryClient}>
+      {/* <CacheProvider value={cache}> */}
       <ReactQueryStreamedHydration>
-        <ThemeProvider theme={theme}>{props.children}</ThemeProvider>
+        <SessionProvider>{props.children}</SessionProvider>
       </ReactQueryStreamedHydration>
+      {/* </CacheProvider> */}
     </QueryClientProvider>
   );
 }

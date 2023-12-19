@@ -1,3 +1,4 @@
+"use client";
 import Neu from "@/components/utils/Neu";
 import { css } from "@emotion/react";
 import { FunctionComponent, InputHTMLAttributes } from "react";

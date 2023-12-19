@@ -5,6 +5,7 @@ import { tryCatchToResult } from "@/utils/resultToTryCatch";
 import { db } from "@/utils/server/db";
 import { Schedule } from "@prisma/client";
 import { NextResponse } from "next/server";
+import { Err, Ok, Result } from "ts-results";
 
 export const schedule = {
   async create(userId: User["id"], schedule: ScheduleWithoutDefault): Promise<NextResponse<Schedule | ErrorResponse>> {
@@ -57,22 +58,35 @@ export const schedule = {
     return NextResponse.json(undefined, { status: 204 });
   },
 
-  async get(userId: User["id"], id?: Schedule["id"]): Promise<NextResponse<Schedule | Schedule[] | ErrorResponse>> {
+  async get(userId: User["id"], id: Schedule["id"]): Promise<NextResponse<Schedule | ErrorResponse>> {
+    const result = await this.getResult(userId, id);
+    if (result.err) return result.val;
+    return NextResponse.json(result.val, { status: 200 });
+  },
+
+  async getResult(userId: User["id"], id: Schedule["id"]): Promise<Result<Schedule, NextResponse<ErrorResponse>>> {
     const result = await tryCatchToResult(async () => {
-      if (id !== undefined) {
-        return await db.schedule.findFirst({
-          where: { id, userId: userId },
-        });
-      } else {
-        return await db.schedule.findFirst({
-          where: { userId },
-        });
-      }
+      return await db.schedule.findFirst({
+        where: { id, userId: userId },
+      });
     });
 
-    if (result.err) return makeErrorResponse(500, `scheduleの取得に失敗しました: ${result.val.message}`);
-    if (result.val == null) return makeErrorResponse(404, "scheduleが見つかりませんでした");
+    if (result.err) return Err(makeErrorResponse(500, `scheduleの取得に失敗しました: ${result.val.message}`));
+    if (result.val == null) return Err(makeErrorResponse(404, "scheduleが見つかりませんでした"));
 
-    return NextResponse.json(result.val);
+    return Ok(result.val);
+  },
+
+  async getAll(userId: User["id"]): Promise<Result<Schedule[], NextResponse<ErrorResponse>>> {
+    const result = await tryCatchToResult(async () => {
+      return await db.schedule.findMany({
+        where: { userId },
+      });
+    });
+
+    if (result.err) return Err(makeErrorResponse(500, `scheduleの取得に失敗しました: ${result.val.message}`));
+    if (result.val == null) return Err(makeErrorResponse(404, "scheduleが見つかりませんでした"));
+
+    return Ok(result.val);
   },
 };

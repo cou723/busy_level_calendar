@@ -1,15 +1,19 @@
-import { calendarAdapter } from "@/global";
+import { apiAdapter } from "@/global";
+import { Calendar } from "@/types/calendar";
 import { useQuery } from "@tanstack/react-query";
 
-function fetchCalendar() {
-  const result = calendarAdapter.get();
+async function fetchCalendar(): Promise<Calendar> {
+  const result = await apiAdapter.get();
+  console.log("result:", result);
+
   if (result.err) throw result.val;
+
   return result.val;
 }
 
 export function useCalendar() {
-  return useQuery({
+  return useQuery<Calendar, Error>({
     queryKey: ["calendar"],
-    queryFn: () => fetchCalendar(),
+    queryFn: async () => await fetchCalendar(),
   });
 }

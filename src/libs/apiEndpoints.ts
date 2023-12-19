@@ -1,26 +1,27 @@
+const apiRoot = "/api";
 const apiEndpoints = {
   calendar: {
-    get: "/calendar",
+    get: `${apiRoot}/calendar`,
   },
   schedule: {
-    createOrUpdate: "/schedule/:id",
-    getAll: "/schedules",
-    get: "/schedule/:id",
-    delete: "/schedule/:id",
+    createOrUpdate: `${apiRoot}/schedule/:id`,
+    getAll: `${apiRoot}/schedules`,
+    get: `${apiRoot}/schedule/:id`,
+    delete: `${apiRoot}/schedule/:id`,
   },
   import: {
-    fromGoogleCalendar: "/import",
-    fromTodoist: "/import/todoist",
+    fromGoogleCalendar: `${apiRoot}/import`,
+    fromTodoist: `${apiRoot}/import/todoist`,
   },
   auth: {
-    login: "/login",
-    logout: "/logout",
+    login: `${apiRoot}/login`,
+    logout: `${apiRoot}/logout`,
   },
   user: {
-    create: "/user",
-    update: "/user/:id",
-    delete: "/user/:id",
+    create: `${apiRoot}/user`,
+    update: `${apiRoot}/user/:id`,
+    delete: `${apiRoot}/user/:id`,
   },
-};
+} as const;
 
 export default apiEndpoints;

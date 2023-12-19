@@ -7,10 +7,7 @@ interface ArrowButtonProps {
   onClick: () => void;
   direction: "left" | "right";
 }
-export const ArrowButton: FunctionComponent<ArrowButtonProps> = ({
-  onClick,
-  direction,
-}) => {
+export const ArrowButton: FunctionComponent<ArrowButtonProps> = ({ onClick, direction }) => {
   const Arrow = direction === "left" ? MdArrowLeft : MdArrowRight;
 
   return (
