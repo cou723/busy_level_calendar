@@ -1,6 +1,8 @@
 "use client";
+import Loading from "@/components/Loading";
+import NormalContainer from "@/components/NormalContainer";
 import ScheduleForm from "@/components/ScheduleForm";
-import Neu from "@/components/utils/Neu";
+import SmallContainer from "@/components/SmallContainer";
 import { useSchedule } from "@/hooks/useSchedule";
 import { useParams } from "next/navigation";
 import { notFound } from "next/navigation";
@@ -12,16 +14,18 @@ export const EditPage = () => {
   const { data: schedule, isError } = useSchedule(param.id);
 
   return (
-    <Neu padding={32} radius={4}>
-      <h1>予定作成</h1>
+    <NormalContainer>
+      <h1>編集</h1>
       {schedule ? (
         <ScheduleForm defaultValue={schedule} />
       ) : isError ? (
-        <p>loading...</p>
+        <SmallContainer>
+          <Loading />
+        </SmallContainer>
       ) : (
         <p>error</p>
       )}
-    </Neu>
+    </NormalContainer>
   );
 };
 

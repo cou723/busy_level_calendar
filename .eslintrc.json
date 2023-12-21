@@ -1,6 +1,27 @@
 {
   "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
     "next/core-web-vitals",
-    "plugin:storybook/recommended"
-  ]
+    "plugin:storybook/recommended",
+    "prettier"
+  ],
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-floating-promises": [
+      "error"
+    ]
+  },
+  "parser": "@typescript-eslint/parser",
+  "ignorePatterns": [
+    ".next/",
+    "node_modules/",
+    "./src/types/gapiCalendar.ts"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
 }

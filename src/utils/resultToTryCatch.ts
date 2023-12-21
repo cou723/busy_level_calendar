@@ -1,4 +1,4 @@
-import { Err, Ok, Result } from "ts-results";
+import { Err, Ok, Result } from 'ts-results';
 
 export function resultToTryCatch<T, E extends Error>(result: Result<T, E>): T {
   if (result.err) {
@@ -7,9 +7,7 @@ export function resultToTryCatch<T, E extends Error>(result: Result<T, E>): T {
   return result.val;
 }
 
-export async function tryCatchToResult<T, E extends Error>(
-  fn: () => Promise<T>
-): Promise<Result<T, E>> {
+export async function tryCatchToResult<T, E extends Error>(fn: () => Promise<T>): Promise<Result<T, E>> {
   try {
     return Ok(await fn());
   } catch (e) {

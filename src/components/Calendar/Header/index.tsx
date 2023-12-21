@@ -1,11 +1,11 @@
-import NeuButton from "@/components/utils/NeuButton";
-import { apiAdapter } from "@/global";
-import { YearMonth } from "@/types/yearMonth";
-import { css } from "@emotion/react";
-import { FunctionComponent } from "react";
-import { ArrowButton } from "./ArrowButton";
-import { CreateScheduleButton } from "./CreateScheduleButton";
-import { HeaderBox } from "./HeaderBox";
+import NeuButton from '@/components/utils/NeuButton';
+import { apiAdapter } from '@/global';
+import { YearMonth } from '@/types/yearMonth';
+import { css } from '@emotion/react';
+import { FunctionComponent } from 'react';
+import { ArrowButton } from './ArrowButton';
+import { CreateScheduleButton } from './CreateScheduleButton';
+import { HeaderBox } from './HeaderBox';
 
 interface HeaderProps {
   yearMonth: YearMonth;
@@ -19,18 +19,18 @@ const Header: FunctionComponent<HeaderProps> = ({ yearMonth: { year, month }, on
       <div>{year}</div>
       <div
         css={css({
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         })}
       >
         <ArrowButton onClick={onPre} direction="left" />
         <p
           css={css({
-            width: "5rem",
-            display: "inline-block",
-            textAlign: "center",
-            margin: "0 1rem",
+            width: '5rem',
+            display: 'inline-block',
+            textAlign: 'center',
+            margin: '0 1rem',
           })}
         >
           {month}月
@@ -39,8 +39,8 @@ const Header: FunctionComponent<HeaderProps> = ({ yearMonth: { year, month }, on
       </div>
       <div id="button_group">
         <NeuButton
-          onClick={() => {
-            apiAdapter.clear();
+          onClick={async () => {
+            await apiAdapter.clear();
           }}
           padding={0}
         >

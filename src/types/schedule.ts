@@ -1,14 +1,14 @@
-import { Default, DefaultSchema } from "@/types/defaultSchema";
-import { ScheduleForm } from "@/types/scheduleForm";
-import { subDays } from "date-fns";
-import { v4 } from "uuid";
-import { z } from "zod";
+import { Default, DefaultSchema } from '@/types/defaultSchema';
+import { ScheduleForm } from '@/types/scheduleForm';
+import { subDays } from 'date-fns';
+import { v4 } from 'uuid';
+import { z } from 'zod';
 
 export const ScheduleSchema = DefaultSchema.extend({
   title: z.string(),
-  description: z.string(),
+  description: z.string().nullable().optional(),
   date: z.coerce.date(),
-  requiredDays: z.number().optional().nullable(),
+  requiredDays: z.number().nullable().optional(),
   userId: z.string(),
 });
 
@@ -19,16 +19,16 @@ export function extractNonCompletedSchedules(schedules: Schedule[]): Schedule[] 
   return schedules.filter((schedule) => schedule.requiredDays == undefined);
 }
 
-export function generate({ title, description, date, requiredDays }: ScheduleForm, id?: Schedule["id"]): Schedule {
+export function generate({ title, description, date, requiredDays }: ScheduleForm, id?: Schedule['id']): Schedule {
   return {
     id: id ?? v4(),
     title,
-    description: description ?? "",
+    description: description ?? '',
     date,
     requiredDays,
     createdAt: new Date(),
     updatedAt: new Date(),
-    userId: "",
+    userId: '',
   };
 }
 

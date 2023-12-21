@@ -1,6 +1,5 @@
 "use client";
 import { globalStyle } from "@/components/globalStyle";
-import { backgroundColor } from "@/constants";
 import { css } from "@emotion/react";
 import { Global } from "@emotion/react";
 

@@ -1,20 +1,20 @@
-import { Calendar, ApiAdapter, CalendarSchema, calendarInit } from "@/types/calendar";
-import { Schedule } from "@/types/schedule";
-import { jsonParse } from "@/utils/jsonParse";
-import { LocalStorage } from "@/utils/localStorage";
-import { parseBySchema } from "@/utils/parseBySchema";
-import { Err, Ok, Result } from "ts-results";
+import { Calendar, ApiAdapter, CalendarSchema, calendarInit } from '@/types/calendar';
+import { Schedule } from '@/types/schedule';
+import { jsonParse } from '@/utils/jsonParse';
+import { LocalStorage } from '@/utils/localStorage';
+import { parseBySchema } from '@/utils/parseBySchema';
+import { Err, Ok, Result } from 'ts-results';
 
 export class LocalStorageAdapter implements ApiAdapter {
-  static key: string = "busyLevelCalendar";
+  static key: string = 'busyLevelCalendar';
 
   schedule = {
-    get: async (id: Schedule["id"]): Promise<Result<Schedule, Error>> => {
+    get: async (id: Schedule['id']): Promise<Result<Schedule, Error>> => {
       const calendar = await this.get();
       if (calendar.err) return Err(calendar.val);
 
       const schedule = calendar.val.schedules.find((e) => e.id == id);
-      if (schedule === undefined) return Err(new Error("not found"));
+      if (schedule === undefined) return Err(new Error('not found'));
       return Ok(schedule);
     },
 
@@ -30,7 +30,7 @@ export class LocalStorageAdapter implements ApiAdapter {
       if (calendar.err) return Err(calendar.val);
 
       if (!(await this.schedule.get(schedule.id)).err) {
-        this.schedule.edit(schedule);
+        await this.schedule.edit(schedule);
         return Ok.EMPTY;
       }
 
@@ -64,7 +64,7 @@ export class LocalStorageAdapter implements ApiAdapter {
     if (res.err) return Err(res.val);
 
     let calendar;
-    if (res.val === "") calendar = Ok(calendarInit());
+    if (res.val === '') calendar = Ok(calendarInit());
     else calendar = jsonParse(res.val);
     if (calendar.err) return Err(calendar.val);
 
@@ -72,7 +72,7 @@ export class LocalStorageAdapter implements ApiAdapter {
   };
 
   clear = async (): Promise<Result<void, Error>> => {
-    LocalStorage.set(LocalStorageAdapter.key, "");
+    LocalStorage.set(LocalStorageAdapter.key, '');
     return Ok.EMPTY;
   };
 }

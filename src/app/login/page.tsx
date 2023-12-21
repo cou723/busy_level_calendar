@@ -1,17 +1,17 @@
-"use client";
-import NeuButton from "@/components/utils/NeuButton";
-import TextBox from "@/components/utils/TextBox";
-import { useLoginForm } from "../../hooks/useLoginForm";
-import { css } from "@emotion/react";
-import { GetServerSideProps } from "next";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+'use client';
+// import NeuButton from "@/components/utils/NeuButton";
+// import TextBox from "@/components/utils/TextBox";
+// import { useLoginForm } from "../../hooks/useLoginForm";
+// import { css } from "@emotion/react";
+// import { GetServerSideProps } from "next";
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 const LoginPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    router.push("/auth/signin");
+    router.push('/auth/signin');
   }, [router]);
 
   return null;

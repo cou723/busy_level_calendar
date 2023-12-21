@@ -1,5 +1,5 @@
-export function toPromise(func: (...args: any[]) => any) {
-  return function (...args: any[]) {
+export function toPromise(func: (...args: unknown[]) => unknown) {
+  return function (...args: unknown[]) {
     return Promise.resolve(func(...args));
   };
 }

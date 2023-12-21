@@ -1,9 +1,7 @@
-import { isJwt } from "@/libs/server/parseJwt";
-import { db } from "@/utils/server/db";
-import { Account, JWT, Profile, Session, User, AuthOptions } from "next-auth";
-import { AdapterUser } from "next-auth/adapters";
-import { DefaultJWT } from "next-auth/jwt";
-import GoogleProvider from "next-auth/providers/google";
+import { Account, JWT, Profile, Session, User, AuthOptions } from 'next-auth';
+import { AdapterUser } from 'next-auth/adapters';
+import { DefaultJWT } from 'next-auth/jwt';
+import GoogleProvider from 'next-auth/providers/google';
 
 type JwtArgs = {
   token: DefaultJWT;
@@ -14,8 +12,8 @@ type JwtArgs = {
 };
 
 type SessionArgs = { session: Session; token: JWT; user: AdapterUser } & {
-  newSession: any;
-  trigger: "update";
+  newSession: unknown;
+  trigger: 'update';
 };
 
 export const options: AuthOptions = {
@@ -30,7 +28,7 @@ export const options: AuthOptions = {
     }),
   ],
   pages: {
-    signIn: "/auth/signin",
+    signIn: '/auth/signin',
   },
   callbacks: {
     jwt: ({ token }: JwtArgs): JWT => {

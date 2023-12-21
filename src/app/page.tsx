@@ -8,6 +8,7 @@ import { fromCalendar } from "@/types";
 import { css } from "@emotion/react";
 import { useSessionCheck } from "@/hooks/useSessionCheck";
 import { useRouter } from "next/navigation";
+import LoadingPage from "@/app/LoadingPage";
 
 const Home = () => {
   useSessionCheck();
@@ -16,11 +17,7 @@ const Home = () => {
   const { state: yearMonth, next, previous } = useYearMonth(defaultState);
 
   if (isLoading) {
-    return (
-      <div css={css({ display: "flex" })}>
-        <p>Loading...</p>
-      </div>
-    );
+    return <LoadingPage />;
   }
 
   if (isError) {
