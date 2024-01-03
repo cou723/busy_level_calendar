@@ -1,37 +1,43 @@
 import { schedule } from '@/app/api/service/schedule';
 import { getUserData } from '@/libs/server/getUserData';
 import { ErrorResponse, makeErrorResponse } from '@/types/server/ErrorResponse';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { Schedule } from '@/types/schedule';
-import { Request } from '@/types/server/Request';
 import { parseBySchema } from '@/utils/parseBySchema';
 import { scheduleFormSchema } from '@/types/scheduleForm';
 import { tryCatchToResult } from '@/utils/resultToTryCatch';
 
-export async function GET(req: Request): Promise<NextResponse<Schedule | ErrorResponse>> {
+export async function GET(
+  _res: Response,
+  { params }: { params: { id: string } }
+): Promise<NextResponse<Schedule | ErrorResponse>> {
   const user = await getUserData();
   if (user.err) return user.val;
 
-  console.log('called');
+  const targetId = params.id;
+  if (targetId === undefined) return makeErrorResponse(400, 'idが指定されていません');
 
-  const getResult = await schedule.getResult(user.val.id, req.query.id as string);
+  const getResult = await schedule.getResult(user.val.id, targetId);
+
   if (getResult.err) return getResult.val;
   return NextResponse.json(getResult.val);
 }
 
-export async function PUT(req: Request): Promise<NextResponse<Schedule | ErrorResponse>> {
+export async function PUT(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+): Promise<NextResponse<Schedule | ErrorResponse>> {
   const user = await getUserData();
   if (user.err) return user.val;
 
   // get body from request
-  const requestBody = await tryCatchToResult(async () => await req.body.getReader().read());
+  const requestBody = await tryCatchToResult(async () => await req.body!.getReader().read());
   if (requestBody.err) return makeErrorResponse(500, requestBody.val.message);
 
   const decoder = new TextDecoder();
   const decodedBody = decoder.decode(requestBody.val.value);
   const JSONBody = JSON.parse(decodedBody);
-  const parseResult = parseBySchema(scheduleFormSchema, JSONBody);
-  console.log('request:', parseResult.val);
+  const parseResult = parseBySchema({ schema: scheduleFormSchema, target: JSONBody });
 
   if (parseResult.err) {
     return makeErrorResponse(400, parseResult.val.message);
@@ -40,21 +46,23 @@ export async function PUT(req: Request): Promise<NextResponse<Schedule | ErrorRe
 
   const newSchedule = { ...parseResult.val, userId: user.val.id };
 
-  console.log('user', user.val);
+  console.log(params.id);
 
-  if (req.query == undefined || req.query.id == undefined) {
+  if (!params.id) {
     // create
+    console.log('create');
     return schedule.create(user.val.id, newSchedule);
   } else {
     //edit
-    return schedule.update(user.val.id, req.query.id as string, newSchedule);
+    console.log('edit');
+    return schedule.update(user.val.id, params.id, newSchedule);
   }
 }
 
-export async function DELETE(req: Request): Promise<NextResponse<void | ErrorResponse>> {
+export async function DELETE(_res: Response, { params }: { params: { id: string } }): Promise<Response> {
   const user = await getUserData();
   if (user.err) return user.val;
-  if (req.query == undefined) return makeErrorResponse(400, 'idが指定されていません');
+  if (params == undefined || params.id === undefined) return makeErrorResponse(400, 'idが指定されていません');
 
-  return await schedule.delete(user.val.id, req.query.id as string);
+  return await schedule.delete(user.val.id, params.id);
 }

@@ -1,11 +1,12 @@
-"use client";
-import NormalContainer from "@/components/NormalContainer";
-import ScheduleForm from "@/components/ScheduleForm";
+'use client';
+import NormalContainer from '@/components/NormalContainer';
+import PageTitle from '@/components/PageTitle';
+import ScheduleForm from '@/components/ScheduleForm';
 
 export const CreatePage = () => {
   return (
     <NormalContainer>
-      <h1>予定作成</h1>
+      <PageTitle>予定の作成</PageTitle>
       <ScheduleForm />
     </NormalContainer>
   );

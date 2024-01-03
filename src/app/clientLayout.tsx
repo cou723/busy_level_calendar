@@ -1,7 +1,6 @@
-"use client";
-import { globalStyle } from "@/components/globalStyle";
-import { css } from "@emotion/react";
-import { Global } from "@emotion/react";
+'use client';
+import { globalStyle } from '@/components/globalStyle';
+import { Global } from '@emotion/react';
 
 type ClientLayoutProps = {
   children: React.ReactNode;
@@ -9,7 +8,7 @@ type ClientLayoutProps = {
 
 export function ClientLayout({ children }: ClientLayoutProps) {
   return (
-    <div css={css({ padding: "2rem", color: "red" })}>
+    <div style={{ padding: '2rem', height: '100%' }}>
       <Global styles={globalStyle} />
       {children}
     </div>

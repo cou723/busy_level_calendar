@@ -5,7 +5,7 @@ import { Schedule } from '@/types/schedule';
 import { css } from '@emotion/react';
 import React from 'react';
 import { FunctionComponent } from 'react';
-import { peaceOfMindToColor } from '@/libs/peaceOfMindToColor';
+import { getMentalLevelColor } from '@/libs/peaceOfMindToColor';
 
 interface DayProps {
   day: number;
@@ -17,17 +17,16 @@ const Day: FunctionComponent<DayProps> = React.memo(({ day, schedules, busyLevel
   return (
     <Neu
       inset
-      height="10rem"
-      padding={16}
       css={css({
-        backgroundColor: peaceOfMindToColor(busyLevel),
+        backgroundColor: getMentalLevelColor(busyLevel),
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '10px',
+        padding: '20px',
+        minHeight: '100px',
       })}
     >
-      <p
-        css={css`
-          margin-bottom: 0.5rem;
-        `}
-      >
+      <p>
         {day}
         {/* {day}:{busyLevel.toFixed(3)} */}
       </p>

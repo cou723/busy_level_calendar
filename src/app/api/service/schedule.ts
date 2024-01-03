@@ -44,7 +44,7 @@ export const schedule = {
     return NextResponse.json(result.val, { status: 200 });
   },
 
-  async delete(userId: User['id'], id: Schedule['id']): Promise<NextResponse<void | ErrorResponse>> {
+  async delete(userId: User['id'], id: Schedule['id']): Promise<Response> {
     const result = await tryCatchToResult(
       async () =>
         await db.schedule.delete({
@@ -58,7 +58,9 @@ export const schedule = {
     if (result.err) {
       return makeErrorResponse(500, 'scheduleの削除に失敗しました: ' + result.val.message);
     }
-    return NextResponse.json(undefined, { status: 204 });
+    return new Response(null, {
+      status: 204,
+    });
   },
 
   async get(userId: User['id'], id: Schedule['id']): Promise<NextResponse<Schedule | ErrorResponse>> {

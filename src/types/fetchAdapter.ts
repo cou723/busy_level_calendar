@@ -1,9 +1,11 @@
 import apiEndpoints from '@/libs/apiEndpoints';
 import { Calendar, ApiAdapter, CalendarSchema } from '@/types/calendar';
-import { Schedule, ScheduleSchema } from '@/types/schedule';
+import { Schedule, ScheduleSchema, isSchedule, toScheduleForm } from '@/types/schedule';
 import { parseBySchema } from '@/utils/parseBySchema';
 import { Err, Ok, Result } from 'ts-results';
 import { fetch } from '@/utils/fetch';
+import { ScheduleForm } from '@/types/scheduleForm';
+import { isSuccessStatus as isStatusSuccess } from '@/utils/isSuccessStatus';
 
 async function createError(errorResponse: Response): Promise<Error> {
   const errorBody = await errorResponse.text();
@@ -16,27 +18,32 @@ export class FetchAdapter implements ApiAdapter {
       const res = await fetch(`${apiEndpoints.schedule.getAll}`, { credentials: 'include' });
 
       if (res.err) return Err(res.val);
-      if (res.val.status !== 200) return Err(new Error(JSON.stringify(res.val)));
+      if (!isStatusSuccess(res.val.status)) return Err(new Error(JSON.stringify(res.val)));
 
-      return parseBySchema(await res.val.json(), ScheduleSchema);
+      return parseBySchema({ target: await res.val.json(), schema: ScheduleSchema.array() });
     },
 
-    get: async (id?: Schedule['id']): Promise<Result<Schedule, Error>> => {
-      const res = await fetch(`${apiEndpoints.schedule.get}/${id}`, { credentials: 'include' });
-
-      console.log('fetch', res);
+    get: async (id: Schedule['id']): Promise<Result<Schedule, Error>> => {
+      const res = await fetch(`${apiEndpoints.schedule.get.replace(':id', id)}`, { credentials: 'include' });
 
       if (res.err) return Err(res.val);
-      if (res.val.status !== 200) return Err(new Error(JSON.stringify(res.val)));
+      if (!isStatusSuccess(res.val.status)) return Err(new Error(JSON.stringify(res.val)));
 
-      return parseBySchema(await res.val.json(), ScheduleSchema);
+      return parseBySchema({ schema: ScheduleSchema, target: await res.val.json() });
     },
 
-    add: async (schedule: Schedule): Promise<Result<void, Error>> => {
-      const res = await fetch(`${apiEndpoints.schedule.createOrUpdate}`, {
+    update: async (schedule: Schedule | ScheduleForm): Promise<Result<void, Error>> => {
+      console.log('update', schedule);
+      console.log(ScheduleSchema.safeParse(schedule), isSchedule(schedule));
+
+      if (isSchedule(schedule)) {
+        return await this.schedule.edit(schedule.id, toScheduleForm(schedule));
+      }
+
+      const res = await fetch(`${apiEndpoints.schedule.create}`, {
         method: 'PUT',
         body: JSON.stringify(schedule),
-        ...{ credentials: 'include' },
+        credentials: 'include',
       });
 
       if (res.err) return Err(res.val);
@@ -46,26 +53,26 @@ export class FetchAdapter implements ApiAdapter {
     },
 
     remove: async (id: string): Promise<Result<void, Error>> => {
-      const res = await fetch(`${apiEndpoints.schedule.delete}/${id}`, {
+      const res = await fetch(`${apiEndpoints.schedule.delete.replace(':id', id)}`, {
         method: 'DELETE',
-        ...{ credentials: 'include' },
+        credentials: 'include',
       });
 
       if (res.err) return Err(res.val);
-      if (res.val.status !== 200) return Err(await createError(res.val));
+      if (!isStatusSuccess(res.val.status)) return Err(await createError(res.val));
 
       return Ok.EMPTY;
     },
 
-    edit: async (target: Schedule): Promise<Result<void, Error>> => {
-      const res = await fetch(`${apiEndpoints.schedule.createOrUpdate}`, {
+    edit: async (id: string, edited: ScheduleForm): Promise<Result<void, Error>> => {
+      const res = await fetch(`${apiEndpoints.schedule.update.replace(':id', id)}`, {
         method: 'PUT',
-        body: JSON.stringify(target),
-        ...{ credentials: 'include' },
+        body: JSON.stringify(edited),
+        credentials: 'include',
       });
 
       if (res.err) return Err(res.val);
-      if (res.val.status !== 200) return Err(await createError(res.val));
+      if (!isStatusSuccess(res.val.status)) return Err(await createError(res.val));
 
       return Ok.EMPTY;
     },
@@ -77,9 +84,9 @@ export class FetchAdapter implements ApiAdapter {
 
     if (res.err) return Err(res.val);
     if (res.val.status === 401) return Err(new Error('unauthorized'));
-    if (res.val.status !== 200) return Err(await createError(res.val));
+    if (!isStatusSuccess(res.val.status)) return Err(await createError(res.val));
 
-    return parseBySchema(CalendarSchema, await res.val.json());
+    return parseBySchema({ schema: CalendarSchema, target: await res.val.json() });
   };
 
   clear = async (): Promise<Result<void, Error>> => {

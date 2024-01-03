@@ -1,8 +1,8 @@
-import { FunctionComponent } from "react";
-import { transparentize } from "color2k";
-import { css } from "@emotion/react";
+import { FunctionComponent } from 'react';
+import { transparentize } from 'color2k';
+import { css } from '@emotion/react';
 
-export type NeuSize = "small" | "medium" | "large";
+export type NeuSize = 'small' | 'medium' | 'large';
 
 export interface NeuProps {
   children: React.ReactNode;
@@ -11,6 +11,7 @@ export interface NeuProps {
   inset?: boolean;
   concave?: boolean;
   size?: NeuSize;
+
   [key: string]: unknown;
 }
 
@@ -29,8 +30,8 @@ const generateBoxShadow = (inset: boolean, shadow: string, highlight: string, si
   };
   const { offset, blur } = shadowSize[size];
 
-  return `${inset ? "inset" : ""} ${offset}px ${offset}px ${blur}px ${shadow}, ${
-    inset ? "inset" : ""
+  return `${inset ? 'inset' : ''} ${offset}px ${offset}px ${blur}px ${shadow}, ${
+    inset ? 'inset' : ''
   } -${offset}px -${offset}px ${blur}px ${highlight}`;
 };
 
@@ -40,16 +41,15 @@ const Neu: FunctionComponent<NeuProps> = ({
   intensity = 1,
   inset = false,
   concave = false,
-  size = "medium",
+  size = 'medium',
   ...props
 }) => {
-  const shadow = transparentize("black", 1.2 - actualIntensity[intensity]);
-  const highlight = transparentize("white", 0.5 - actualIntensity[intensity]);
+  const shadow = transparentize('black', 1.2 - actualIntensity[intensity]);
+  const highlight = transparentize('white', 0.5 - actualIntensity[intensity]);
   const neuStyleObject = {
     background: generateBackground(concave),
     borderRadius: actualRadius[radius],
     boxShadow: generateBoxShadow(inset, shadow, highlight, size),
-    padding: "1rem",
   };
 
   const neuStyle = {

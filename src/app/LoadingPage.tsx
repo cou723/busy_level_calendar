@@ -1,22 +1,30 @@
-"use client";
-import Loading from "@/components/Loading";
-import { css } from "@emotion/react";
-import React from "react";
+'use client';
+import { css } from '@emotion/react';
+import React from 'react';
+import { Circles } from 'react-loader-spinner';
 
-function LoadingPage() {
+const LoadingPage = () => {
   return (
     <div
-      css={css({
-        alignItems: "center",
-        display: "flex",
-        height: "100%",
-        width: "100%",
-        justifyContent: "center",
-      })}
+      css={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100%',
+        flexDirection: 'column',
+        gap: '1rem',
+      }}
     >
-      <Loading />
+      <Circles color="#9b9b9b" height={50} width={50} />
+      <p
+        css={css({
+          display: 'block',
+        })}
+      >
+        now loading...
+      </p>
     </div>
   );
-}
+};
 
 export default LoadingPage;

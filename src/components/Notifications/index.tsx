@@ -1,8 +1,8 @@
-import { FunctionComponent } from "react";
-import Neu from "../utils/Neu";
-import { type Notification } from "@/types";
-import NotificationView from "./Notification";
-import { css } from "@emotion/react";
+import { FunctionComponent } from 'react';
+import Neu from '../utils/Neu';
+import { type Notification } from '@/types';
+import NotificationView from './Notification';
+import { css } from '@emotion/react';
 
 interface NotificationsProps {
   notifications: Notification[];
@@ -14,9 +14,10 @@ const Notifications: FunctionComponent<NotificationsProps> = ({ notifications, .
     <Neu
       {...props}
       css={css({
-        display: "flex",
-        flexDirection: "column",
-        gap: "1rem",
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '12px',
+        padding: '12px',
       })}
     >
       {notifications.map((notification: Notification) => (
@@ -24,8 +25,8 @@ const Notifications: FunctionComponent<NotificationsProps> = ({ notifications, .
           key={notification.id}
           title={notification.title}
           message={notification.message}
-          level={notification.level}
-          to={"/edit/" + notification.target}
+          priorityLevel={notification.level}
+          toUrl={'/edit/' + notification.target}
         />
       ))}
     </Neu>

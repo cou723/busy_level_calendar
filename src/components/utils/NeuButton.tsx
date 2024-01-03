@@ -1,7 +1,8 @@
-"use client";
-import Neu from "@/components/utils/Neu";
-import { css } from "@emotion/react";
-import { FunctionComponent, useState } from "react";
+'use client';
+import FlexBox from '@/components/utils/FlexBox';
+import Neu from '@/components/utils/Neu';
+import { css } from '@emotion/react';
+import { FunctionComponent, useState } from 'react';
 
 export interface NeuButtonProps {
   label?: string;
@@ -16,6 +17,10 @@ const buttonStyles = () => {
   return css`
     background-color: transparent;
     border: none;
+    text-align: center;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
   `;
 };
 
@@ -36,6 +41,7 @@ const NeuButton: FunctionComponent<NeuButtonProps> = ({
 
   const handleMouseUp = () => {
     setIsActive(false);
+    setIsHovered(false);
   };
   return (
     <Neu
@@ -51,7 +57,7 @@ const NeuButton: FunctionComponent<NeuButtonProps> = ({
       inset={isActive}
       concave={concave}
     >
-      {label}
+      <p>{label}</p>
       {children}
     </Neu>
   );

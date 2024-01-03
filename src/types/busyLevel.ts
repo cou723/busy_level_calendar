@@ -1,9 +1,9 @@
-import { Calendar } from "@/types/calendar";
-import { LevelSchema } from "@/types/level";
-import { Schedule, getAllDatesUntilSchedule } from "@/types/schedule";
-import { normalize, normalizeVector } from "@/utils/normalizeVector";
-import { isSameDay } from "date-fns";
-import { z } from "zod";
+import { Calendar } from '@/types/calendar';
+import { LevelSchema } from '@/types/level';
+import { Schedule, getAllDatesUntilSchedule } from '@/types/schedule';
+import { normalize, normalizeVector } from '@/utils/normalizeVector';
+import { isSameDay } from 'date-fns';
+import { z } from 'zod';
 
 export const BusyLevelSchema = z.object({
   date: z.coerce.date(),
@@ -33,7 +33,6 @@ export function generateBusyLevel(schedule: Schedule): BusyLevel[] {
   }
 
   const levelList = normalizeVector([...Array(schedule.requiredDays).keys()]);
-  console.log(levelList);
 
   return getAllDatesUntilSchedule(schedule).map((bl, i) => ({
     date: bl,

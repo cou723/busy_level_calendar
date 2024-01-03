@@ -1,10 +1,11 @@
-const apiRoot = "/api";
+const apiRoot = '/api';
 const apiEndpoints = {
   calendar: {
     get: `${apiRoot}/calendar`,
   },
   schedule: {
-    createOrUpdate: `${apiRoot}/schedule/:id`,
+    create: `${apiRoot}/schedule/`,
+    update: `${apiRoot}/schedule/:id`,
     getAll: `${apiRoot}/schedules`,
     get: `${apiRoot}/schedule/:id`,
     delete: `${apiRoot}/schedule/:id`,

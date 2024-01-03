@@ -1,7 +1,7 @@
-import { getMonth, Month } from "@/types/month";
-import { getNext, getPrevious } from "@/types/yearMonth";
-import { getYear } from "date-fns";
-import React from "react";
+import { getMonth, Month } from '@/types/month';
+import { getNext, getPrevious } from '@/types/yearMonth';
+import { getYear } from 'date-fns';
+import React from 'react';
 
 type State = {
   year: number;
@@ -9,14 +9,14 @@ type State = {
 };
 
 type Action = {
-  type: "next" | "previous";
+  type: 'next' | 'previous';
 };
 
 export function reducer(state: State, action: Action): State {
   switch (action.type) {
-    case "next":
+    case 'next':
       return getNext(state);
-    case "previous":
+    case 'previous':
       return getPrevious(state);
   }
 }
@@ -30,11 +30,11 @@ export function useYearMonth(initialState: State) {
   const [state, dispatch] = React.useReducer(reducer, initialState);
 
   const next = React.useCallback(() => {
-    dispatch({ type: "next" });
+    dispatch({ type: 'next' });
   }, []);
 
   const previous = React.useCallback(() => {
-    dispatch({ type: "previous" });
+    dispatch({ type: 'previous' });
   }, []);
 
   return {

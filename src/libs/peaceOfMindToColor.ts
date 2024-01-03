@@ -1,4 +1,4 @@
-export function peaceOfMindToColor(zeroToOne: number): string {
+export function getMentalLevelColor(zeroToOne: number): string {
   return `hsl(${toHslH(zeroToOne)}, 50%, 80%)`;
 }
 

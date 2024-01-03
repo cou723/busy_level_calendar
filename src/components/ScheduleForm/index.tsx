@@ -1,3 +1,4 @@
+import FlexBox from '@/components/utils/FlexBox';
 import NeuButton from '@/components/utils/NeuButton';
 import TextBox from '@/components/utils/TextBox';
 import { useScheduleForm } from '@/hooks/useScheduleForm';
@@ -12,15 +13,9 @@ interface ScheduleFormProps {
 const ScheduleForm: FunctionComponent<ScheduleFormProps> = ({ defaultValue }) => {
   const { register, onSubmit, formState } = useScheduleForm(defaultValue);
 
-  const stackStyle = css({
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '1rem',
-  });
-
   return (
     <form onSubmit={onSubmit}>
-      <div css={stackStyle}>
+      <FlexBox flexDirection="column" gap={1}>
         <TextBox
           id="title"
           label="タスクタイトル"
@@ -52,7 +47,19 @@ const ScheduleForm: FunctionComponent<ScheduleFormProps> = ({ defaultValue }) =>
           errorMessage={formState.errors.date?.message}
           register={register('date')}
         />
-        <NeuButton css={css({ width: '200px' })} label={defaultValue ? '編集' : '作成'} onClick={() => onSubmit()} />
+      </FlexBox>
+      <div
+        css={css({
+          display: 'flex',
+          justifyContent: 'end',
+          alignItems: 'row',
+        })}
+      >
+        <NeuButton
+          css={css({ width: '8rem', marginTop: '1rem' })}
+          label={defaultValue ? '編集' : '作成'}
+          onClick={() => onSubmit()}
+        />
       </div>
     </form>
   );

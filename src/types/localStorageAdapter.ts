@@ -25,7 +25,7 @@ export class LocalStorageAdapter implements ApiAdapter {
       return Ok(calendar.val.schedules);
     },
 
-    add: async (schedule: Schedule): Promise<Result<void, Error>> => {
+    update: async (schedule: Schedule): Promise<Result<void, Error>> => {
       const calendar = await this.get();
       if (calendar.err) return Err(calendar.val);
 
@@ -68,7 +68,7 @@ export class LocalStorageAdapter implements ApiAdapter {
     else calendar = jsonParse(res.val);
     if (calendar.err) return Err(calendar.val);
 
-    return parseBySchema(CalendarSchema, calendar.val);
+    return parseBySchema({ schema: CalendarSchema, target: calendar.val });
   };
 
   clear = async (): Promise<Result<void, Error>> => {

@@ -1,13 +1,14 @@
-import { Result } from "ts-results";
-import { Schedule, ScheduleSchema } from "@/types/schedule";
-import { z } from "zod";
+import { Result } from 'ts-results';
+import { Schedule, ScheduleSchema } from '@/types/schedule';
+import { z } from 'zod';
+import { ScheduleForm } from '@/types/scheduleForm';
 
 export interface ApiAdapter {
   get(): Promise<Result<Calendar, Error>>;
   schedule: {
-    get(id: Schedule["id"]): Promise<Result<Schedule, Error>>;
+    get(id: Schedule['id']): Promise<Result<Schedule, Error>>;
     getAll(): Promise<Result<Schedule[], Error>>;
-    add(schedule: Schedule): Promise<Result<void, Error>>;
+    update(schedule: ScheduleForm | Schedule): Promise<Result<void, Error>>;
     remove(id: string): Promise<Result<void, Error>>;
   };
   // peaceOfMind: {
@@ -27,6 +28,6 @@ export const CalendarSchema = z.object({
 export type Calendar = z.infer<typeof CalendarSchema>;
 
 export const calendarInit = (): Calendar => ({
-  id: "origin", // not used
+  id: 'origin', // not used
   schedules: [],
 });

@@ -2,13 +2,13 @@ import { css } from '@emotion/react';
 
 export const Title = ({ children }: { children: React.ReactNode }) => {
   return (
-    <h5
+    <p
       css={css`
-        font-size: 16px;
-        margin: 0.5rem 0;
+        padding-top: 0.2rem;
+        font-size: 0.8rem;
       `}
     >
       {children}
-    </h5>
+    </p>
   );
 };
