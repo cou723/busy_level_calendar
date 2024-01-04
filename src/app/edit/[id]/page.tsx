@@ -7,7 +7,6 @@ import FlexBox from '@/components/utils/FlexBox';
 import NeuButton from '@/components/utils/NeuButton';
 import { apiAdapter } from '@/global';
 import { useSchedule } from '@/hooks/useSchedule';
-import { css } from '@emotion/react';
 import { notFound, useParams, useRouter } from 'next/navigation';
 
 export const EditPage = () => {

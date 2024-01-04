@@ -8,7 +8,7 @@ type Props = {
   alignItems?: React.CSSProperties['alignItems'];
   flexDirection?: React.CSSProperties['flexDirection'];
   flexWrap?: React.CSSProperties['flexWrap'];
-  [key: string]: any;
+  [key: string]: unknown;
 };
 
 const FlexBox = ({ children, gap, justifyContent, alignItems, flexDirection, flexWrap, ...props }: Props) => {

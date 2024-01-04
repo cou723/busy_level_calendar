@@ -1,1 +1,1 @@
-declare let gapi: any;
+declare let gapi: unknown;
