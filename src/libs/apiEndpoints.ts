@@ -1,27 +1,36 @@
-const apiRoot = '/api';
+const root = '/api';
+
+const resources = {
+  calendar: `${root}/calendar`,
+  schedule: `${root}/schedule`,
+  schedules: `${root}/schedules`,
+  import: `${root}/import`,
+  user: `${root}/user`,
+} as const;
+
 const apiEndpoints = {
   calendar: {
-    get: `${apiRoot}/calendar`,
+    get: resources.calendar,
   },
   schedule: {
-    create: `${apiRoot}/schedule/`,
-    update: `${apiRoot}/schedule/:id`,
-    getAll: `${apiRoot}/schedules`,
-    get: `${apiRoot}/schedule/:id`,
-    delete: `${apiRoot}/schedule/:id`,
+    create: resources.schedule,
+    update: `${resources.schedule}/:id`,
+    getAll: resources.schedules,
+    get: `${resources.schedule}/:id`,
+    delete: `${resources.schedule}/:id`,
   },
   import: {
-    fromGoogleCalendar: `${apiRoot}/import`,
-    fromTodoist: `${apiRoot}/import/todoist`,
+    fromGoogleCalendar: resources.import,
+    fromTodoist: `${resources.import}/todoist`,
   },
   auth: {
-    login: `${apiRoot}/login`,
-    logout: `${apiRoot}/logout`,
+    login: `${root}/login`,
+    logout: `${root}/logout`,
   },
   user: {
-    create: `${apiRoot}/user`,
-    update: `${apiRoot}/user/:id`,
-    delete: `${apiRoot}/user/:id`,
+    create: resources.user,
+    update: `${resources.user}/:id`,
+    delete: `${resources.user}/:id`,
   },
 } as const;
 
