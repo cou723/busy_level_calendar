@@ -1,12 +1,12 @@
 /** @type {import('next').NextConfig} */
-const path = require("path");
+const path = require('path');
 
 const nextConfig = {
   compiler: {
     emotion: true,
   },
   webpack: (config) => {
-    config.resolve.alias["@"] = path.resolve(__dirname, "src");
+    config.resolve.alias['@'] = path.resolve(__dirname, 'src');
     return config;
   },
 };

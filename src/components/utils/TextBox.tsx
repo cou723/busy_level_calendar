@@ -1,10 +1,10 @@
-import ErrorMessage from "@/components/utils/ErrorMessage";
-import NeuInput from "@/components/utils/NeuInput";
-import { css } from "@emotion/react";
-import { FunctionComponent, InputHTMLAttributes } from "react";
-import { UseFormRegisterReturn } from "react-hook-form";
+import ErrorMessage from '@/components/utils/ErrorMessage';
+import NeuInput from '@/components/utils/NeuInput';
+import { css } from '@emotion/react';
+import { FunctionComponent, InputHTMLAttributes } from 'react';
+import { UseFormRegisterReturn } from 'react-hook-form';
 
-export interface LabelProps {
+interface LabelProps {
   disabled: boolean;
   children: React.ReactNode;
   inputId: string;
@@ -15,8 +15,8 @@ const Label: FunctionComponent<LabelProps> = ({ children, disabled, inputId }) =
     <label
       htmlFor={inputId}
       css={css({
-        fontSize: "0.8rem",
-        color: disabled ? "gray" : "black",
+        fontSize: '0.8rem',
+        color: disabled ? 'gray' : 'black',
       })}
     >
       {children}
@@ -24,9 +24,9 @@ const Label: FunctionComponent<LabelProps> = ({ children, disabled, inputId }) =
   );
 };
 
-export interface TextBoxProps {
+interface TextBoxProps {
   register: UseFormRegisterReturn<string>;
-  type: InputHTMLAttributes<HTMLInputElement>["type"];
+  type: InputHTMLAttributes<HTMLInputElement>['type'];
   label: string;
   errorMessage?: string;
   id: string;
@@ -36,7 +36,7 @@ export interface TextBoxProps {
 
 const TextBox: FunctionComponent<TextBoxProps> = ({
   label,
-  errorMessage = "",
+  errorMessage = '',
   disabled = false,
   id,
   type,

@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 import { transparentize } from 'color2k';
 import { css } from '@emotion/react';
 
-export type NeuSize = 'small' | 'medium' | 'large';
+type NeuSize = 'small' | 'medium' | 'large';
 
 export interface NeuProps {
   children: React.ReactNode;

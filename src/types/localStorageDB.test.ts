@@ -32,7 +32,7 @@ describe('localStorageDB', () => {
       schedules: [schedule],
     };
 
-    await localStorageDB.schedule.add(schedule);
+    await localStorageDB.schedule.update(schedule);
     expect(localStorage.getItem(LocalStorageAdapter.key)).toEqual(JSON.stringify(calendar));
 
     expect((await localStorageDB.get()).val).toEqual(calendar);
