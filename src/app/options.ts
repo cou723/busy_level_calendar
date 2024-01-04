@@ -16,6 +16,12 @@ type SessionArgs = { session: Session; token: JWT; user: AdapterUser } & {
   trigger: 'update';
 };
 
+if (!process.env.NEXTAUTH_SECRET) throw new Error('NEXTAUTH_SECRET is not defined');
+
+if (!process.env.NEXT_PUBLIC_CLIENT_ID) throw new Error('NEXT_PUBLIC_CLIENT_ID is not defined');
+
+if (!process.env.GOOGLE_SECRET) throw new Error('GOOGLE_SECRET is not defined');
+
 export const options: AuthOptions = {
   secret: process.env.NEXTAUTH_SECRET!,
   providers: [
