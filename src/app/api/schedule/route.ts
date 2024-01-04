@@ -1,4 +1,4 @@
-import { schedule } from '@/app/api/service/schedule';
+import { schedule } from '@/libs/server/service/schedule';
 import { getUserData } from '@/libs/server/getUserData';
 import { ErrorResponse, makeErrorResponse } from '@/types/server/ErrorResponse';
 import { NextRequest, NextResponse } from 'next/server';
