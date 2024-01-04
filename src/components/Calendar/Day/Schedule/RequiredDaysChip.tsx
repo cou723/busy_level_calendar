@@ -10,7 +10,7 @@ export const RequiredDaysChip = ({ requiredDays }: { requiredDays: Schedule['req
         font-size: 8px;
         background-color: #fff;
         padding: 2px;
-        padding-bottom: 0.2rem;
+        padding-bottom: 0px;
         border-radius: 2px;
         margin: 2px;
         margin-left: 8px;

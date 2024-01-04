@@ -29,7 +29,7 @@ export const EditPage = () => {
     <NormalContainer>
       <FlexBox justifyContent="space-between" alignItems="row">
         <PageTitle>編集</PageTitle>
-        <NeuButton onClick={handleDelete}>削除</NeuButton>
+        <NeuButton handleClick={handleDelete}>削除</NeuButton>
       </FlexBox>
       {isError ? <p>error</p> : <ScheduleForm defaultValue={schedule} />}
     </NormalContainer>

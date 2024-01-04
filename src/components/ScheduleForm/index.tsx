@@ -58,7 +58,7 @@ const ScheduleForm: FunctionComponent<ScheduleFormProps> = ({ defaultValue }) =>
         <NeuButton
           css={css({ width: '8rem', marginTop: '1rem' })}
           label={defaultValue ? '編集' : '作成'}
-          onClick={() => onSubmit()}
+          handleClick={() => onSubmit()}
         />
       </div>
     </form>

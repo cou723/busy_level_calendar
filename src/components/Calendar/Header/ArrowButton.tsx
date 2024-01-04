@@ -1,17 +1,17 @@
-import NeuButton from "@/components/utils/NeuButton";
-import { css } from "@emotion/react";
-import { FunctionComponent } from "react";
-import { MdArrowRight, MdArrowLeft } from "react-icons/md";
+import NeuButton from '@/components/utils/NeuButton';
+import { css } from '@emotion/react';
+import { FunctionComponent } from 'react';
+import { MdArrowRight, MdArrowLeft } from 'react-icons/md';
 
 interface ArrowButtonProps {
   onClick: () => void;
-  direction: "left" | "right";
+  direction: 'left' | 'right';
 }
 export const ArrowButton: FunctionComponent<ArrowButtonProps> = ({ onClick, direction }) => {
-  const Arrow = direction === "left" ? MdArrowLeft : MdArrowRight;
+  const Arrow = direction === 'left' ? MdArrowLeft : MdArrowRight;
 
   return (
-    <NeuButton onClick={onClick} padding={0}>
+    <NeuButton handleClick={onClick} padding={0}>
       <Arrow
         css={css`
           font-size: 1.5rem;

@@ -25,7 +25,7 @@ const ScheduleView: FunctionComponent<ScheduleProps> = ({ schedule }) => {
         border: ${schedule.requiredDays ? 0 : 2}px dashed #ff4f4f;
         padding: 1px;
       `}
-      onClick={() => router.push('/edit/' + schedule.id)}
+      handleClick={() => router.push('/edit/' + schedule.id)}
     >
       <FlexBox justifyContent="space-between">
         <Title>{schedule.title}</Title>

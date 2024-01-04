@@ -1,5 +1,4 @@
 'use client';
-import FlexBox from '@/components/utils/FlexBox';
 import Neu from '@/components/utils/Neu';
 import { css } from '@emotion/react';
 import { FunctionComponent, useState } from 'react';
@@ -7,7 +6,7 @@ import { FunctionComponent, useState } from 'react';
 export interface NeuButtonProps {
   label?: string;
   children?: React.ReactNode;
-  onClick?: () => void;
+  handleClick?: () => void;
   disabled?: boolean;
   concave?: boolean;
   [key: string]: unknown;
@@ -26,7 +25,7 @@ const buttonStyles = () => {
 
 const NeuButton: FunctionComponent<NeuButtonProps> = ({
   label,
-  onClick,
+  handleClick,
   disabled = false,
   concave = false,
   children,
@@ -35,22 +34,24 @@ const NeuButton: FunctionComponent<NeuButtonProps> = ({
   const [isHovered, setIsHovered] = useState(false);
   const [isActive, setIsActive] = useState(false);
 
-  const handleMouseDown = () => {
-    setIsActive(true);
-  };
-
   const handleMouseUp = () => {
     setIsActive(false);
     setIsHovered(false);
   };
+
+  const handleMouseLeave = () => {
+    setIsActive(false);
+    setIsHovered(false);
+  };
+
   return (
     <Neu
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onMouseDown={handleMouseDown}
+      onMouseLeave={handleMouseLeave}
+      onMouseDown={() => setIsActive(true)}
       onMouseUp={handleMouseUp}
       css={buttonStyles()}
-      onClick={onClick}
+      onClick={handleClick}
       disabled={disabled}
       {...rest}
       intensity={isHovered ? 2 : 1}
