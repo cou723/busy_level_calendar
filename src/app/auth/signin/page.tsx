@@ -1,6 +1,6 @@
-"use client";
-import GoogleLoginBtn from "@/components/GoogleLoginBtn";
-import SmallContainer from "@/components/SmallContainer";
+'use client';
+import GoogleLoginBtn from '@/components/GoogleLoginBtn';
+import SmallContainer from '@/components/utils/SmallContainer';
 
 function SigninPage() {
   return (

@@ -1,12 +1,7 @@
-import { YearMonth } from "@/types/yearMonth";
-import {
-  startOfMonth,
-  endOfMonth,
-  startOfWeek,
-  endOfWeek,
-  eachDayOfInterval,
-} from "date-fns";
+import { YearMonth } from '@/types/yearMonth';
+import { startOfMonth, endOfMonth, startOfWeek, endOfWeek, eachDayOfInterval } from 'date-fns';
 
+// カレンダーで表示する日付の配列を取得
 export function getCalendarDates({ year, month }: YearMonth) {
   // 月の最初の日と最後の日を取得
   const start = startOfMonth(new Date(year, month - 1));
