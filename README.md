@@ -22,24 +22,24 @@
 ## ディレクトリ構成
 
 ```
- .
-├──  node_modules
-├──  package.json
-├──  prisma
-├──  public
-├──  src
-│  ├──  app  // app router
-│  ├──  assets // 画像など
-│  ├──  components // コンポーネント
-│  ├──  constants.ts // 定数
-│  ├──  global.ts // グローバルな変数や関数
-│  ├──  google-api.d.ts // Google APIの型定義
-│  ├──  hooks // カスタムフック
-│  ├──  index.css 
-│  ├──  libs // コンポーネントのロジック
-│  ├──  providers // プロバイダー
-│  ├──  types
-│  └──  utils
+.
+├── node_modules
+├── package.json
+├── prisma
+├── public
+└── src
+   ├── app  // app router
+   ├── assets // 画像など
+   ├── components // コンポーネント
+   ├── constants.ts // 定数
+   ├── global.ts // グローバルな変数や関数
+   ├── google-api.d.ts // Google APIの型定義
+   ├── hooks // カスタムフック
+   ├── index.css 
+   ├── libs // コンポーネントのロジック
+   ├── providers // プロバイダー
+   ├── types
+   └── utils
 ```
 
 
