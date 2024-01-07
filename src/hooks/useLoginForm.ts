@@ -1,9 +1,9 @@
-"use client";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
-import { LoginForm, LoginFormSchema } from "@/types/loginForm";
-import { signIn } from "next-auth/react";
+'use client';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
+import { LoginForm, LoginFormSchema } from '@/types/loginForm';
+import { signIn } from 'next-auth/react';
 
 export const useLoginForm = () => {
   const router = useRouter();
@@ -14,7 +14,7 @@ export const useLoginForm = () => {
 
   const onSubmit = async (data: LoginForm) => {
     try {
-      await signIn("credentials", {
+      await signIn('credentials', {
         redirect: false,
         user: data.name,
         password: data.password,
@@ -22,7 +22,7 @@ export const useLoginForm = () => {
         if (res?.error) {
           console.log(res.error);
         } else {
-          router.push("/");
+          router.push('/');
         }
       });
     } catch (err) {

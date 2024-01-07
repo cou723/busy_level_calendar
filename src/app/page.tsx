@@ -10,6 +10,7 @@ import { useSessionCheck } from '@/hooks/useSessionCheck';
 import { useRouter } from 'next/navigation';
 import LoadingPage from '@/app/LoadingPage';
 import FlexBox from '@/components/utils/FlexBox';
+import GoogleLogoutBtn from '@/components/GoogleLogout';
 
 const Home = () => {
   useSessionCheck();
@@ -33,6 +34,7 @@ const Home = () => {
         width: '100%',
       })}
     >
+      <GoogleLogoutBtn></GoogleLogoutBtn>
       <FlexBox gap={2}>
         <Calendar
           css={css({

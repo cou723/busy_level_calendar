@@ -7,7 +7,7 @@ type NeuSize = 'small' | 'medium' | 'large';
 export interface NeuProps {
   children: React.ReactNode;
   radius?: 0 | 1 | 2 | 3 | 4;
-  intensity?: 0 | 1 | 2 | 3 | 4;
+  intensity?: number;
   inset?: boolean;
   concave?: boolean;
   size?: NeuSize;
@@ -16,7 +16,6 @@ export interface NeuProps {
 }
 
 const actualRadius = [0, 5, 10, 15, 30];
-const actualIntensity = [0.2, 0.4, 0.6, 0.8, 1];
 
 const generateBackground = (concave: boolean) => {
   return concave ? `linear-gradient(145deg,rgba(255, 255, 255, 0.007),rgba(6, 6, 7, 0.1) )` : undefined;
@@ -44,8 +43,8 @@ const Neu: FunctionComponent<NeuProps> = ({
   size = 'medium',
   ...props
 }) => {
-  const shadow = transparentize('black', 1.2 - actualIntensity[intensity]);
-  const highlight = transparentize('white', 0.5 - actualIntensity[intensity]);
+  const shadow = transparentize('black', 1.2 - intensity / 2);
+  const highlight = transparentize('white', 0.5 - intensity / 2);
   const neuStyleObject = {
     background: generateBackground(concave),
     borderRadius: actualRadius[radius],

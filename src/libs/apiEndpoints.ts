@@ -6,6 +6,7 @@ const resources = {
   schedules: `${root}/schedules`,
   import: `${root}/import`,
   user: `${root}/user`,
+  googleCalendar: 'https://www.googleapis.com/calendar/v3',
 } as const;
 
 const apiEndpoints = {
@@ -31,6 +32,10 @@ const apiEndpoints = {
     create: resources.user,
     update: `${resources.user}/:id`,
     delete: `${resources.user}/:id`,
+  },
+  googleCalendar: {
+    calendarList: `${resources.googleCalendar}/users/me/calendarList`,
+    events: (calendarId: string) => `${resources.googleCalendar}/calendars/${calendarId}/events`,
   },
 } as const;
 

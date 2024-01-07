@@ -54,7 +54,7 @@ const NeuButton: FunctionComponent<NeuButtonProps> = ({
       onClick={handleClick}
       disabled={disabled}
       {...rest}
-      intensity={isHovered ? 2 : 1}
+      intensity={isHovered ? 1.3 : 1}
       inset={isActive}
       concave={concave}
     >
