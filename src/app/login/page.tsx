@@ -8,11 +8,11 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 const LoginPage = () => {
-  const router = useRouter();
+  const navigate = useRouter();
 
   useEffect(() => {
-    router.push('/auth/signin');
-  }, [router]);
+    navigate.push('/auth/signin');
+  }, [navigate]);
 
   return null;
   // const { register, onSubmit, formState } = useLoginForm();

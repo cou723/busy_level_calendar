@@ -3,15 +3,28 @@ import { Calendar, CalendarList, Event } from '@/types/gapiCalendar';
 import { Schedule, generate } from '@/types/schedule';
 import { Result, Err, Ok } from 'ts-results';
 import { fetch } from '@/utils/fetch';
+import { calendar_v3 } from 'googleapis';
+import { nullToUndefined } from '@/utils/nullToUndefined';
+import { ScheduleForm } from '@/types/scheduleForm';
 
-export function GoogleCalendarEventToSchedule(e: Event): Schedule | null {
-  if (!isAllDayEvent(e)) return null;
-  if (!e.start.date) return null;
+export function GoogleCalendarEventToSchedule(e: calendar_v3.Schema$Event): Schedule {
   return generate({
     title: e.summary ?? 'untitled',
-    description: e.description,
-    date: new Date(e.start.date),
+    description: nullToUndefined(e.description),
+    date: new Date(e.start?.date as string),
   });
+}
+
+export function GoogleCalendarEventToScheduleForm(e: calendar_v3.Schema$Event): ScheduleForm {
+  if (!e.start) throw new Error('e.start is undefined :' + JSON.stringify(e));
+
+  const date = e.start.date ? e.start.date : e.start.dateTime;
+  if (!date) throw new Error('e.start.date is undefined :' + JSON.stringify(e));
+  return {
+    title: e.summary ?? 'untitled',
+    description: nullToUndefined(e.description),
+    date: new Date(date),
+  };
 }
 
 export function isAllDayEvent(e: Event): boolean {
@@ -21,6 +34,5 @@ export function isAllDayEvent(e: Event): boolean {
 export async function fetchGoogleCalendarList(): Promise<Result<CalendarList, Error>> {
   const res = await fetch(apiEndpoints.googleCalendar.calendarList);
   if (!res.ok) return Err(res.val);
-  console.log(res.val);
   return Ok(res.val as unknown as CalendarList);
 }

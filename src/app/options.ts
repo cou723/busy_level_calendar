@@ -68,7 +68,6 @@ export const options: NextAuthOptions = {
       if (!session.user.name) throw new Error('ユーザー名がありません');
       if (!session.user.email) throw new Error('メールアドレスがありません');
       if (!session.user.image) throw new Error('画像がありません');
-      console.log('SESSION', session, token);
 
       return {
         ...session,

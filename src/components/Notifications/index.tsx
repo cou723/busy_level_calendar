@@ -20,9 +20,9 @@ const Notifications: FunctionComponent<NotificationsProps> = ({ notifications, .
         padding: '12px',
       })}
     >
-      {notifications.map((notification: Notification) => (
+      {notifications.map((notification: Notification, i) => (
         <NotificationView
-          key={notification.id}
+          key={i}
           title={notification.title}
           message={notification.message}
           priorityLevel={notification.level}

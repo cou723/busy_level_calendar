@@ -15,9 +15,11 @@ export interface NeuButtonProps {
 const buttonStyles = () => {
   return css`
     background-color: transparent;
-    border: none;
     text-align: center;
-    padding: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
     display: flex;
     justify-content: center;
   `;
@@ -45,22 +47,23 @@ const NeuButton: FunctionComponent<NeuButtonProps> = ({
   };
 
   return (
-    <Neu
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={handleMouseLeave}
-      onMouseDown={() => setIsActive(true)}
-      onMouseUp={handleMouseUp}
-      css={buttonStyles()}
-      onClick={handleClick}
-      disabled={disabled}
-      {...rest}
-      intensity={isHovered ? 1.3 : 1}
-      inset={isActive}
-      concave={concave}
-    >
-      <p>{label}</p>
-      {children}
-    </Neu>
+    <button onClick={handleClick}>
+      <Neu
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={handleMouseLeave}
+        onMouseDown={() => setIsActive(true)}
+        onMouseUp={handleMouseUp}
+        css={buttonStyles()}
+        disabled={disabled}
+        {...rest}
+        intensity={isHovered ? 1.3 : 1}
+        inset={isActive}
+        concave={concave}
+      >
+        <p>{label}</p>
+        {children}
+      </Neu>
+    </button>
   );
 };
 

@@ -10,8 +10,11 @@ type Props = {
 };
 
 export const CalendarCheckBoxes = ({ calendars, onChange }: Props) => {
-  const [selectCalendars, setSelectCalendars] = useState<[calendar_v3.Schema$CalendarListEntry['id'], boolean]>({});
+  const [selectCalendars, setSelectCalendars] = useState<{
+    [key: string]: boolean;
+  }>({});
 
+  // for print debug
   // useEffect(() => {
   //   console.log(selectCalendars);
   // }, [selectCalendars]);
@@ -28,10 +31,8 @@ export const CalendarCheckBoxes = ({ calendars, onChange }: Props) => {
         <NeuCheckBox
           onClick={(checked) => {
             const newSelectCalendars = JSON.parse(JSON.stringify(selectCalendars));
-            console.log('newSelectCalendars', newSelectCalendars);
 
-            newSelectCalendars[item.id] = checked;
-            console.log(newSelectCalendars);
+            newSelectCalendars[item.id as string] = checked;
             setSelectCalendars(newSelectCalendars);
 
             onChange(Object.keys(newSelectCalendars).filter((key) => newSelectCalendars[key]));
@@ -41,19 +42,6 @@ export const CalendarCheckBoxes = ({ calendars, onChange }: Props) => {
           {item.summary}
         </NeuCheckBox>
       ))}
-
-      {/* debug select calendar list */}
-      <div
-        css={css({
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '10px',
-        })}
-      >
-        {/* {selectCalendars.map((item) => (
-          <div key={item.id}>{item.summary}</div>
-        ))} */}
-      </div>
     </div>
   );
 };

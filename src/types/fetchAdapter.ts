@@ -6,6 +6,7 @@ import { Err, Ok, Result } from 'ts-results';
 import { fetch } from '@/utils/fetch';
 import { ScheduleForm } from '@/types/scheduleForm';
 import { isSuccessStatus as isStatusSuccess } from '@/utils/isSuccessStatus';
+import { ImportEventOptions } from '@/types/importEventOptions';
 
 async function createError(errorResponse: Response): Promise<Error> {
   const errorBody = await errorResponse.text();
@@ -33,9 +34,6 @@ export class FetchAdapter implements ApiAdapter {
     },
 
     update: async (schedule: Schedule | ScheduleForm): Promise<Result<void, Error>> => {
-      console.log('update', schedule);
-      console.log(ScheduleSchema.safeParse(schedule), isSchedule(schedule));
-
       if (isSchedule(schedule)) {
         return await this.schedule.edit(schedule.id, toScheduleForm(schedule));
       }
@@ -87,6 +85,20 @@ export class FetchAdapter implements ApiAdapter {
     if (!isStatusSuccess(res.val.status)) return Err(await createError(res.val));
 
     return parseBySchema({ schema: CalendarSchema, target: await res.val.json() });
+  };
+
+  importCalendar = async (options: ImportEventOptions): Promise<Result<void, Error>> => {
+    const res = await fetch(`${apiEndpoints.import.fromGoogleCalendar}`, {
+      credentials: 'include',
+      method: 'POST',
+      body: JSON.stringify(options),
+    });
+
+    if (res.err) return Err(res.val);
+    if (res.val.status === 401) return Err(new Error('unauthorized'));
+    if (!isStatusSuccess(res.val.status)) return Err(await createError(res.val));
+
+    return Ok.EMPTY;
   };
 
   clear = async (): Promise<Result<void, Error>> => {

@@ -1,15 +1,25 @@
+import { validateOptions } from '@/libs/server/service/validateOptions';
+import { GoogleCalendarEventToScheduleForm } from '@/libs/googleCalendar';
+import { ImportEventOptions } from '@/types/importEventOptions';
 import { ScheduleWithoutDefault } from '@/types/schedule';
+import { ScheduleForm } from '@/types/scheduleForm';
 import { ErrorResponse, makeErrorResponse } from '@/types/server/ErrorResponse';
 import { User } from '@/types/user';
 import { tryCatchToResult } from '@/utils/resultToTryCatch';
 import { db } from '@/utils/server/db';
 import { Schedule } from '@prisma/client';
+import { calendar_v3 } from 'googleapis';
 import { NextResponse } from 'next/server';
 import { Err, Ok, Result } from 'ts-results';
+import { fetchCalendars } from './fetchCalendars';
+import { fetchGoogleEvents } from './fetchGoogleEvents';
+export type Calendar = calendar_v3.Calendar;
+type GoogleImportArgs = { from: 'google'; userId: string; accessToken: string; options: ImportEventOptions };
+type ImportArgs = GoogleImportArgs;
 
 export const schedule = {
-  async create(userId: User['id'], schedule: ScheduleWithoutDefault): Promise<NextResponse<Schedule | ErrorResponse>> {
-    const result = await tryCatchToResult(
+  async _create(userId: User['id'], schedule: ScheduleForm): Promise<Result<Schedule, ErrorResponse>> {
+    return await tryCatchToResult(
       async () =>
         await db.schedule.create({
           data: {
@@ -18,6 +28,10 @@ export const schedule = {
           },
         })
     );
+  },
+
+  async create(userId: User['id'], schedule: ScheduleForm): Promise<NextResponse<Schedule | ErrorResponse>> {
+    const result = await this._create(userId, schedule);
 
     if (result.err) {
       return makeErrorResponse(500, 'scheduleの作成に失敗しました: ' + result.val.message);
@@ -100,5 +114,20 @@ export const schedule = {
       return Err(makeErrorResponse(404, 'scheduleが見つかりませんでした'));
     }
     return Ok(result.val);
+  },
+
+  async import({ from: _from, userId, accessToken, options }: ImportArgs): Promise<Result<void, string>> {
+    const validateResult = validateOptions(options);
+    if (validateResult.err) return Err(validateResult.val);
+
+    const calendar: Calendar = fetchCalendars(accessToken);
+    const events: calendar_v3.Schema$Event[] = await fetchGoogleEvents(options, calendar);
+
+    for (const event of events) {
+      const resultResponse = await schedule._create(userId, GoogleCalendarEventToScheduleForm(event));
+      if (resultResponse.err) return Err(resultResponse.val.message);
+    }
+
+    return Ok.EMPTY;
   },
 };

@@ -6,7 +6,7 @@ import { Schedule } from '@/types/schedule';
 import { parseBySchema } from '@/utils/parseBySchema';
 import { scheduleFormSchema } from '@/types/scheduleForm';
 import { tryCatchToResult } from '@/utils/resultToTryCatch';
-import { extractScheduleData } from '@/app/api/schedule/extractScheduleData';
+import { extractBody } from '@/app/api/schedule/extractScheduleData';
 
 export async function GET(
   _res: Response,
@@ -31,7 +31,7 @@ export async function PUT(
   const user = await getUserData();
   if (user.err) return user.val;
 
-  const postedSchedule = await extractScheduleData(req, user.val);
+  const postedSchedule = await extractBody(req, user.val, scheduleFormSchema);
   if (postedSchedule.err) return postedSchedule.val;
 
   const newSchedule = { ...postedSchedule.val, userId: user.val.id };

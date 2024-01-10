@@ -5,18 +5,20 @@ import { parseBySchema } from '@/utils/parseBySchema';
 import { scheduleFormSchema } from '@/types/scheduleForm';
 import { Result, Err, Ok } from 'ts-results';
 import { User } from 'next-auth';
+import { z } from 'zod';
 
-export async function extractScheduleData(
+export async function extractBody<T extends z.ZodSchema>(
   req: NextRequest,
-  user: User
-): Promise<Result<ScheduleWithoutDefault, NextResponse<ErrorResponse>>> {
+  user: User,
+  schema: T
+): Promise<Result<z.infer<typeof schema>, NextResponse<ErrorResponse>>> {
   try {
     const requestBody = await req.body!.getReader().read();
 
     const decoder = new TextDecoder();
     const decodedBody = decoder.decode(requestBody.value);
     const JSONBody = JSON.parse(decodedBody);
-    const parseResult = parseBySchema({ schema: scheduleFormSchema, target: JSONBody });
+    const parseResult = parseBySchema({ schema, target: JSONBody });
 
     if (parseResult.err) {
       return Err(makeErrorResponse(400, parseResult.val.message));

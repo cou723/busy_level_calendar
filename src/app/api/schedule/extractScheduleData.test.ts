@@ -1,11 +1,10 @@
-import { extractScheduleData } from './extractScheduleData';
+import { extractBody } from './extractScheduleData';
 import { NextRequest, NextResponse } from 'next/server';
-import { ScheduleWithoutDefault } from '@/types/schedule';
 import { Result, Ok, Err } from 'ts-results';
 import { User } from 'next-auth';
 import { ErrorResponse, makeErrorResponse } from '@/types/server/ErrorResponse';
 import { describe, it, expect } from 'vitest';
-import { ScheduleForm } from '@/types/scheduleForm';
+import { ScheduleForm, scheduleFormSchema } from '@/types/scheduleForm';
 
 describe('extractScheduleData', () => {
   const createMockRequest = (data: ScheduleForm): NextRequest => {
@@ -29,9 +28,10 @@ describe('extractScheduleData', () => {
       date: new Date('2021-01-01'),
     };
     // Act
-    const result: Result<ScheduleWithoutDefault, NextResponse<ErrorResponse>> = await extractScheduleData(
+    const result: Result<ScheduleForm, NextResponse<ErrorResponse>> = await extractBody(
       createMockRequest(scheduleFormData) as NextRequest,
-      { id: '1' }
+      { id: '1' },
+      scheduleFormSchema
     );
 
     // Assert
@@ -51,9 +51,13 @@ describe('extractScheduleData', () => {
     } as unknown as NextRequest;
 
     // Act
-    const result: Result<ScheduleWithoutDefault, NextResponse<ErrorResponse>> = await extractScheduleData(mockRequest, {
-      id: '1',
-    });
+    const result: Result<ScheduleForm, NextResponse<ErrorResponse>> = await extractBody(
+      mockRequest,
+      {
+        id: '1',
+      },
+      scheduleFormSchema
+    );
 
     // Assert
     expect(result).toBeInstanceOf(Err);
@@ -105,9 +109,13 @@ describe('extractScheduleData', () => {
     } as unknown as NextRequest;
 
     // Act
-    const result: Result<ScheduleWithoutDefault, NextResponse<ErrorResponse>> = await extractScheduleData(mockRequest, {
-      id: '1',
-    });
+    const result: Result<ScheduleForm, NextResponse<ErrorResponse>> = await extractBody(
+      mockRequest,
+      {
+        id: '1',
+      },
+      scheduleFormSchema
+    );
 
     const errorBody = await (result.val as NextResponse).body?.getReader().read();
 
@@ -132,9 +140,13 @@ describe('extractScheduleData', () => {
     } as unknown as NextRequest;
 
     // Act
-    const result: Result<ScheduleWithoutDefault, NextResponse<ErrorResponse>> = await extractScheduleData(mockRequest, {
-      id: '1',
-    });
+    const result: Result<ScheduleForm, NextResponse<ErrorResponse>> = await extractBody(
+      mockRequest,
+      {
+        id: '1',
+      },
+      scheduleFormSchema
+    );
 
     const errorBody = await (result.val as NextResponse).body?.getReader().read();
 

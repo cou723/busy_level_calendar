@@ -2,6 +2,7 @@ import { Result } from 'ts-results';
 import { Schedule, ScheduleSchema } from '@/types/schedule';
 import { z } from 'zod';
 import { ScheduleForm } from '@/types/scheduleForm';
+import { ImportEventOptions } from '@/types/importEventOptions';
 
 export interface ApiAdapter {
   get(): Promise<Result<Calendar, Error>>;
@@ -11,12 +12,7 @@ export interface ApiAdapter {
     update(schedule: ScheduleForm | Schedule): Promise<Result<void, Error>>;
     remove(id: string): Promise<Result<void, Error>>;
   };
-  // peaceOfMind: {
-  //   getAll(): Result<PeaceOfMind[], Error>;
-  //   get(date: Date): Result<number, Error>;
-  //   add(peaceOfMind: PeaceOfMind): Result<void, Error>;
-  //   remove(date: Date): Result<void, Error>;
-  // };
+  importCalendar(options: ImportEventOptions): Promise<Result<void, Error>>;
   clear(): Promise<Result<void, Error>>;
 }
 
