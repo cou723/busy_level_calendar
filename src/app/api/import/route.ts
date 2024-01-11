@@ -1,13 +1,15 @@
+import { NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth';
+
+import type { ErrorResponse} from '@/types/server/ErrorResponse';
+import type { NextRequest} from 'next/server';
+
 import { extractBody } from '@/app/api/schedule/extractScheduleData';
 import { options } from '@/app/options';
 import { getUserData } from '@/libs/server/getUserData';
 import { schedule } from '@/libs/server/service/schedule';
 import { ImportEventOptionsSchema } from '@/types/importEventOptions';
-import { scheduleFormSchema } from '@/types/scheduleForm';
-import { ErrorResponse, makeErrorResponse } from '@/types/server/ErrorResponse';
-import { Schedule } from '@prisma/client';
-import { getServerSession } from 'next-auth';
-import { NextRequest, NextResponse } from 'next/server';
+import { makeErrorResponse } from '@/types/server/ErrorResponse';
 
 export async function POST(req: NextRequest): Promise<NextResponse<null | ErrorResponse>> {
   const user = await getUserData();

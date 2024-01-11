@@ -1,4 +1,6 @@
-import { Err, Ok, Result } from "ts-results";
+import { Err, Ok } from "ts-results";
+
+import type { Result } from "ts-results";
 
 export class LocalStorage {
   static get(key: string): Result<string, Error> {

@@ -1,11 +1,15 @@
-import { ErrorResponse, makeErrorResponse } from '@/types/server/ErrorResponse';
-import { NextRequest, NextResponse } from 'next/server';
+import { Err, Ok } from 'ts-results';
+
+import type { ErrorResponse} from '@/types/server/ErrorResponse';
+import type { NextRequest, NextResponse } from 'next/server';
+import type { User } from 'next-auth';
+import type { Result} from 'ts-results';
+import type { z } from 'zod';
+
 import { ScheduleWithoutDefault } from '@/types/schedule';
-import { parseBySchema } from '@/utils/parseBySchema';
 import { scheduleFormSchema } from '@/types/scheduleForm';
-import { Result, Err, Ok } from 'ts-results';
-import { User } from 'next-auth';
-import { z } from 'zod';
+import { makeErrorResponse } from '@/types/server/ErrorResponse';
+import { parseBySchema } from '@/utils/parseBySchema';
 
 export async function extractBody<T extends z.ZodSchema>(
   req: NextRequest,

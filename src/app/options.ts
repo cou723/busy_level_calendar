@@ -1,8 +1,9 @@
-import { isJwt } from '@/libs/server/parseJwt';
-import { Account, JWT, Profile, Session, User, AuthOptions, DefaultSession, NextAuthOptions } from 'next-auth';
-import { AdapterUser } from 'next-auth/adapters';
-import { DefaultJWT } from 'next-auth/jwt';
 import GoogleProvider from 'next-auth/providers/google';
+
+import type { Account, JWT, Session, User, DefaultSession, NextAuthOptions } from 'next-auth';
+import type { DefaultJWT } from 'next-auth/jwt';
+
+import { isJwt } from '@/libs/server/parseJwt';
 
 type JwtArgs = {
   token: DefaultJWT;
@@ -77,7 +78,7 @@ export const options: NextAuthOptions = {
           email: session.user.email,
         },
 
-        accessToken: token.accessToken,
+        accessToken: token.accessToken as string,
       };
     },
   },

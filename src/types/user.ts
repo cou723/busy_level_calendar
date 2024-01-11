@@ -1,5 +1,9 @@
-import { DefaultSchema, Default } from "@/types/defaultSchema";
 import { z } from "zod";
+
+import type { Default } from "@/types/defaultSchema";
+
+import { DefaultSchema } from "@/types/defaultSchema";
+
 
 export const UserWithoutDefaultSchema = z.object({
   name: z.string(),

@@ -1,7 +1,8 @@
-import { UserWithoutDefault } from '@/types/user';
-import { User } from '@prisma/client';
-import { DefaultSession } from 'next-auth';
-import { DefaultJWT } from 'next-auth/jwt';
+import type { UserWithoutDefault } from '@/types/user';
+import type { User } from '@prisma/client';
+import type { DefaultSession } from 'next-auth';
+import type { DefaultJWT } from 'next-auth/jwt';
+
 
 export type SessionUser = Omit<UserWithoutDefault, 'hash'> & Pick<User, 'id'> & { accessToken?: string };
 

@@ -1,6 +1,7 @@
+import type { NextApiRequest } from 'next';
+
 import { user } from '@/libs/server/service/user';
 import { makeErrorResponse } from '@/types/server/ErrorResponse';
-import { NextApiRequest } from 'next';
 
 export async function DELETE(req: NextApiRequest) {
   if (!req.query.id) return makeErrorResponse(400, 'id is required');

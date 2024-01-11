@@ -1,7 +1,9 @@
-import { apiAdapter } from '@/global';
-import { Schedule } from '@/types/schedule';
-import { resultToTryCatch } from '@/utils/resultToTryCatch';
 import { useQuery } from '@tanstack/react-query';
+
+import type { Schedule } from '@/types/schedule';
+
+import { apiAdapter } from '@/global';
+import { resultToTryCatch } from '@/utils/resultToTryCatch';
 
 export function useSchedule(id: Schedule['id']) {
   return useQuery({

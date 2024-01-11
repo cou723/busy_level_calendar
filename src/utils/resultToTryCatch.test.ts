@@ -1,6 +1,7 @@
-import { describe, it, expect } from 'vitest';
-import { resultToTryCatch, tryCatchToResult } from './resultToTryCatch';
 import { Ok, Err } from 'ts-results';
+import { describe, it, expect } from 'vitest';
+
+import { resultToTryCatch, tryCatchToResult } from './resultToTryCatch';
 
 describe('resultToTryCatch', () => {
   it('should return the value if the result is Ok', () => {

@@ -1,6 +1,7 @@
 'use client';
-import { globalStyle } from '@/components/globalStyle';
 import { Global } from '@emotion/react';
+
+import { globalStyle } from '@/components/globalStyle';
 
 type ClientLayoutProps = {
   children: React.ReactNode;

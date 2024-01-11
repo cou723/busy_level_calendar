@@ -1,7 +1,13 @@
-import { generateBusyLevels, BusyLevel, summarize } from "./busyLevel";
-import { Calendar, calendarInit } from "@/types/calendar";
-import { generate } from "@/types/schedule";
 import { describe, expect, it } from "vitest";
+
+import { generateBusyLevels, summarize } from "./busyLevel";
+
+import type { BusyLevel} from "./busyLevel";
+import type { Calendar} from "@/types/calendar";
+
+import { calendarInit } from "@/types/calendar";
+import { generate } from "@/types/schedule";
+
 
 describe("generateBusyLevels", () => {
   it("empty schedules", () => {

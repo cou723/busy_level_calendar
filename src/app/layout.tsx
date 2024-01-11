@@ -2,12 +2,14 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import type { Metadata } from 'next';
 import React from 'react';
+
+import type { Metadata } from 'next';
+
+import { ClientLayout } from '@/app/clientLayout';
+import { backgroundColor } from '@/constants';
 import { Providers } from '@/providers';
 import 'the-new-css-reset/css/reset.css';
-import { backgroundColor } from '@/constants';
-import { ClientLayout } from '@/app/clientLayout';
 
 export const metadata: Metadata = {
   title: 'Harmony',

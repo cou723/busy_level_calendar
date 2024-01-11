@@ -1,11 +1,18 @@
+import { Err, Ok } from 'ts-results';
+
+import type { CalendarList, Event } from '@/types/gapiCalendar';
+import type { Schedule} from '@/types/schedule';
+import type { ScheduleForm } from '@/types/scheduleForm';
+import type { calendar_v3 } from 'googleapis';
+import type { Result} from 'ts-results';
+
+
 import apiEndpoints from '@/libs/apiEndpoints';
-import { Calendar, CalendarList, Event } from '@/types/gapiCalendar';
-import { Schedule, generate } from '@/types/schedule';
-import { Result, Err, Ok } from 'ts-results';
+import { Calendar } from '@/types/gapiCalendar';
+import { generate } from '@/types/schedule';
 import { fetch } from '@/utils/fetch';
-import { calendar_v3 } from 'googleapis';
 import { nullToUndefined } from '@/utils/nullToUndefined';
-import { ScheduleForm } from '@/types/scheduleForm';
+
 
 export function GoogleCalendarEventToSchedule(e: calendar_v3.Schema$Event): Schedule {
   return generate({

@@ -1,8 +1,10 @@
-import { SubTitle } from '@/app/import/clientPage/SubTitle';
-import CalendarCheckBoxes from '@/app/import/clientPage/calendarSelector/calendarCheckBoxes';
-import FlexBox from '@/components/utils/FlexBox';
-import { calendar_v3 } from 'googleapis';
 import { BsCalendar } from 'react-icons/bs';
+
+import type { calendar_v3 } from 'googleapis';
+
+import CalendarCheckBoxes from '@/app/import/clientPage/calendarSelector/calendarCheckBoxes';
+import { SubTitle } from '@/app/import/clientPage/subTitle';
+import FlexBox from '@/components/utils/flexBox';
 
 type Props = {
   calendars: calendar_v3.Schema$CalendarListEntry[];

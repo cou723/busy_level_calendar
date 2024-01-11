@@ -1,7 +1,13 @@
-import { getMonth, Month } from '@/types/month';
-import { getNext, getPrevious } from '@/types/yearMonth';
-import { getYear } from 'date-fns';
 import React from 'react';
+
+import { getYear } from 'date-fns';
+
+import type { Month } from '@/types/month';
+
+import { getMonth } from '@/types/month';
+import { getNext, getPrevious } from '@/types/yearMonth';
+
+
 
 type State = {
   year: number;

@@ -1,10 +1,16 @@
-import { extractBody } from './extractScheduleData';
-import { NextRequest, NextResponse } from 'next/server';
-import { Result, Ok, Err } from 'ts-results';
 import { User } from 'next-auth';
-import { ErrorResponse, makeErrorResponse } from '@/types/server/ErrorResponse';
+import { Ok, Err } from 'ts-results';
 import { describe, it, expect } from 'vitest';
-import { ScheduleForm, scheduleFormSchema } from '@/types/scheduleForm';
+
+import { extractBody } from './extractScheduleData';
+
+import type { ScheduleForm} from '@/types/scheduleForm';
+import type { ErrorResponse} from '@/types/server/ErrorResponse';
+import type { NextRequest, NextResponse } from 'next/server';
+import type { Result} from 'ts-results';
+
+import { scheduleFormSchema } from '@/types/scheduleForm';
+import { makeErrorResponse } from '@/types/server/ErrorResponse';
 
 describe('extractScheduleData', () => {
   const createMockRequest = (data: ScheduleForm): NextRequest => {

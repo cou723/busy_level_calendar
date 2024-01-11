@@ -1,5 +1,6 @@
 import { google } from 'googleapis';
-import { Calendar } from './schedule';
+
+import type { Calendar } from './schedule';
 
 export function fetchCalendars(accessToken: string) {
   const oauth2Client = new google.auth.OAuth2({

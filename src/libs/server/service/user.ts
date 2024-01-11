@@ -1,8 +1,10 @@
-import { ErrorResponse } from "@/types/server/ErrorResponse";
-import { User, UserWithoutDefault } from "@/types/user";
+import { NextResponse } from "next/server";
+
+import type { ErrorResponse } from "@/types/server/ErrorResponse";
+import type { User, UserWithoutDefault } from "@/types/user";
+
 import { tryCatchToResult } from "@/utils/resultToTryCatch";
 import { db } from "@/utils/server/db";
-import { NextResponse } from "next/server";
 
 export const user = {
   async create(user: UserWithoutDefault): Promise<NextResponse<User | ErrorResponse>> {

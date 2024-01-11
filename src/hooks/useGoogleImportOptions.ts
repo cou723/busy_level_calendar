@@ -1,5 +1,6 @@
-import { ImportEventOptions } from '@/types/importEventOptions';
 import { useReducer } from 'react';
+
+import type { ImportEventOptions } from '@/types/importEventOptions';
 
 type Action =
   | { type: 'setCalendars'; value: string[] }

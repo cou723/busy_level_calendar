@@ -1,9 +1,15 @@
-import { options } from '@/app/options';
-import { ErrorResponse, makeErrorResponse } from '@/types/server/ErrorResponse';
-import { SessionUser } from '@/utils/server/next-auth';
 import { getServerSession } from 'next-auth';
-import { NextResponse } from 'next/server';
-import { Err, Ok, Result } from 'ts-results';
+import { Err, Ok } from 'ts-results';
+
+import type { ErrorResponse} from '@/types/server/ErrorResponse';
+import type { SessionUser } from '@/utils/server/next-auth';
+import type { NextResponse } from 'next/server';
+import type { Result } from 'ts-results';
+
+import { options } from '@/app/options';
+import { makeErrorResponse } from '@/types/server/ErrorResponse';
+
+
 
 // this function is not return value. it call res.send().
 export async function checkSession(): Promise<Result<SessionUser, NextResponse<ErrorResponse>>> {

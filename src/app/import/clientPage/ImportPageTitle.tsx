@@ -1,7 +1,9 @@
-import { fontColor } from '@/global';
-import { css } from '@emotion/react';
 import React from 'react';
+
+import { css } from '@emotion/react';
 import { FaGoogle, FaLongArrowAltRight, FaCalendarAlt } from 'react-icons/fa';
+
+import { fontColor } from '@/global';
 
 const ImportPageTitle = () => {
   return (

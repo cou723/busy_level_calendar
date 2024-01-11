@@ -1,5 +1,6 @@
-import { MonthSchema, getNextMonth, getPreviousMonth } from "@/types/month";
 import { z } from "zod";
+
+import { MonthSchema, getNextMonth, getPreviousMonth } from "@/types/month";
 
 export const YearMonthSchema = z.object({
   year: z.number(),

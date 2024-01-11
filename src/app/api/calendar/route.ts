@@ -1,8 +1,12 @@
-import { schedule } from '@/libs/server/service/schedule';
-import { getUserData } from '@/libs/server/getUserData';
-import { ErrorResponse } from '@/types/server/ErrorResponse';
 import { NextResponse } from 'next/server';
-import { Calendar } from '@/types/calendar';
+
+import type { Calendar } from '@/types/calendar';
+import type { ErrorResponse } from '@/types/server/ErrorResponse';
+
+import { getUserData } from '@/libs/server/getUserData';
+import { schedule } from '@/libs/server/service/schedule';
+
+
 
 export async function GET(): Promise<NextResponse<Calendar | ErrorResponse>> {
   const user = await getUserData();

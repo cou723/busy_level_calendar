@@ -1,7 +1,8 @@
 'use client';
-import NormalContainer from '@/components/NormalContainer';
-import PageTitle from '@/components/PageTitle';
 import React from 'react';
+
+import NormalContainer from '@/components/normalContainer';
+import PageTitle from '@/components/pageTitle';
 
 const NotFoundPage: React.FC = () => {
   return (

@@ -1,6 +1,7 @@
 'use client';
-import { css } from '@emotion/react';
 import React from 'react';
+
+import { css } from '@emotion/react';
 import { Circles } from 'react-loader-spinner';
 
 const LoadingPage = () => {

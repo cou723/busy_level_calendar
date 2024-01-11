@@ -1,9 +1,13 @@
-import { Default, DefaultSchema } from '@/types/defaultSchema';
-import { ScheduleForm } from '@/types/scheduleForm';
-import { nullToUndefined } from '@/utils/nullToUndefined';
 import { subDays } from 'date-fns';
 import { v4 } from 'uuid';
 import { z } from 'zod';
+
+import type { Default} from '@/types/defaultSchema';
+import type { ScheduleForm } from '@/types/scheduleForm';
+
+import { DefaultSchema } from '@/types/defaultSchema';
+import { nullToUndefined } from '@/utils/nullToUndefined';
+
 
 export const ScheduleSchema = DefaultSchema.extend({
   title: z.string(),

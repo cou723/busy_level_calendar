@@ -1,6 +1,8 @@
 import { isAfter } from 'date-fns';
-import { ImportEventOptions } from '@/types/importEventOptions';
-import { Result, Err, Ok } from 'ts-results';
+import { Err, Ok } from 'ts-results';
+
+import type { ImportEventOptions } from '@/types/importEventOptions';
+import type { Result} from 'ts-results';
 
 export function validateOptions(options: ImportEventOptions): Result<void, string> {
   if (options.calendars.length === 0) return Err('calendar must be least one');

@@ -1,12 +1,19 @@
+import { Err, Ok } from 'ts-results';
+
+import type { Calendar, ApiAdapter} from '@/types/calendar';
+import type { ImportEventOptions } from '@/types/importEventOptions';
+import type { Schedule} from '@/types/schedule';
+import type { ScheduleForm } from '@/types/scheduleForm';
+import type { Result } from 'ts-results';
+
+
 import apiEndpoints from '@/libs/apiEndpoints';
-import { Calendar, ApiAdapter, CalendarSchema } from '@/types/calendar';
-import { Schedule, ScheduleSchema, isSchedule, toScheduleForm } from '@/types/schedule';
-import { parseBySchema } from '@/utils/parseBySchema';
-import { Err, Ok, Result } from 'ts-results';
+import { CalendarSchema } from '@/types/calendar';
+import { ScheduleSchema, isSchedule, toScheduleForm } from '@/types/schedule';
 import { fetch } from '@/utils/fetch';
-import { ScheduleForm } from '@/types/scheduleForm';
 import { isSuccessStatus as isStatusSuccess } from '@/utils/isSuccessStatus';
-import { ImportEventOptions } from '@/types/importEventOptions';
+import { parseBySchema } from '@/utils/parseBySchema';
+
 
 async function createError(errorResponse: Response): Promise<Error> {
   const errorBody = await errorResponse.text();

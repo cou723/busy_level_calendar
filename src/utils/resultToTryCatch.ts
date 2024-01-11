@@ -1,4 +1,6 @@
-import { Err, Ok, Result } from 'ts-results';
+import { Err, Ok } from 'ts-results';
+
+import type { Result } from 'ts-results';
 
 export function resultToTryCatch<T, E extends Error>(result: Result<T, E>): T {
   if (result.err) {

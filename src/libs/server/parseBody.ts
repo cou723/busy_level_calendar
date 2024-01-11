@@ -1,6 +1,7 @@
-import { NextApi } from '@/types/nextApi';
+import type { NextApi } from '@/types/nextApi';
+import type { z } from 'zod';
+
 import { parseBySchema } from '@/utils/parseBySchema';
-import { z } from 'zod';
 
 export function parseBody<T>({ req, res }: NextApi, schema: z.ZodSchema<T>): T {
   const parsed = parseBySchema({ schema, target: req.body });

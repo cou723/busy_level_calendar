@@ -1,7 +1,9 @@
-import { apiAdapter } from '@/global';
-import { ImportEventOptions } from '@/types/importEventOptions';
-import { resultToTryCatch } from '@/utils/resultToTryCatch';
 import { useMutation } from '@tanstack/react-query';
+
+import type { ImportEventOptions } from '@/types/importEventOptions';
+
+import { apiAdapter } from '@/global';
+import { resultToTryCatch } from '@/utils/resultToTryCatch';
 
 export const useImportCalendar = (
   options: ImportEventOptions,

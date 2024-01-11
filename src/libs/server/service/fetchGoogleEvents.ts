@@ -1,5 +1,6 @@
-import { ImportEventOptions } from '@/types/importEventOptions';
-import { calendar_v3 } from 'googleapis';
+import type { ImportEventOptions } from '@/types/importEventOptions';
+import type { calendar_v3 } from 'googleapis';
+
 
 export async function fetchGoogleEvents(options: ImportEventOptions, calendar: calendar_v3.Calendar) {
   const events: calendar_v3.Schema$Event[] = [];

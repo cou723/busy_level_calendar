@@ -1,6 +1,7 @@
-import { describe, it, expect } from 'vitest';
-import { getCalendarDates } from './getCalendarDates';
 import { format } from 'date-fns';
+import { describe, it, expect } from 'vitest';
+
+import { getCalendarDates } from './getCalendarDates';
 
 describe('getCalendarDates', () => {
   it('一般的なテスト', () => {

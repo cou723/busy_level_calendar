@@ -1,13 +1,14 @@
 'use client';
+import { notFound, useParams, useRouter } from 'next/navigation';
+
 import LoadingPage from '@/app/LoadingPage';
-import NormalContainer from '@/components/NormalContainer';
-import PageTitle from '@/components/PageTitle';
-import ScheduleForm from '@/components/ScheduleForm';
-import FlexBox from '@/components/utils/FlexBox';
-import NeuButton from '@/components/utils/NeuButton';
+import NormalContainer from '@/components/normalContainer';
+import PageTitle from '@/components/pageTitle';
+import ScheduleForm from '@/components/scheduleForm';
+import FlexBox from '@/components/utils/flexBox';
+import NeuButton from '@/components/utils/neuButton';
 import { apiAdapter } from '@/global';
 import { useSchedule } from '@/hooks/useSchedule';
-import { notFound, useParams, useRouter } from 'next/navigation';
 
 /**
  * スケジュールを編集するための EditPage コンポーネントです。

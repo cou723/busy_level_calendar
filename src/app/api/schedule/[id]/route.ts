@@ -1,12 +1,16 @@
-import { schedule } from '@/libs/server/service/schedule';
-import { getUserData } from '@/libs/server/getUserData';
-import { ErrorResponse, makeErrorResponse } from '@/types/server/ErrorResponse';
-import { NextRequest, NextResponse } from 'next/server';
-import { Schedule } from '@/types/schedule';
-import { parseBySchema } from '@/utils/parseBySchema';
-import { scheduleFormSchema } from '@/types/scheduleForm';
-import { tryCatchToResult } from '@/utils/resultToTryCatch';
+import { NextResponse } from 'next/server';
+
+import type { Schedule } from '@/types/schedule';
+import type { ErrorResponse} from '@/types/server/ErrorResponse';
+import type { NextRequest} from 'next/server';
+
 import { extractBody } from '@/app/api/schedule/extractScheduleData';
+import { getUserData } from '@/libs/server/getUserData';
+import { schedule } from '@/libs/server/service/schedule';
+import { scheduleFormSchema } from '@/types/scheduleForm';
+import { makeErrorResponse } from '@/types/server/ErrorResponse';
+import { parseBySchema } from '@/utils/parseBySchema';
+import { tryCatchToResult } from '@/utils/resultToTryCatch';
 
 export async function GET(
   _res: Response,

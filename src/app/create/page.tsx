@@ -1,7 +1,7 @@
 'use client';
-import NormalContainer from '@/components/NormalContainer';
-import PageTitle from '@/components/PageTitle';
-import ScheduleForm from '@/components/ScheduleForm';
+import NormalContainer from '@/components/normalContainer';
+import PageTitle from '@/components/pageTitle';
+import ScheduleForm from '@/components/scheduleForm';
 
 export const CreatePage = () => {
   return (

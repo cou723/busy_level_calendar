@@ -1,4 +1,6 @@
-import { Result, Ok, Err } from "ts-results";
+import { Ok, Err } from "ts-results";
+
+import type { Result} from "ts-results";
 
 export function jsonParse(str: string): Result<object, Error> {
   try {

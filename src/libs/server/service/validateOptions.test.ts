@@ -1,6 +1,8 @@
 import { describe, it, expect } from 'vitest';
+
 import { validateOptions } from './validateOptions';
-import { ImportEventOptions } from '@/types/importEventOptions';
+
+import type { ImportEventOptions } from '@/types/importEventOptions';
 
 describe('validateOptions', () => {
   it('should return true if all options are valid', () => {

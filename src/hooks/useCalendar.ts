@@ -1,6 +1,8 @@
-import { apiAdapter } from '@/global';
-import { Calendar } from '@/types/calendar';
 import { useQuery } from '@tanstack/react-query';
+
+import type { Calendar } from '@/types/calendar';
+
+import { apiAdapter } from '@/global';
 
 export function useCalendar() {
   return useQuery<Calendar, Error>({

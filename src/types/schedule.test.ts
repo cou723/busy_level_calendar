@@ -1,5 +1,9 @@
-import { getAllDatesUntilSchedule, Schedule, generate } from "@/types/schedule";
 import { describe, it, expect } from "vitest";
+
+import type { Schedule} from "@/types/schedule";
+
+import { getAllDatesUntilSchedule, generate } from "@/types/schedule";
+
 
 describe("getAllDatesUntilSchedule", () => {
   it("should return an array of objects with the date and n days ago", () => {

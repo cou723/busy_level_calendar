@@ -1,4 +1,5 @@
-import { ApiAdapter } from '@/types/calendar';
+import type { ApiAdapter } from '@/types/calendar';
+
 import { FetchAdapter } from '@/types/fetchAdapter';
 
 export const apiAdapter: ApiAdapter = new FetchAdapter();

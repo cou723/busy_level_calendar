@@ -1,8 +1,13 @@
-import { Result } from 'ts-results';
-import { Schedule, ScheduleSchema } from '@/types/schedule';
 import { z } from 'zod';
-import { ScheduleForm } from '@/types/scheduleForm';
-import { ImportEventOptions } from '@/types/importEventOptions';
+
+import type { ImportEventOptions } from '@/types/importEventOptions';
+import type { Schedule} from '@/types/schedule';
+import type { ScheduleForm } from '@/types/scheduleForm';
+import type { Result } from 'ts-results';
+
+import { ScheduleSchema } from '@/types/schedule';
+
+
 
 export interface ApiAdapter {
   get(): Promise<Result<Calendar, Error>>;

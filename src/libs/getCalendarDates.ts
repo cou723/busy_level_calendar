@@ -1,5 +1,6 @@
-import { YearMonth } from '@/types/yearMonth';
 import { startOfMonth, endOfMonth, startOfWeek, endOfWeek, eachDayOfInterval } from 'date-fns';
+
+import type { YearMonth } from '@/types/yearMonth';
 
 // カレンダーで表示する日付の配列を取得
 export function getCalendarDates({ year, month }: YearMonth) {

@@ -1,9 +1,13 @@
 'use client';
-import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
-import { LoginForm, LoginFormSchema } from '@/types/loginForm';
 import { signIn } from 'next-auth/react';
+import { useForm } from 'react-hook-form';
+
+import type { LoginForm} from '@/types/loginForm';
+
+import { LoginFormSchema } from '@/types/loginForm';
+
 
 export const useLoginForm = () => {
   const router = useRouter();

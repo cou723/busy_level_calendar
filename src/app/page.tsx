@@ -1,16 +1,17 @@
 'use client';
 
-import Calendar from '@/components/Calendar';
-import Notifications from '@/components/Notifications';
-import { useCalendar } from '@/hooks/useCalendar';
-import { defaultState, useYearMonth } from '@/hooks/useYearMonth';
-import { fromCalendar } from '@/types';
 import { css } from '@emotion/react';
-import { useSessionCheck } from '@/hooks/useSessionCheck';
 import { useRouter } from 'next/navigation';
+
 import LoadingPage from '@/app/LoadingPage';
-import FlexBox from '@/components/utils/FlexBox';
-import GoogleLogoutBtn from '@/components/GoogleLogout';
+import Calendar from '@/components/calendar';
+import GoogleLogoutBtn from '@/components/googleLogout';
+import ScheduleAlerts from '@/components/scheduleAlerts';
+import FlexBox from '@/components/utils/flexBox';
+import { useCalendar } from '@/hooks/useCalendar';
+import { useSessionCheck } from '@/hooks/useSessionCheck';
+import { defaultState, useYearMonth } from '@/hooks/useYearMonth';
+import { extractFromCalendar } from '@/types';
 
 const Home = () => {
   useSessionCheck();
@@ -45,11 +46,11 @@ const Home = () => {
           onPre={previous}
           onNext={next}
         />
-        <Notifications
+        <ScheduleAlerts
           css={css({
             flex: 1,
           })}
-          notifications={!isError && data != undefined ? fromCalendar(data.schedules) : []}
+          alerts={!isError && data != undefined ? extractFromCalendar(data.schedules) : []}
         />
       </FlexBox>
     </div>

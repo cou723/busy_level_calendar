@@ -1,7 +1,9 @@
-import FlexBox from '@/components/utils/FlexBox';
+import React from 'react';
+
 import { DatePicker } from '@mui/x-date-pickers';
 import { isBefore } from 'date-fns';
-import React from 'react';
+
+import FlexBox from '@/components/utils/flexBox';
 
 type Props = {
   range: { start: Date; end: Date };
