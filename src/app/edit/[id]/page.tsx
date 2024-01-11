@@ -1,7 +1,7 @@
 'use client';
 import { notFound, useParams, useRouter } from 'next/navigation';
 
-import LoadingPage from '@/app/LoadingPage';
+import LoadingPage from '@/app/loadingPage';
 import NormalContainer from '@/components/normalContainer';
 import PageTitle from '@/components/pageTitle';
 import ScheduleForm from '@/components/scheduleForm';

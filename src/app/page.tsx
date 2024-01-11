@@ -3,7 +3,7 @@
 import { css } from '@emotion/react';
 import { useRouter } from 'next/navigation';
 
-import LoadingPage from '@/app/LoadingPage';
+import LoadingPage from '@/app/loadingPage';
 import Calendar from '@/components/calendar';
 import GoogleLogoutBtn from '@/components/googleLogout';
 import ScheduleAlerts from '@/components/scheduleAlerts';
