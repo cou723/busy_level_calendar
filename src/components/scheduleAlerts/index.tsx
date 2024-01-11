@@ -13,7 +13,7 @@ interface Props {
   [key: string]: unknown;
 }
 
-const ScheduleAlerts: FunctionComponent<Props> = ({ alerts: notifications, ...props }) => {
+const ScheduleAlerts: FunctionComponent<Props> = ({ alerts, ...props }) => {
   return (
     <Neu
       {...props}
@@ -24,13 +24,13 @@ const ScheduleAlerts: FunctionComponent<Props> = ({ alerts: notifications, ...pr
         padding: '12px',
       })}
     >
-      {notifications.map((notification: ScheduleAlert, i) => (
+      {alerts.map((alert: ScheduleAlert, i) => (
         <ScheduleAlertView
           key={i}
-          title={notification.title}
-          message={notification.message}
-          priorityLevel={notification.level}
-          toUrl={'/edit/' + notification.target}
+          title={alert.title}
+          message={alert.message}
+          priorityLevel={alert.level}
+          toUrl={'/edit/' + alert.target}
         />
       ))}
     </Neu>

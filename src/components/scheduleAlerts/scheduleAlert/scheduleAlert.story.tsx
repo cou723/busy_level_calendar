@@ -1,4 +1,3 @@
-
 import ScheduleAlertTypes from '.';
 import ScheduleAlert from '.';
 
@@ -6,7 +5,7 @@ import type { Props } from '.';
 import type { Meta, StoryFn } from '@storybook/react';
 
 export default {
-  title: 'Notification',
+  title: 'ScheduleAlert',
   component: ScheduleAlert,
 } as Meta;
 

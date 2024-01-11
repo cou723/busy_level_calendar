@@ -3,10 +3,10 @@ import { describe, expect, it } from 'vitest';
 import { generate } from './schedule';
 import { extractFromCalendar, extractFromSchedule } from './scheduleAlert';
 
-import type { Schedule} from './schedule';
+import type { Schedule } from './schedule';
 
 describe('fromCalendar', () => {
-  it('should convert an array of schedules to an array of notifications', () => {
+  it('should convert an array of schedules to an array of alerts', () => {
     const schedules: Schedule[] = [
       generate({
         title: 'Test Schedule 1',
@@ -19,19 +19,19 @@ describe('fromCalendar', () => {
       }),
     ];
 
-    const notifications = extractFromCalendar(schedules);
-    expect(notifications.length).toBe(1);
+    const alerts = extractFromCalendar(schedules);
+    expect(alerts.length).toBe(1);
   });
 });
 
 describe('fromSchedule', () => {
-  it('should convert a schedule to a notification', () => {
+  it('should convert a schedule to a alert', () => {
     const schedule: Schedule = generate({
       title: 'Test Schedule',
       date: new Date(),
     });
 
-    const notification = extractFromSchedule(schedule);
-    expect(typeof notification.message).toBe('string');
+    const alerts = extractFromSchedule(schedule);
+    expect(typeof alerts.message).toBe('string');
   });
 });
