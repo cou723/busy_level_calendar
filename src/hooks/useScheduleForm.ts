@@ -1,10 +1,10 @@
-
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
-import type { Schedule} from '@/types/schedule';
+import type { Schedule } from '@/types/schedule';
 import type { ScheduleForm } from '@/types/scheduleForm';
 
 import { apiAdapter } from '@/global';
@@ -43,12 +43,13 @@ export const useScheduleForm = (initSchedule?: Schedule) => {
     );
 
     if (result.err) {
-      console.log('error', result.val);
+      toast.error('作成、編集に失敗しました\n' + result.val.message);
       return;
     }
 
     await queryClient.invalidateQueries({ queryKey: ['calendar'] });
     if (initSchedule) await queryClient.invalidateQueries({ queryKey: [initSchedule.id] });
+    toast.success('作成、編集に成功しました');
   };
 
   return {

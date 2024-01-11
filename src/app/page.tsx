@@ -2,6 +2,7 @@
 
 import { css } from '@emotion/react';
 import { useRouter } from 'next/navigation';
+import toast, { Toaster } from 'react-hot-toast';
 
 import LoadingPage from '@/app/loadingPage';
 import Calendar from '@/components/calendar';

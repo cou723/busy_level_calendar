@@ -1,5 +1,6 @@
 'use client';
 import { notFound, useParams, useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 import LoadingPage from '@/app/loadingPage';
 import NormalContainer from '@/components/normalContainer';
@@ -17,26 +18,27 @@ import { useSchedule } from '@/hooks/useSchedule';
 export const EditPage = () => {
   const navigate = useRouter();
 
-  // URL から id パラメーターを取得します
+  // URL から id パラメーターを取得
   const param = useParams<{ id: string }>();
   if (!param) notFound();
 
-  // id を使用してスケジュールデータを取得します
+  // id を使用してスケジュールデータを取得
   const { data: schedule, isLoading, isError } = useSchedule(param.id);
   if (isLoading) return <LoadingPage />;
   if (isError) return notFound();
 
   /**
-   * スケジュールの削除アクションを処理します。
-   * スケジュールを削除し、ホームページに戻ります。
+   * スケジュールの削除アクションを処理。
+   * スケジュールを削除し、ホームページへ
    */
   const handleDelete = async () => {
-    // 削除する前にホームページに遷移します
+    // 削除する前にホームページに遷移
     navigate.push('/');
 
-    // API アダプターを使用してスケジュールを削除します
+    // API アダプターを使用してスケジュールを削除
     const result = await apiAdapter.schedule.remove(param.id);
-    if (result.err) console.log('error', result.val);
+    if (result.err) toast.error('スケジュールを削除できませんでした');
+    toast.success('スケジュールを削除しました');
   };
 
   return (

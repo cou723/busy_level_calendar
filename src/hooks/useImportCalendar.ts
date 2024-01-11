@@ -1,4 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 
 import type { ImportEventOptions } from '@/types/importEventOptions';
 
@@ -13,11 +14,16 @@ export const useImportCalendar = (
   const { mutate: importCalendar, error } = useMutation<void, Error>({
     mutationFn: async () => {
       resultToTryCatch(await apiAdapter.importCalendar(options));
-      console.log('Success');
     },
     mutationKey: ['calendar', 'schedule'],
-    onError,
-    onSuccess,
+    onError: (error) => {
+      toast.error('インポートに失敗しました\n' + error.message);
+      onError(error);
+    },
+    onSuccess: () => {
+      toast.success('インポートに成功しました');
+      onSuccess();
+    },
   });
 
   return {

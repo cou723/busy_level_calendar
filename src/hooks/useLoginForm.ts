@@ -4,10 +4,9 @@ import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
 
-import type { LoginForm} from '@/types/loginForm';
+import type { LoginForm } from '@/types/loginForm';
 
 import { LoginFormSchema } from '@/types/loginForm';
-
 
 export const useLoginForm = () => {
   const router = useRouter();
@@ -24,13 +23,13 @@ export const useLoginForm = () => {
         password: data.password,
       }).then((res) => {
         if (res?.error) {
-          console.log(res.error);
+          alert(res.error);
         } else {
           router.push('/');
         }
       });
     } catch (err) {
-      console.log(err);
+      alert(err);
     }
   };
 
