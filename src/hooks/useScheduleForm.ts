@@ -50,6 +50,7 @@ export const useScheduleForm = (initSchedule?: Schedule) => {
     await queryClient.invalidateQueries({ queryKey: ['calendar'] });
     if (initSchedule) await queryClient.invalidateQueries({ queryKey: [initSchedule.id] });
     toast.success('作成、編集に成功しました');
+    location.reload();
   };
 
   return {

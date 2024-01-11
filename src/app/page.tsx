@@ -1,61 +1,31 @@
-'use client';
+import { redirect } from 'next/navigation';
 
-import { css } from '@emotion/react';
-import { useRouter } from 'next/navigation';
-import { signOut } from 'next-auth/react';
+import type { Calendar } from '@/types/calendar';
+import type { Schedule } from '@/types/schedule';
 
-import Calendar from '@/components/calendar';
-import GoogleLogoutBtn from '@/components/googleLogout';
-import LoadingPage from '@/components/loadingPage';
-import ScheduleAlerts from '@/components/scheduleAlerts';
-import FlexBox from '@/components/utils/flexBox';
-import NeuButton from '@/components/utils/neuButton';
-import { useCalendar } from '@/hooks/useCalendar';
-import { useSessionCheck } from '@/hooks/useSessionCheck';
-import { defaultState, useYearMonth } from '@/hooks/useYearMonth';
-import { extractFromCalendar } from '@/types';
+import ClientPage from '@/app/clientPage';
+import { getUserData } from '@/libs/server/getUserData';
+import { schedule } from '@/libs/server/service/schedule';
+import { extractFromCalendar, extractFromSchedule } from '@/types';
 
-const ClientPage: React.FC = () => {
-  // useSessionCheck();
-  const router = useRouter();
-  const { data, error, isLoading, isError } = useCalendar();
-  const { state: yearMonth, next, previous } = useYearMonth(defaultState);
+const Home: React.FC = async () => {
+  const user = await getUserData();
+  if (user.err) redirect('/login');
+  const userId = user.val.id;
 
-  if (isLoading) return <LoadingPage />;
+  const schedules = (await schedule.getAll(userId)).unwrapOr([] as Schedule[]);
+  const calendar: Calendar = { id: userId, schedules: schedules };
+  const alerts = extractFromCalendar(calendar.schedules);
 
-  if (isError) {
-    if (error.message === 'unauthorized') router.push('/login');
-    return <div>error {JSON.stringify(error)}</div>;
-  }
-
-  return (
-    <div
-      css={css({
-        padding: '1rem',
-        width: '100%',
-      })}
-    >
-      {/* <GoogleLogoutBtn /> */}
-      <NeuButton handleClick={signOut}>ログアウト</NeuButton>
-      <FlexBox gap={2}>
-        <Calendar
-          css={css({
-            flex: 5,
-          })}
-          yearMonth={yearMonth}
-          calendar={data!}
-          onPre={previous}
-          onNext={next}
-        />
-        <ScheduleAlerts
-          css={css({
-            flex: 1,
-          })}
-          alerts={!isError && data != undefined ? extractFromCalendar(data.schedules) : []}
-        />
-      </FlexBox>
-    </div>
+  console.log(
+    'schedules',
+    schedules.map((schedule) => schedule.title),
+    'alerts',
+    alerts.map((alert) => alert.title)
   );
+
+  return <ClientPage calendar={calendar} alerts={alerts} />;
 };
 
-export default ClientPage;
+export default Home;
+9;
