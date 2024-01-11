@@ -5,17 +5,11 @@ import { getServerSession } from 'next-auth';
 import Calendar = calendar_v3.Calendar;
 
 import { options } from '@/app/options';
+import { getOAuthClient } from '@/libs/server/service/getOAuthClient';
 
 async function fetchGoogleCalendarList(accessToken: string): Promise<calendar_v3.Schema$CalendarList> {
   // Google OAuthへの接続
-  const oauth2Client = new google.auth.OAuth2({
-    clientId: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    // GCPコンソールで設定したredirect URI
-    redirectUri: 'http://localhost:3000/google-calendar',
-  });
-
-  oauth2Client.setCredentials({ access_token: accessToken });
+  const oauth2Client = getOAuthClient(accessToken);
   const calendar: Calendar = google.calendar({ version: 'v3', auth: oauth2Client });
   const response = await calendar.calendarList.list();
   return response.data;

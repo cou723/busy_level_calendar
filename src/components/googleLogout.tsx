@@ -6,7 +6,7 @@ import NeuButton from '@/components/utils/neuButton';
 
 function GoogleLogoutBtn() {
   return (
-    <NeuButton handleClick={() => signOut()}>
+    <NeuButton handleClick={signOut}>
       <div
         css={css({
           display: 'flex',

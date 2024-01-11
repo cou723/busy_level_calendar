@@ -8,7 +8,7 @@ type Props = {
   handleSubmit: () => void;
 };
 
-const importButton = ({ handleSubmit }: Props) => {
+const importButton: React.FC<Props> = ({ handleSubmit }) => {
   return (
     <div
       css={css({

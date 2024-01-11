@@ -25,7 +25,7 @@ type Props = {
   calendars: calendar_v3.Schema$CalendarListEntry[];
 };
 
-export const ClientPage = ({ calendars }: Props) => {
+export const ClientPage: React.FC<Props> = ({ calendars }) => {
   const session = useSession();
   const navigate = useRouter();
   const [optionState, dispatch] = useGoogleImportOptions({
@@ -36,11 +36,7 @@ export const ClientPage = ({ calendars }: Props) => {
     },
     onlyAllDay: false,
   });
-  const { importCalendar, error } = useImportCalendar(
-    optionState,
-    () => navigate.push('/'),
-    (error) => alert(error)
-  );
+  const { importCalendar, error } = useImportCalendar(optionState);
 
   const handleSubmit = async () => {
     if (!session.data?.accessToken) return navigate.push('/login');

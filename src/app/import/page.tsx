@@ -6,9 +6,10 @@ import Calendar = calendar_v3.Calendar;
 
 import ClientPage from '@/app/import/clientPage';
 import { options } from '@/app/options';
+import { getOAuthClient } from '@/libs/server/service/getOAuthClient';
 import { tryCatchToResult } from '@/utils/resultToTryCatch';
 
-export const ImportPage = async () => {
+export const ImportPage: React.FC = async () => {
   // サーバ・コンポーネントでセッションを取得する。
   const session = await getServerSession(options);
 
@@ -19,13 +20,7 @@ export const ImportPage = async () => {
   }
 
   // Google OAuthへの接続
-  const oauth2Client = new google.auth.OAuth2({
-    clientId: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    redirectUri: `http://localhost:3000/google-calendar`,
-  });
-
-  oauth2Client.setCredentials({ access_token: accessToken });
+  const oauth2Client = getOAuthClient(accessToken);
   const calendar: Calendar = google.calendar({ version: 'v3', auth: oauth2Client });
 
   const calendarListResponse = await tryCatchToResult(async () => await calendar.calendarList.list());

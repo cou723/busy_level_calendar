@@ -10,7 +10,7 @@ type Props = {
   onChange: (range: { start: Date; end: Date }) => void;
 };
 
-const RangeSelector = ({ range, onChange }: Props) => {
+const RangeSelector: React.FC<Props> = ({ range, onChange }) => {
   return (
     <FlexBox gap={2}>
       <DatePicker

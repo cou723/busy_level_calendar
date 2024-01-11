@@ -5,7 +5,9 @@ import { css } from '@emotion/react';
 
 import { fontColor } from '@/global';
 
-export const SubTitle = ({ icon, children }: { icon: React.ReactNode; children: React.ReactNode }) => {
+type Props = { icon: React.ReactNode; children: React.ReactNode };
+
+export const SubTitle: React.FC<Props> = ({ icon, children }) => {
   return (
     <div
       css={css({

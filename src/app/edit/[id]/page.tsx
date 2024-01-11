@@ -2,7 +2,7 @@
 import { notFound, useParams, useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 
-import LoadingPage from '@/app/loadingPage';
+import LoadingPage from '@/components/loadingPage';
 import NormalContainer from '@/components/normalContainer';
 import PageTitle from '@/components/pageTitle';
 import ScheduleForm from '@/components/scheduleForm';
@@ -15,7 +15,7 @@ import { useSchedule } from '@/hooks/useSchedule';
  * スケジュールを編集するための EditPage コンポーネントです。
  * @returns JSX.Element
  */
-export const EditPage = () => {
+export const EditPage: React.FC = () => {
   const navigate = useRouter();
 
   // URL から id パラメーターを取得

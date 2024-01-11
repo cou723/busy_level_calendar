@@ -12,7 +12,7 @@ type Props = {
   onChange: (calendars: calendar_v3.Schema$CalendarListEntry['id'][]) => void;
 };
 
-export const CalendarCheckBoxes = ({ calendars, onChange }: Props) => {
+export const CalendarCheckBoxes: React.FC<Props> = ({ calendars, onChange }) => {
   const [selectCalendars, setSelectCalendars] = useState<{
     [key: string]: boolean;
   }>({});

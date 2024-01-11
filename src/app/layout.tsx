@@ -4,9 +4,11 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import React from 'react';
 
+import { headers } from 'next/headers';
+
 import type { Metadata } from 'next';
 
-import { ClientLayout } from '@/app/clientLayout';
+import { ClientLayout } from '@/components/clientLayout';
 import { backgroundColor } from '@/constants';
 import { Providers } from '@/providers';
 import 'the-new-css-reset/css/reset.css';
@@ -17,6 +19,10 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const headersList = headers();
+  const header_url = headers().get('x-url') || '';
+  console.log(headersList, header_url);
+
   return (
     <html lang="jp" style={{ backgroundColor, height: '100%' }}>
       <body style={{ height: '100%' }}>

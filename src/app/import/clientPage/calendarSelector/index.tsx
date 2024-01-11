@@ -10,11 +10,10 @@ type Props = {
   calendars: calendar_v3.Schema$CalendarListEntry[];
   onChange: (calendars: calendar_v3.Schema$CalendarListEntry['id'][]) => void;
 };
-export function CalendarSelector({ calendars, onChange }: Props) {
-  return (
-    <FlexBox flexDirection="column" gap={1}>
-      <SubTitle icon={<BsCalendar />}>インポートするカレンダー</SubTitle>
-      <CalendarCheckBoxes calendars={calendars} onChange={(calendar) => onChange(calendar)} />
-    </FlexBox>
-  );
-}
+
+export const CalendarSelector: React.FC<Props> = ({ calendars, onChange }) => (
+  <FlexBox flexDirection="column" gap={1}>
+    <SubTitle icon={<BsCalendar />}>インポートするカレンダー</SubTitle>
+    <CalendarCheckBoxes calendars={calendars} onChange={(calendar) => onChange(calendar)} />
+  </FlexBox>
+);

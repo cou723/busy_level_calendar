@@ -5,7 +5,7 @@ import { FaGoogle, FaLongArrowAltRight, FaCalendarAlt } from 'react-icons/fa';
 
 import { fontColor } from '@/global';
 
-const ImportPageTitle = () => {
+const ImportPageTitle: React.FC = () => {
   return (
     <h1
       css={css({
