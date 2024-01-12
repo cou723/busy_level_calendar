@@ -9,6 +9,7 @@ import { headers } from 'next/headers';
 import type { Metadata } from 'next';
 
 import { ClientLayout } from '@/components/clientLayout';
+import Header from '@/components/header';
 import { backgroundColor } from '@/constants';
 import { Providers } from '@/providers';
 import 'the-new-css-reset/css/reset.css';
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="jp" style={{ backgroundColor, height: '100%' }}>
       <body style={{ height: '100%' }}>
+        <Header />
         <Providers>
           <ClientLayout>{children}</ClientLayout>
         </Providers>

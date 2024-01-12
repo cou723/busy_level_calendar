@@ -33,7 +33,7 @@ const Neu: FunctionComponent<NeuProps> = ({
   size = 'medium',
   ...props
 }) => {
-  const shadow = transparentize('black', 1.2 - intensity / 2);
+  const shadow = transparentize('rgb(25, 32, 90)', 1.4 - intensity / 2);
   const highlight = transparentize('white', 0.5 - intensity / 2);
   const neuStyleObject = {
     background: generateBackground(concave),
