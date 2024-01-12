@@ -9,6 +9,9 @@ const nextConfig = {
     config.resolve.alias['@'] = path.resolve(__dirname, 'src');
     return config;
   },
+  experimental: {
+    esmExternals: 'loose',
+  },
 };
 
 module.exports = nextConfig;
