@@ -1,6 +1,7 @@
-import type { FunctionComponent } from 'react';
+import { useState, type FunctionComponent } from 'react';
 
 import { css } from '@emotion/react';
+import { useRouter } from 'next/navigation';
 
 import type { Schedule } from '@/types/schedule';
 
@@ -15,9 +16,10 @@ interface ScheduleFormProps {
 
 const ScheduleForm: FunctionComponent<ScheduleFormProps> = ({ defaultValue }) => {
   const { register, onSubmit, formState } = useScheduleForm(defaultValue);
+  const [disabled, setDisabled] = useState(false);
 
   return (
-    <form onSubmit={onSubmit}>
+    <div>
       <FlexBox flexDirection="column" gap={1}>
         <TextBox
           id="title"
@@ -61,10 +63,15 @@ const ScheduleForm: FunctionComponent<ScheduleFormProps> = ({ defaultValue }) =>
         <NeuButton
           css={css({ width: '8rem', marginTop: '1rem' })}
           label={defaultValue ? '編集' : '作成'}
-          handleClick={() => onSubmit()}
+          disabled={disabled}
+          handleClick={async () => {
+            setDisabled(true);
+            await onSubmit();
+            setDisabled(false);
+          }}
         />
       </div>
-    </form>
+    </div>
   );
 };
 
