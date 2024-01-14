@@ -7,7 +7,13 @@ import SmallContainer from '@/components/smallContainer';
 
 const ClientPage: React.FC = () => {
   return (
-    <SmallContainer>
+    <SmallContainer
+      css={css({
+        justifyContent: 'center',
+        display: 'flex',
+        alignItems: 'center',
+      })}
+    >
       <GoogleLoginBtn
         callbackUrl="/"
         css={css({

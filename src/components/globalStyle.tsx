@@ -1,7 +1,7 @@
-"use client";
-import { css } from "@emotion/react";
+'use client';
+import { css } from '@emotion/react';
 
-import { backgroundColor } from "@/constants";
+import { backgroundColor } from '@/global';
 
 export const globalStyle = css`
   *,

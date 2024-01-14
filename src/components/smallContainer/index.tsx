@@ -16,6 +16,9 @@ const SmallContainer = ({ children }: Props) => {
         margin: '0 auto',
         marginTop: '10rem',
         padding: '2rem',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
       })}
     >
       <div>{children}</div>

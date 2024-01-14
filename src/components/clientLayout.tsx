@@ -3,7 +3,7 @@ import { Global } from '@emotion/react';
 import { Toaster } from 'react-hot-toast';
 
 import { globalStyle } from '@/components/globalStyle';
-import { backgroundColor } from '@/constants';
+import { backgroundColor } from '@/global';
 import { generateBoxShadow } from '@/libs/generateBoxShadow';
 
 type ClientLayoutProps = {

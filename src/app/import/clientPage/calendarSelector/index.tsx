@@ -6,7 +6,7 @@ import type { calendar_v3 } from 'googleapis';
 import CalendarCheckBoxes from '@/app/import/clientPage/calendarSelector/calendarCheckBoxes';
 import { SubTitle } from '@/app/import/clientPage/subTitle';
 import FlexBox from '@/components/utils/flexBox';
-import { backgroundColor } from '@/constants';
+import { backgroundColor } from '@/global';
 
 type Props = {
   calendars: calendar_v3.Schema$CalendarListEntry[];

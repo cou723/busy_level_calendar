@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-import { backgroundColor } from '@/constants';
+import { backgroundColor } from '@/global';
 import { generateDropShadow } from '@/libs/generateBoxShadow';
 import { generateNeuStyle } from '@/libs/generateNeuStyle';
 

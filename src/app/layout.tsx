@@ -1,20 +1,14 @@
 import React from 'react';
-import Head from 'next/head';
 
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
-
-import { headers } from 'next/headers';
-
+import '@/styles/index.css';
 import type { Metadata } from 'next';
 
 import { ClientLayout } from '@/components/clientLayout';
 import Header from '@/components/header';
-import { backgroundColor } from '@/constants';
+import { backgroundColor } from '@/global';
 import { Providers } from '@/providers';
 import 'the-new-css-reset/css/reset.css';
+import { josefinSans, mPlus1, roboto } from '@/styles/font';
 
 export const metadata: Metadata = {
   title: 'Harmony',
@@ -22,16 +16,9 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const headersList = headers();
-  const header_url = headers().get('x-url') || '';
-  console.log(headersList, header_url);
-
   return (
-    <html lang="jp" style={{ backgroundColor, height: '100%' }}>
-      <Head>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans"></link>
-      </Head>
-      <body style={{ height: '100%' }}>
+    <html lang="jp" style={{ backgroundColor }}>
+      <body className={[roboto.variable].join(' ')}>
         <Header />
         <Providers>
           <ClientLayout>{children}</ClientLayout>

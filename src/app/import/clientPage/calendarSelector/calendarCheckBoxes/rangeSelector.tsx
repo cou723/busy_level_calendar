@@ -12,7 +12,7 @@ type Props = {
 
 const RangeSelector: React.FC<Props> = ({ range, onChange }) => {
   return (
-    <FlexBox gap={2}>
+    <FlexBox gap={2} flexWrap="wrap">
       <DatePicker
         label="開始"
         value={range.start}

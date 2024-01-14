@@ -14,9 +14,9 @@ function GoogleLoginBtn({ callbackUrl }: Props) {
   return (
     <NeuButton
       onClick={() => signIn('google', { callbackUrl })}
-      css={css({
-        width: '100%',
-      })}
+      // css={css({
+      //   width: '100%',
+      // })}
     >
       <FlexBox alignItems="center" justifyContent="center" gap={0.2}>
         <FcGoogle /> <p>Googleでログイン</p>

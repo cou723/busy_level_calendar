@@ -5,7 +5,6 @@ export const Title = ({ children }: { children: React.ReactNode }) => {
     <p
       css={css`
         padding-top: 0.2rem;
-        font-size: 0.8rem;
       `}
     >
       {children}

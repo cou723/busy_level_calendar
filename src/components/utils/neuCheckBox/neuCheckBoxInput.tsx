@@ -60,7 +60,8 @@ const NeuCheckBoxInput = ({ onClick, onTrue, onFalse, error }: Props) => {
       })}
       radius={1}
       inset
-      intensity={active ? 1.2 : hover ? 0.8 : 1}
+      intensity={active ? 1.2 : hover ? 1.1 : 1}
+      size="small"
     >
       <FaCheck
         css={css({

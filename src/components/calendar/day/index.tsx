@@ -10,6 +10,7 @@ import type { Schedule } from '@/types/schedule';
 
 import Neu from '@/components/utils/neu';
 import { getMentalLevelColor } from '@/libs/peaceOfMindToColor';
+import { josefinSans } from '@/styles/font';
 
 interface DayProps {
   day: number;
@@ -31,7 +32,13 @@ const Day: FunctionComponent<DayProps> = React.memo(({ day, schedules, busyLevel
       })}
       concave
     >
-      <p>
+      <p
+        css={css({
+          fontSize: '1.1rem',
+          fontWeight: 'bold',
+        })}
+        className={josefinSans.className}
+      >
         {day}
         {/* {day}:{busyLevel.toFixed(3)} */}
       </p>

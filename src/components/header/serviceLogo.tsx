@@ -21,7 +21,7 @@ const ServiceLogo = () => {
         width={7523 / 50}
         height={2481 / 50}
         css={css({
-          filter: 'drop-shadow(1px 1px 0.5px rgba(218, 218, 218, 0.795));',
+          filter: 'drop-shadow(1px 1px 0.5px rgba(134, 54, 54, 0.795));',
         })}
       />
     </Link>
