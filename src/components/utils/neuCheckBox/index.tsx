@@ -7,12 +7,12 @@ import NeuCheckBoxInput from './neuCheckBoxInput';
 
 import type { Props as InputProps } from './neuCheckBoxInput';
 
-
 type Props = InputProps & {
   children?: React.ReactNode;
+  error?: boolean;
 };
 
-const NeuCheckBox = ({ children, ...other }: Props) => {
+const NeuCheckBox = ({ children, error, ...other }: Props) => {
   return (
     <div
       css={css({
@@ -21,7 +21,7 @@ const NeuCheckBox = ({ children, ...other }: Props) => {
         gap: '10px',
       })}
     >
-      <NeuCheckBoxInput {...other} />
+      <NeuCheckBoxInput error={error} {...other} />
       {children}
     </div>
   );

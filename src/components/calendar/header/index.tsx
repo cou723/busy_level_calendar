@@ -9,6 +9,7 @@ import { HeaderBox } from './headerBox';
 import type { YearMonth } from '@/types/yearMonth';
 
 import FlexBox from '@/components/utils/flexBox';
+import { iconNeuStyle } from '@/components/utils/iconNeuStyle';
 
 interface HeaderProps {
   yearMonth: YearMonth;
@@ -22,14 +23,41 @@ type MonthProps = {
 const Month = ({ month }: MonthProps) => {
   return (
     <p
-      css={css({
-        width: '5rem',
-        display: 'inline-block',
-        textAlign: 'center',
-        margin: '0 1rem',
-      })}
+      css={[
+        ...iconNeuStyle,
+        css({
+          width: '5rem',
+          display: 'inline-block',
+          textAlign: 'center',
+          margin: '0 1rem',
+          paddingTop: '0.5rem',
+          fontFamily: 'Josefin Sans',
+          fontSize: '2rem',
+          color: '#747680',
+        }),
+      ]}
     >
-      {month}月
+      {month}
+    </p>
+  );
+};
+
+type YearProps = {
+  year: number;
+};
+
+const Year = ({ year }: YearProps) => {
+  return (
+    <p
+      css={[
+        ...iconNeuStyle,
+        css({
+          fontFamily: 'Josefin Sans',
+          fontSize: '1.5rem',
+        }),
+      ]}
+    >
+      {year}
     </p>
   );
 };
@@ -37,7 +65,7 @@ const Month = ({ month }: MonthProps) => {
 const Header: FunctionComponent<HeaderProps> = ({ yearMonth: { year, month }, onNext, onPre }) => {
   return (
     <HeaderBox>
-      <div>{year}</div>
+      <Year year={year} />
 
       <FlexBox alignItems="center" justifyContent="center">
         <ArrowButton onClick={onPre} direction="left" />
@@ -46,9 +74,6 @@ const Header: FunctionComponent<HeaderProps> = ({ yearMonth: { year, month }, on
       </FlexBox>
 
       <FlexBox gap={1}>
-        {/* <NeuButton onClick={async () => await apiAdapter.clear()} padding={0}>
-          reset
-        </NeuButton> */}
         <CreateScheduleButton />
       </FlexBox>
     </HeaderBox>

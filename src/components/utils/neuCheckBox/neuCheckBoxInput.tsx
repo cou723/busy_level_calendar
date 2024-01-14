@@ -9,9 +9,10 @@ export type Props = {
   onClick?: (value: boolean) => void;
   onTrue?: (value: boolean) => void;
   onFalse?: (value: boolean) => void;
+  error: boolean;
 };
 
-const NeuCheckBoxInput = ({ onClick, onTrue, onFalse }: Props) => {
+const NeuCheckBoxInput = ({ onClick, onTrue, onFalse, error }: Props) => {
   const [checked, setChecked] = React.useState(false);
   const [hover, setHover] = React.useState(false);
   const [active, setActive] = React.useState(false);
@@ -55,6 +56,7 @@ const NeuCheckBoxInput = ({ onClick, onTrue, onFalse }: Props) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: error ? 'red' : 'transparent',
       })}
       radius={1}
       inset

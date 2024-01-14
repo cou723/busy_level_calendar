@@ -45,7 +45,7 @@ export const EditPage: React.FC = () => {
     <NormalContainer>
       <FlexBox justifyContent="space-between" alignItems="row">
         <PageTitle>編集</PageTitle>
-        <NeuButton handleClick={handleDelete}>削除</NeuButton>
+        <NeuButton onClick={handleDelete}>削除</NeuButton>
       </FlexBox>
       {isError ? <p>エラー</p> : <ScheduleForm defaultValue={schedule} />}
     </NormalContainer>

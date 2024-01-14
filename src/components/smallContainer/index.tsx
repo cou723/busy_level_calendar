@@ -12,7 +12,7 @@ const SmallContainer = ({ children }: Props) => {
   return (
     <Neu
       css={css({
-        maxWidth: '50%',
+        maxWidth: '40%',
         margin: '0 auto',
         marginTop: '10rem',
         padding: '2rem',

@@ -10,9 +10,10 @@ import NeuCheckBox from '@/components/utils/neuCheckBox';
 type Props = {
   calendars: calendar_v3.Schema$CalendarListEntry[];
   onChange: (calendars: calendar_v3.Schema$CalendarListEntry['id'][]) => void;
+  error?: string;
 };
 
-export const CalendarCheckBoxes: React.FC<Props> = ({ calendars, onChange }) => {
+export const CalendarCheckBoxes: React.FC<Props> = ({ calendars, onChange, error }) => {
   const [selectCalendars, setSelectCalendars] = useState<{
     [key: string]: boolean;
   }>({});
@@ -32,6 +33,7 @@ export const CalendarCheckBoxes: React.FC<Props> = ({ calendars, onChange }) => 
     >
       {calendars.map((item) => (
         <NeuCheckBox
+          error={!!error}
           onClick={(checked) => {
             const newSelectCalendars = JSON.parse(JSON.stringify(selectCalendars));
 

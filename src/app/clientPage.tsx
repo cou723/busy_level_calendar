@@ -28,7 +28,6 @@ const ClientPage: React.FC<Props> = ({ calendar, alerts }) => {
   return (
     <div
       css={css({
-        marginTop: '1rem',
         padding: '1rem',
         width: '100%',
       })}

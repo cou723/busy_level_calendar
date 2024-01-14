@@ -29,6 +29,7 @@ const Day: FunctionComponent<DayProps> = React.memo(({ day, schedules, busyLevel
         padding: '20px',
         minHeight: '100px',
       })}
+      concave
     >
       <p>
         {day}

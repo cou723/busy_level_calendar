@@ -1,40 +1,29 @@
 'use client';
-import type { FunctionComponent} from 'react';
+import type { FunctionComponent } from 'react';
 import { useState } from 'react';
 
 import { css } from '@emotion/react';
 
-import Neu from '@/components/utils/neu';
+import { generateNeuStyle } from '@/libs/generateNeuStyle';
 
-export interface NeuButtonProps {
+export type NeuButtonProps = {
   label?: string;
   children?: React.ReactNode;
-  handleClick?: () => void;
+  onClick?: () => void;
   disabled?: boolean;
   concave?: boolean;
-  [key: string]: unknown;
-}
-
-const buttonStyles = () => {
-  return css`
-    background-color: transparent;
-    text-align: center;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-right: 1rem;
-    padding-left: 1rem;
-    display: flex;
-    justify-content: center;
-  `;
+  radius?: number;
+  className?: string;
 };
 
 const NeuButton: FunctionComponent<NeuButtonProps> = ({
   label,
-  handleClick,
+  onClick,
   disabled = false,
   concave = false,
   children,
-  ...rest
+  radius = 2,
+  className,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isActive, setIsActive] = useState(false);
@@ -50,22 +39,42 @@ const NeuButton: FunctionComponent<NeuButtonProps> = ({
   };
 
   return (
-    <button onClick={handleClick}>
-      <Neu
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={handleMouseLeave}
-        onMouseDown={() => setIsActive(true)}
-        onMouseUp={handleMouseUp}
+    <button
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={handleMouseLeave}
+      onMouseDown={() => setIsActive(true)}
+      onMouseUp={handleMouseUp}
+      onClick={onClick}
+      css={css({
+        backgroundColor: 'transparent',
+        textAlign: 'center',
+        paddingTop: '0.5rem',
+        paddingBottom: '0.5rem',
+        paddingRight: '1rem',
+        paddingLeft: '1rem',
+        display: 'flex',
+        justifyContent: 'center',
+        ...generateNeuStyle({
+          radius,
+          intensity: 1,
+          inset: isActive,
+          concave,
+          size: isHovered ? 'small' : 'medium',
+        }),
+      })}
+      className={className}
+    >
+      {/* <Neu
         css={buttonStyles()}
-        disabled={disabled}
         {...rest}
-        intensity={isHovered ? 1.3 : 1}
+        intensity={1}
         inset={isActive}
         concave={concave}
-      >
-        <p>{label}</p>
-        {children}
-      </Neu>
+        size={isHovered ? 'small' : 'medium'}
+      > */}
+      <p>{label}</p>
+      {children}
+      {/* </Neu> */}
     </button>
   );
 };

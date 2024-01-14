@@ -3,13 +3,14 @@ import React from 'react';
 
 import { css } from '@emotion/react';
 
+import GoogleLoginBtn from '@/components/googleLoginBtn';
 import GoogleLogoutBtn from '@/components/googleLogout';
 import ServiceLogo from '@/components/header/serviceLogo';
 import UserData from '@/components/header/userData';
 import FlexBox from '@/components/utils/flexBox';
 
 type Props = {
-  username: string;
+  username?: string;
 };
 
 const ClientHeader: React.FC<Props> = ({ username }) => {
@@ -24,14 +25,14 @@ const ClientHeader: React.FC<Props> = ({ username }) => {
         height: '4rem',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingLeft: '3rem',
-        paddingRight: '3rem',
+        paddingLeft: '2rem',
+        paddingRight: '2rem',
       })}
     >
       <ServiceLogo />
-      <FlexBox flexDirection="row" gap={2}>
-        <UserData username={username} />
-        <GoogleLogoutBtn />
+      <FlexBox flexDirection="row" gap={1.5}>
+        {username ? <UserData username={username} /> : ''}
+        {username ? <GoogleLogoutBtn /> : <GoogleLoginBtn callbackUrl="/" />}
       </FlexBox>
     </div>
   );

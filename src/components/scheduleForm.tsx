@@ -64,7 +64,7 @@ const ScheduleForm: FunctionComponent<ScheduleFormProps> = ({ defaultValue }) =>
           css={css({ width: '8rem', marginTop: '1rem' })}
           label={defaultValue ? '編集' : '作成'}
           disabled={disabled}
-          handleClick={async () => {
+          onClick={async () => {
             setDisabled(true);
             await onSubmit();
             setDisabled(false);

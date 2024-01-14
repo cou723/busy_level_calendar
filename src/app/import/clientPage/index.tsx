@@ -62,6 +62,7 @@ export const ClientPage: React.FC<Props> = ({ calendars }) => {
               />
             </div>
             <NeuCheckBox
+            error={!!error}
               onClick={(checked) => {
                 dispatch({ type: 'onlyAllDay', value: checked });
               }}
