@@ -3,6 +3,7 @@ import React from 'react';
 import { DatePicker } from '@mui/x-date-pickers';
 import { isBefore } from 'date-fns';
 
+import { NeuDatePicker } from '@/components/neuDatePicker';
 import FlexBox from '@/components/utils/flexBox';
 
 type Props = {
@@ -13,12 +14,12 @@ type Props = {
 const RangeSelector: React.FC<Props> = ({ range, onChange }) => {
   return (
     <FlexBox gap={2} flexWrap="wrap">
-      <DatePicker
+      <NeuDatePicker
         label="開始"
         value={range.start}
         onChange={(newDate) => onChange({ start: newDate as Date, end: range.end })}
       />
-      <DatePicker
+      <NeuDatePicker
         label="終了"
         value={range.end}
         onChange={(newDate) => onChange({ start: range.start, end: newDate as Date })}

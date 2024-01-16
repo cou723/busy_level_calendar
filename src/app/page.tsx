@@ -3,10 +3,10 @@ import { redirect } from 'next/navigation';
 import type { Calendar } from '@/types/calendar';
 import type { Schedule } from '@/types/schedule';
 
-import ClientPage from '@/app/clientPage';
+import ClientPage from '@/components/clientPage';
 import { getUserData } from '@/libs/server/getUserData';
 import { schedule } from '@/libs/server/service/schedule';
-import { extractFromCalendar, extractFromSchedule } from '@/types';
+import { extractFromCalendar } from '@/types';
 
 const Home: React.FC = async () => {
   const user = await getUserData();

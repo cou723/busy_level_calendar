@@ -12,10 +12,6 @@ import { getCalendarDates } from '@/libs/getCalendarDates';
 import { generateBusyLevels } from '@/types/busyLevel';
 import { type Calendar } from '@/types/calendar';
 
-
-
-
-
 interface CalendarProps {
   yearMonth: YearMonth;
   calendar: Calendar;

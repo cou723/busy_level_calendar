@@ -8,7 +8,6 @@ import Day from './day';
 import type { BusyLevel } from '@/types/busyLevel';
 import type { Schedule } from '@/types/schedule';
 
-
 interface GridsProps {
   dates: Date[];
   schedules: Schedule[];

@@ -46,6 +46,7 @@ const NeuButton: FunctionComponent<NeuButtonProps> = ({
       onMouseUp={handleMouseUp}
       onClick={onClick}
       css={css({
+        fontSize: '14px',
         backgroundColor: 'transparent',
         textAlign: 'center',
         paddingTop: '0.5rem',

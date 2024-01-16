@@ -9,8 +9,8 @@ export type NeuSize = 'small' | 'medium' | 'large';
 export type NeuStyleOption = {
   radius: number;
   intensity: number;
-  inset: boolean;
-  concave: boolean;
+  inset?: boolean;
+  concave?: boolean;
   size: NeuSize;
 };
 

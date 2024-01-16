@@ -16,10 +16,7 @@ interface ScheduleProps {
 }
 
 const ScheduleView: FunctionComponent<ScheduleProps> = ({ schedule }) => {
-  const maxTitle = 10;
   const router = useRouter();
-
-  if (schedule.title.length >= maxTitle) schedule.title = schedule.title.slice(0, maxTitle) + '...';
 
   return (
     <NeuButton
@@ -29,8 +26,9 @@ const ScheduleView: FunctionComponent<ScheduleProps> = ({ schedule }) => {
         text-align: left;
         border: ${schedule.requiredDays ? 0 : 1}px dashed #ff4f4f;
         padding: 1px;
-        padding-left: 2px;
-        padding-right: 2px;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        height: 1.5rem;
         justify-content: left;
       `}
       onClick={() => router.push('/edit/' + schedule.id)}

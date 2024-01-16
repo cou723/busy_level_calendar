@@ -12,8 +12,6 @@ import type { ScheduleAlertTypes } from '@/types/scheduleAlertType';
 import FlexBox from '@/components/utils/flexBox';
 import Neu from '@/components/utils/neu';
 
-
-
 export interface Props {
   title: string;
   message: string;
@@ -26,7 +24,7 @@ const ScheduleAlert: FunctionComponent<Props> = ({ title, message, priorityLevel
     <Neu
       inset
       css={css({
-        padding: '8px',
+        padding: '1rem',
       })}
     >
       <FlexBox flexDirection="row" gap="6px">
