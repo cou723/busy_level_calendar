@@ -7,19 +7,17 @@ import { Message } from './message';
 import { ScheduleAlertIcon } from './scheduleAlertIcon';
 import { Title } from './title';
 
-import type { ScheduleAlertTypes } from '@/types/scheduleAlertType';
+import type { ScheduleAlert } from '@/types';
 
 import FlexBox from '@/components/utils/flexBox';
 import Neu from '@/components/utils/neu';
 
 export interface Props {
-  title: string;
-  message: string;
-  priorityLevel: ScheduleAlertTypes;
-  toUrl: string;
+  alert: ScheduleAlert;
+  to: string;
 }
 
-const ScheduleAlert: FunctionComponent<Props> = ({ title, message, priorityLevel, toUrl: to }) => {
+const ScheduleAlertView: FunctionComponent<Props> = ({ alert: { title, message, level }, to }) => {
   return (
     <Neu
       inset
@@ -28,17 +26,8 @@ const ScheduleAlert: FunctionComponent<Props> = ({ title, message, priorityLevel
       })}
     >
       <FlexBox flexDirection="row" gap="6px">
-        <ScheduleAlertIcon
-          level={priorityLevel}
-          css={css({
-            width: '90px',
-          })}
-        />
-        <div
-          css={css({
-            flexGrow: 1,
-          })}
-        >
+        <ScheduleAlertIcon level={level} css={css({ width: '90px' })} />
+        <div css={css({ flexGrow: 1 })}>
           <Title> {title} </Title>
           <Message> {message} </Message>
           <Link to={to}> 詳細を見る </Link>
@@ -48,4 +37,4 @@ const ScheduleAlert: FunctionComponent<Props> = ({ title, message, priorityLevel
   );
 };
 
-export default ScheduleAlert;
+export default ScheduleAlertView;

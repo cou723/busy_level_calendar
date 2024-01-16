@@ -34,7 +34,7 @@ const Grids: FunctionComponent<GridsProps> = ({ dates, schedules, busyLevels }) 
           })}
           schedules={schedules.filter((schedule) => isSameDay(date, schedule.date))}
           busyLevel={busyLevels.find((busyLevel) => isSameDay(date, busyLevel.date))?.level}
-        ></Day>
+        />
       ))}
     </div>
   );

@@ -4,15 +4,7 @@ import { css } from '@emotion/react';
 
 import { generateNeuStyle } from '../../../libs/generateNeuStyle';
 
-export type NeuSize = 'small' | 'medium' | 'large';
-
-export type NeuStyleOption = {
-  radius: number;
-  intensity: number;
-  inset?: boolean;
-  concave?: boolean;
-  size: NeuSize;
-};
+import type { NeuSize } from './NeuSize';
 
 export type NeuProps = {
   children: React.ReactNode;

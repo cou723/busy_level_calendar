@@ -23,6 +23,6 @@ export const CalendarSelector: React.FC<Props> = ({ calendars, onChange, error }
     })}
   >
     <SubTitle icon={<BsCalendar />}>インポートするカレンダー</SubTitle>
-    <CalendarCheckBoxes error={error} calendars={calendars} onChange={(calendar) => onChange(calendar)} />
+    <CalendarCheckBoxes {...{ error, calendars }} onChange={(calendar) => onChange(calendar)} />
   </FlexBox>
 );

@@ -7,7 +7,6 @@ import type { UseFormRegisterReturn } from 'react-hook-form';
 import ErrorMessage from '@/components/utils/errorMessage';
 import NeuInput from '@/components/utils/neuInput';
 
-
 interface LabelProps {
   disabled: boolean;
   children: React.ReactNode;
@@ -56,10 +55,7 @@ const TextBox: FunctionComponent<TextBoxProps> = ({
         css={css`
           padding: 0.5rem;
         `}
-        id={id}
-        type={type}
-        register={register}
-        disabled={disabled}
+        {...{ id, type, register, disabled }}
         {...props}
       />
       <ErrorMessage message={errorMessage} />

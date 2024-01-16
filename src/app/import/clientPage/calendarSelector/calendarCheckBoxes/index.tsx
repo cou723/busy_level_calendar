@@ -1,7 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
-
-import { css } from '@emotion/react';
+import { useState } from 'react';
 
 import type { calendar_v3 } from 'googleapis';
 

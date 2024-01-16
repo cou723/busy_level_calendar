@@ -1,7 +1,7 @@
 import { generateBackground } from './generateBackground';
 import { generateBoxShadow, generateDropShadow } from './generateBoxShadow';
 
-import type { NeuStyleOption } from '../components/utils/neu';
+import type { NeuStyleOption } from '@/components/utils/neu/NeuStyleOption';
 
 export const generateNeuStyle = (
   { radius, intensity, inset, concave, size }: NeuStyleOption,

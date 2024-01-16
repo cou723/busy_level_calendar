@@ -36,10 +36,7 @@ const ClientHeader: React.FC<Props> = ({ username }) => {
       <FlexBox flexDirection="row" gap={1.5}>
         <Link
           href="/import"
-          css={[
-            generateNeuStyle({ radius: 2, intensity: 1, size: 'medium', concave: false, inset: false }),
-            css({ padding: '0.5rem' }),
-          ]}
+          css={[generateNeuStyle({ radius: 2, intensity: 1, size: 'medium' }), css({ padding: '0.5rem' })]}
         >
           <TbDatabaseImport /> 他サービスからのインポート
         </Link>

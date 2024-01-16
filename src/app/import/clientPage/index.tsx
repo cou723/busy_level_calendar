@@ -50,7 +50,7 @@ export const ClientPage: React.FC<Props> = ({ calendars }) => {
         <ImportPageTitle />
         <FlexBox flexDirection="row" gap={8}>
           <CalendarSelector
-            calendars={calendars}
+            {...{ calendars }}
             onChange={(calendars) => dispatch({ type: 'setCalendars', value: calendars as string[] })}
           />
           <FlexBox flexDirection="column" gap={1}>
@@ -62,7 +62,7 @@ export const ClientPage: React.FC<Props> = ({ calendars }) => {
               />
             </div>
             <NeuCheckBox
-            error={!!error}
+              error={!!error}
               onClick={(checked) => {
                 dispatch({ type: 'onlyAllDay', value: checked });
               }}

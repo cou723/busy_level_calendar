@@ -15,7 +15,7 @@ export const ArrowButton: FunctionComponent<ArrowButtonProps> = ({ onClick, dire
   const Arrow = direction === 'left' ? IoIosArrowBack : IoIosArrowForward;
 
   return (
-    <NeuButton onClick={onClick} concave>
+    <NeuButton {...{ onClick }} concave>
       <Arrow
         css={[
           css`

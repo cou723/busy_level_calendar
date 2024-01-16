@@ -19,11 +19,11 @@ interface HeaderProps {
 const Header: FunctionComponent<HeaderProps> = ({ yearMonth: { year, month }, onNext, onPre }) => {
   return (
     <HeaderBox>
-      <Year year={year} />
+      <Year {...{ year }} />
 
       <FlexBox alignItems="center" justifyContent="center">
         <ArrowButton onClick={onPre} direction="left" />
-        <Month month={month} />
+        <Month {...{ month }} />
         <ArrowButton onClick={onNext} direction="right" />
       </FlexBox>
 

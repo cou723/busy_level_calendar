@@ -42,12 +42,7 @@ const ClientPage: React.FC<Props> = ({ calendar, alerts }) => {
           onPre={previous}
           onNext={next}
         />
-        <ScheduleAlerts
-          css={css({
-            flex: 1,
-          })}
-          alerts={alerts}
-        />
+        <ScheduleAlerts css={css({ flex: 1 })} alerts={alerts} />
       </FlexBox>
     </div>
   );

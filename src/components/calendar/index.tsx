@@ -28,7 +28,7 @@ const Calendar: FunctionComponent<CalendarProps> = ({ yearMonth, calendar, onPre
       `}
       {...props}
     >
-      <Header yearMonth={yearMonth} onNext={onNext} onPre={onPre} />
+      <Header {...{ yearMonth, onNext, onPre }} />
       <Grids
         dates={getCalendarDates(yearMonth)}
         schedules={calendar.schedules}

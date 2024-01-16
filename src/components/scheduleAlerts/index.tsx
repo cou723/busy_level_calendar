@@ -25,13 +25,7 @@ const ScheduleAlerts: FunctionComponent<Props> = ({ alerts, ...props }) => {
       })}
     >
       {alerts.map((alert: ScheduleAlert, i) => (
-        <ScheduleAlertView
-          key={i}
-          title={alert.title}
-          message={alert.message}
-          priorityLevel={alert.level}
-          toUrl={'/edit/' + alert.target}
-        />
+        <ScheduleAlertView key={i} alert={alert} to={'/edit/' + alert.target} />
       ))}
     </Neu>
   );

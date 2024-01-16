@@ -12,12 +12,7 @@ type Props = {
 
 function GoogleLoginBtn({ callbackUrl }: Props) {
   return (
-    <NeuButton
-      onClick={() => signIn('google', { callbackUrl })}
-      // css={css({
-      //   width: '100%',
-      // })}
-    >
+    <NeuButton onClick={() => signIn('google', { callbackUrl })}>
       <FlexBox alignItems="center" justifyContent="center" gap={0.2}>
         <FcGoogle /> <p>Googleでログイン</p>
       </FlexBox>

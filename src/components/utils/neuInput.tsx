@@ -36,11 +36,8 @@ const NeuInput: FunctionComponent<NeuInputProps> = ({
           padding: 0.25rem 0.5rem;
           height: auto;
         `}
-        disabled={disabled}
-        type={type}
         {...register}
-        id={id}
-        placeholder={placeholder}
+        {...{ disabled, type, id, placeholder }}
       />
     </Neu>
   );

@@ -8,7 +8,7 @@ const Header: React.FC = async () => {
   const user = await getUserData();
 
   const username = user.err ? undefined : nullToUndefined(user.val.email);
-  return <ClientHeader username={username} />;
+  return <ClientHeader {...{ username }} />;
 };
 
 export default Header;
