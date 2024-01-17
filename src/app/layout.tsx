@@ -1,7 +1,6 @@
 import React from 'react';
 
 import '@/styles/index.css';
-import { GlobalStyles } from '@mui/material';
 
 import type { Metadata } from 'next';
 
@@ -21,16 +20,6 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="jp" style={{ backgroundColor }}>
-      <GlobalStyles
-        styles={{
-          '.MuiPickersPopper-paper': {
-            //
-            boxShadow: 'none',
-            color: 'red',
-            marginTop: '0.5rem',
-          },
-        }}
-      />
       <body className={[roboto.variable].join(' ')}>
         <Header />
         <Providers>

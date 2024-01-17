@@ -1,41 +1,25 @@
-const path = require('path');
+import type { StorybookConfig } from '@storybook/nextjs';
 
-const react = require('@vitejs/plugin-react');
-
-module.exports = {
-  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
-
+const config: StorybookConfig = {
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-onboarding',
+    '@storybook/addon-interactions',
+    '@storybook/addon-themes'
+  ],
   framework: {
-    name: '@storybook/react-vite',
+    name: '@storybook/nextjs',
     options: {},
   },
-
-  async viteFinal(config) {
-    config.plugins = config.plugins.filter(
-      (plugin) => !(Array.isArray(plugin) && plugin[0]?.name.includes('vite:react'))
-    );
-
-    config.plugins.push(
-      react({
-        exclude: [/\.stories\.(t|j)sx?$/, /node_modules/],
-        jsxImportSource: '@emotion/react',
-        babel: {
-          plugins: ['@emotion/babel-plugin'],
-        },
-      })
-    );
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      '@': path.resolve(__dirname, '../src'),
-    };
-    return config;
-
-    console.log(config.plugins);
-    return config;
-  },
-
   docs: {
-    autodocs: true,
+    autodocs: 'tag',
   },
+  babel: async (options) => ({
+    ...options,
+    // any extra options you want to set
+    presets: ['@emotion/babel-plugin'],
+  }),
 };
+export default config;

@@ -1,27 +1,19 @@
-import Neu from ".";
+import Neu from '.';
 
-import type { NeuProps } from ".";
-import type { Meta, StoryFn } from "@storybook/react";
-
+import 'the-new-css-reset/css/reset.css';
+import type { NeuProps } from '.';
+import type { Meta, StoryFn } from '@storybook/react';
 
 export default {
-  title: "Neu",
+  title: 'Components/Neu',
   component: Neu,
-  parameters: {
-    backgrounds: {
-      default: "light",
-      values: [
-        { name: "light", value: "#cfcfcf" },
-        { name: "dark", value: "#2b2b2b" },
-      ],
-    },
-  },
 } as Meta;
 
 const Template: StoryFn<NeuProps> = (args) => <Neu {...args} />;
 
 const commonArgs = {
-  children: <div>Neu Component</div>,
+  children: <div style={{ width: '100px', height: '100px' }}>Neu Component</div>,
+  style: { padding: '1rem' },
 };
 
 export const Default = Template.bind({});
@@ -54,10 +46,10 @@ Radius3.args = {
   radius: 3,
 };
 
-export const Radius4 = Template.bind({});
-Radius4.args = {
+export const Radius10 = Template.bind({});
+Radius10.args = {
   ...commonArgs,
-  radius: 4,
+  radius: 10,
 };
 
 export const Concave = Template.bind({});
@@ -112,17 +104,17 @@ Intensity4.args = {
 export const Small = Template.bind({});
 Small.args = {
   ...commonArgs,
-  size: "small",
+  size: 'small',
 };
 
 export const Medium = Template.bind({});
 Medium.args = {
   ...commonArgs,
-  size: "medium",
+  size: 'medium',
 };
 
 export const Large = Template.bind({});
 Large.args = {
   ...commonArgs,
-  size: "large",
+  size: 'large',
 };
