@@ -30,10 +30,7 @@ const ScheduleAlertView: FunctionComponent<Props> = ({ alert: { title, message, 
         <div css={css({ flexGrow: 1 })}>
           <Title> {title} </Title>
           <Message> {message} </Message>
-          <Link to={to} prefetch={!process.env.STORYBOOK}>
-            {' '}
-            詳細を見る{' '}
-          </Link>
+          <Link to={to}> 詳細を見る </Link>
         </div>
       </FlexBox>
     </Neu>
