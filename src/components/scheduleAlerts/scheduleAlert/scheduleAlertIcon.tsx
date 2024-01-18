@@ -8,8 +8,8 @@ export const ScheduleAlertIcon = ({ level }: { level: ScheduleAlertTypes }) => {
 
   const icons: { [key: string]: JSX.Element } = {
     info: <MdInfo size={30} css={css({ ...iconCss, color: '#006fd6' })} />,
-    warning: <MdWarning size={30} css={css({ ...iconCss, color: '#dfc800' })} />,
-    error: <MdError size={30} css={css({ ...iconCss, color: '#ff6363' })} />,
+    warning: <MdWarning size={30} css={css({ ...iconCss, color: '#ebd300' })} />,
+    error: <MdError size={30} css={css({ ...iconCss, color: '#e62f2f' })} />,
   };
 
   return (

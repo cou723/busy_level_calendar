@@ -19,6 +19,7 @@ const preview: Preview = {
     },
   },
 };
+
 export const decorators = [
   (Story) => (
     <>

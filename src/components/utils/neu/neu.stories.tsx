@@ -89,16 +89,10 @@ Intensity2.args = {
   intensity: 2,
 };
 
-export const Intensity3 = Template.bind({});
-Intensity3.args = {
+export const Intensity10 = Template.bind({});
+Intensity10.args = {
   ...commonArgs,
-  intensity: 3,
-};
-
-export const Intensity4 = Template.bind({});
-Intensity4.args = {
-  ...commonArgs,
-  intensity: 4,
+  intensity: 10,
 };
 
 export const Small = Template.bind({});

@@ -3,7 +3,7 @@ import { transparentize } from 'color2k';
 import type { NeuSize } from '@/components/utils/neu/NeuSize';
 
 const black = 'rgb(90, 25, 25)';
-const white = 'rgb(241, 233, 233)';
+const white = 'rgb(255, 255, 255)';
 
 const shadowSize = {
   small: { offset: 2, blur: 4 },
@@ -12,8 +12,8 @@ const shadowSize = {
 };
 
 export const generateBoxShadow = (inset: boolean, intensity: number, size: NeuSize) => {
-  const shadow = transparentize(black, 1.4 - (intensity + 1) / 3);
-  const highlight = transparentize(white, 0.8 - intensity / 2);
+  const shadow = transparentize(black, 1.3 - (intensity + 2) / 5);
+  const highlight = transparentize(white, 0.8 - (intensity + 2) / 2);
 
   const { offset, blur } = shadowSize[size];
 
