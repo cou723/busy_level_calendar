@@ -3,6 +3,8 @@ import { Global } from '@emotion/react';
 import { globalStyle } from '../src/components/globalStyle';
 import { backgroundColor } from '../src/global';
 import 'the-new-css-reset/css/reset.css';
+import { ThemeProvider } from '@mui/material/styles';
+import { theme } from '../src/styles/theme';
 
 const preview: Preview = {
   parameters: {
@@ -22,8 +24,10 @@ const preview: Preview = {
 export const decorators = [
   (Story) => (
     <>
-      <Global styles={globalStyle} />
-      <Story />
+      <ThemeProvider {...{ theme }}>
+        <Global styles={globalStyle} />
+        <Story />
+      </ThemeProvider>
     </>
   ),
 ];

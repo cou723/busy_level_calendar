@@ -3,6 +3,7 @@ import type { FunctionComponent } from 'react';
 import { useState } from 'react';
 
 import { css } from '@emotion/react';
+import { Button } from '@mui/material';
 
 import { generateNeuStyle } from '@/libs/generateNeuStyle';
 
@@ -39,7 +40,7 @@ const NeuButton: FunctionComponent<NeuButtonProps> = ({
   };
 
   return (
-    <button
+    <Button
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
       onMouseDown={() => setIsActive(true)}
@@ -76,7 +77,7 @@ const NeuButton: FunctionComponent<NeuButtonProps> = ({
       <p>{label}</p>
       {children}
       {/* </Neu> */}
-    </button>
+    </Button>
   );
 };
 
