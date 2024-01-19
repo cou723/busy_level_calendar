@@ -16,8 +16,6 @@ export interface NeuInputProps {
   error?: string;
   disabled?: boolean;
   placeholder?: string;
-  radius?: number;
-  intensity?: number;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -29,8 +27,6 @@ const NeuInput: FunctionComponent<NeuInputProps> = ({
   disabled = false,
   label,
   error,
-  radius = 2,
-  intensity = 1,
 }) => {
   return (
     <TextField

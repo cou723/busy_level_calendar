@@ -98,17 +98,17 @@ Intensity10.args = {
 export const Small = Template.bind({});
 Small.args = {
   ...commonArgs,
-  size: 'small',
+  size: 1,
 };
 
 export const Medium = Template.bind({});
 Medium.args = {
   ...commonArgs,
-  size: 'medium',
+  size: 2,
 };
 
 export const Large = Template.bind({});
 Large.args = {
   ...commonArgs,
-  size: 'large',
+  size: 3,
 };

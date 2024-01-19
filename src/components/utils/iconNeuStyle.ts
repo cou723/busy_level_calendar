@@ -15,7 +15,7 @@ export const iconNeuStyle = [
       intensity: 1,
       inset: false,
       concave: false,
-      size: 'small',
+      size: 1,
     },
     true
   ),

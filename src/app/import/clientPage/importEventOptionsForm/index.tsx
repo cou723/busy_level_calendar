@@ -24,7 +24,7 @@ const SubmitButton = () => {
         generateNeuStyle({
           radius: 3,
           intensity: 2,
-          size: 'medium',
+          size: 2,
           isTouchable: true,
         }),
         css({

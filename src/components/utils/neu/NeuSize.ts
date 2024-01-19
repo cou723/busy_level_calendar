@@ -1,1 +1,2 @@
-export type NeuSize = 'small' | 'medium' | 'large';
+// export type NeuSize = 1 | 2 | 3;
+export type NeuSize = number;

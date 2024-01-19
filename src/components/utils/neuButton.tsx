@@ -42,7 +42,7 @@ const NeuButton: FunctionComponent<NeuButtonProps> = ({
           radius,
           intensity: 1,
           concave,
-          size: 'medium',
+          size: 2,
           isTouchable: true,
         }),
       })}

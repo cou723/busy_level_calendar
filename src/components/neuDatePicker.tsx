@@ -15,7 +15,7 @@ export const NeuDatePicker: React.FC<DatePickerProps<Date>> = ({ ...props }) => 
         css({
           '& .MuiOutlinedInput-notchedOutline': {
             border: 'none',
-            ...generateNeuStyle({ radius: 2, intensity: 1, inset: false, concave: false, size: 'medium' }),
+            ...generateNeuStyle({ radius: 2, intensity: 1, inset: false, concave: false, size: 2 }),
           },
           '& .MuiFormLabel-root': {
             backgroundColor,

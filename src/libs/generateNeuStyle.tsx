@@ -17,7 +17,7 @@ export const generateNeuStyle = (
     transition: 'all 0.3s ease',
     background: generateBackground(concave),
     borderRadius: radius * 5,
-    '&:hover': isTouchable ? generateShadow(usingFilter, inset, intensity - 1, 'small') : undefined,
+    '&:hover': isTouchable ? generateShadow(usingFilter, inset, intensity - 1, 1) : undefined,
     ...shadow,
   };
 };

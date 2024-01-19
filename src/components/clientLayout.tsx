@@ -22,7 +22,7 @@ export function ClientLayout({ children }: ClientLayoutProps) {
           duration: 3000,
           style: {
             background: backgroundColor,
-            boxShadow: generateBoxShadow(false, 1, 'medium'),
+            boxShadow: generateBoxShadow(false, 1, 2),
           },
         }}
       />

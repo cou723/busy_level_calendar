@@ -5,17 +5,19 @@ import type { NeuSize } from '@/components/utils/neu/NeuSize';
 const black = 'rgb(90, 25, 25)';
 const white = 'rgb(255, 255, 255)';
 
-const shadowSize = {
-  small: { offset: 2, blur: 4 },
-  medium: { offset: 6, blur: 10 },
-  large: { offset: 12, blur: 16 },
-};
+// const shadowSize = {
+//   small: { offset: 2, blur: 4 },
+//   medium: { offset: 6, blur: 10 },
+//   large: { offset: 12, blur: 16 },
+// };
 
 export const generateBoxShadow = (inset: boolean, intensity: number, size: NeuSize) => {
   const shadow = transparentize(black, 1.3 - (intensity + 2) / 5);
   const highlight = transparentize(white, 1.0 - (intensity + 2) / 5);
 
-  const { offset, blur } = shadowSize[size];
+  // const { offset, blur } = shadowSize[size];
+  const offset = size * (size + 1);
+  const blur = (size - 1) * 6;
 
   return `${inset ? 'inset' : ''} ${offset}px ${offset}px ${blur}px ${shadow}, ${inset ? 'inset' : ''} -${
     inset ? offset : offset / 2
@@ -28,9 +30,9 @@ export const generateDropShadow = (intensity: number, size: NeuSize | { offset: 
   const shadow = transparentize(black, 1.3 - (intensity + 2) / 5);
   const highlight = transparentize(white, 1.0 - (intensity + 2) / 2);
 
-  if (typeof size === 'string') {
-    offset = shadowSize[size].offset;
-    blur = shadowSize[size].blur;
+  if (typeof size === 'number') {
+    offset = size * (size + 1);
+    blur = (size - 1) * 6;
   } else {
     offset = size.offset;
     blur = size.blur;

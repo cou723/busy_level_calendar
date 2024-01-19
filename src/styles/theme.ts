@@ -19,7 +19,7 @@ export const theme = createTheme({
         shrink: {
           color: fontColor,
           backgroundColor, // 追加
-          ...generateNeuStyle({ radius: 1, intensity: 1, size: 'medium' }),
+          ...generateNeuStyle({ radius: 1, intensity: 1, size: 2 }),
           padding: '0 8px',
         },
       },
@@ -34,7 +34,7 @@ export const theme = createTheme({
     MuiPaper: {
       styleOverrides: {
         root: {
-          ...generateNeuStyle({ radius: 3, intensity: 1, size: 'medium' }),
+          ...generateNeuStyle({ radius: 3, intensity: 1, size: 2 }),
           backgroundColor,
         },
       },
@@ -44,7 +44,7 @@ export const theme = createTheme({
         root: {
           '& .MuiOutlinedInput-notchedOutline': {
             border: 'none',
-            ...generateNeuStyle({ inset: true, radius: 3, intensity: 1, size: 'medium' }),
+            ...generateNeuStyle({ inset: true, radius: 3, intensity: 1, size: 2 }),
           },
         },
       },

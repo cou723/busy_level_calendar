@@ -22,7 +22,7 @@ const Neu: FunctionComponent<NeuProps> = ({
   intensity = 1,
   inset = false,
   concave = false,
-  size = 'medium',
+  size = 2,
   ...props
 }) => {
   const neuStyle = {
