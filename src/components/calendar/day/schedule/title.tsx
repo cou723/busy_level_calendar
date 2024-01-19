@@ -5,6 +5,8 @@ export const Title = ({ children }: { children: React.ReactNode }) => {
     <p
       css={css`
         padding-top: 0.2rem;
+        width: 100%;
+        overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
       `}

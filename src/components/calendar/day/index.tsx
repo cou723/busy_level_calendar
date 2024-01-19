@@ -9,6 +9,7 @@ import ScheduleView from './schedule';
 import type { Count } from '@/types/count';
 import type { Schedule } from '@/types/schedule';
 
+import FlexBox from '@/components/utils/flexBox';
 import Neu from '@/components/utils/neu';
 import { fontColor } from '@/global';
 import { getMentalLevelColor } from '@/libs/peaceOfMindToColor';
@@ -35,11 +36,11 @@ const Day: FunctionComponent<DayProps> = React.memo(
         inset
         css={css({
           backgroundColor: getMentalLevelColor(busyLevel),
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '10px',
-          padding: '20px',
-          minHeight: '100px',
+          padding: '1rem',
+          height: '15vh',
+          overflow: 'hidden',
+          width: '10px', // widthを小さくした後に
+          flex: 1, // flexで横に伸ばす
         })}
         concave
         radius={5}
@@ -52,15 +53,18 @@ const Day: FunctionComponent<DayProps> = React.memo(
             backgroundColor: isToday ? fontColor : 'transparent',
             padding: '0.2rem 0.3rem 0.1rem 0.3rem',
             borderRadius: '10rem',
+            marginBottom: '0.2rem',
             width: 'fit-content',
           })}
           className={josefinSans.className}
         >
           {day}
         </p>
-        {schedules.map((schedule: Schedule) => (
-          <ScheduleView key={schedule.id} schedule={schedule} />
-        ))}
+        <FlexBox flexDirection="column" gap={0.5}>
+          {schedules.map((schedule: Schedule) => (
+            <ScheduleView key={schedule.id} schedule={schedule} />
+          ))}
+        </FlexBox>
       </Neu>
     );
   }

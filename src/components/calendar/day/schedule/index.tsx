@@ -8,7 +8,6 @@ import { Title } from './title';
 
 import type { Schedule } from '@/types/schedule';
 
-import FlexBox from '@/components/utils/flexBox';
 import NeuButton from '@/components/utils/neuButton';
 
 interface ScheduleProps {
@@ -32,11 +31,14 @@ const ScheduleView: FunctionComponent<ScheduleProps> = ({ schedule }) => {
         justify-content: left;
       `}
       onClick={() => router.push('/edit/' + schedule.id)}
+      concave
+      radius={2}
+      size={1}
     >
-      <FlexBox justifyContent="left">
-        <Title>{schedule.title}</Title>
-        <RequiredDaysChip requiredDays={schedule.requiredDays} />
-      </FlexBox>
+      {/* <FlexBox justifyContent="left"> */}
+      <Title>{schedule.title}</Title>
+      <RequiredDaysChip requiredDays={schedule.requiredDays} />
+      {/* </FlexBox> */}
     </NeuButton>
   );
 };

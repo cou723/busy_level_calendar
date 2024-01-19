@@ -8,38 +8,47 @@ import Day from './day';
 import type { BusyLevel } from '@/types/busyLevel';
 import type { Schedule } from '@/types/schedule';
 
+import Week from '@/components/calendar/week';
+import FlexBox from '@/components/utils/flexBox';
+
 interface GridsProps {
   dates: Date[];
   schedules: Schedule[];
   busyLevels: BusyLevel[];
 }
+function chunkArray(array: Date[], chunkSize: number): Date[][] {
+  let index = 0;
+  const arrayLength = array.length;
+  const tempArray = [];
+
+  for (index = 0; index < arrayLength; index += chunkSize) {
+    const chunk = array.slice(index, index + chunkSize);
+    tempArray.push(chunk);
+  }
+
+  return tempArray;
+}
+
+function isIncludeDate(dates: Date[], date: Date): boolean {
+  return dates.some((d) => isSameDay(d, date));
+}
 
 const Grids: FunctionComponent<GridsProps> = ({ dates, schedules, busyLevels }) => {
-  const today = new Date();
+  const weeks = chunkArray(dates, 7);
   return (
-    <div
-      css={css`
-        margin-top: 1rem;
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        gap: 8px;
-        padding: 0;
-      `}
-    >
-      {dates.map((date) => (
-        <Day
-          day={getDate(date)}
-          key={date.toISOString()}
-          css={css({
-            width: '100%',
-          })}
-          schedules={schedules.filter((schedule) => isSameDay(date, schedule.date))}
-          busyLevel={busyLevels.find((busyLevel) => isSameDay(date, busyLevel.date))?.level}
-          isToday={isSameDay(date, today)}
-          currentMonth={date.getMonth() === today.getMonth()}
-        />
-      ))}
-    </div>
+    <FlexBox gap={0.6} flexDirection="column">
+      {weeks.map((week, i) => {
+        return (
+          //todo 計算量がかなり多そう。インデックス化などを検討。
+          <Week
+            key={i}
+            dates={week}
+            schedules={schedules.filter((schedule) => isIncludeDate(week, schedule.date))}
+            busyLevels={busyLevels.filter((busyLevel) => isIncludeDate(week, busyLevel.date))}
+          />
+        );
+      })}
+    </FlexBox>
   );
 };
 

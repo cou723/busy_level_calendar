@@ -14,6 +14,7 @@ export type NeuButtonProps = {
   concave?: boolean;
   radius?: number;
   className?: string;
+  size?: number;
 };
 
 const NeuButton: FunctionComponent<NeuButtonProps> = ({
@@ -24,6 +25,7 @@ const NeuButton: FunctionComponent<NeuButtonProps> = ({
   children,
   radius = 2,
   className,
+  size = 2,
 }) => {
   return (
     <Button
@@ -38,11 +40,12 @@ const NeuButton: FunctionComponent<NeuButtonProps> = ({
         paddingLeft: '1rem',
         display: 'flex',
         justifyContent: 'center',
+        textTransform: 'none',
         ...generateNeuStyle({
           radius,
           intensity: 1,
           concave,
-          size: 2,
+          size,
           isTouchable: true,
         }),
       })}

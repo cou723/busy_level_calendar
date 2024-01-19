@@ -1,5 +1,4 @@
-import type { FunctionComponent } from 'react';
-
+'use client';
 import { css } from '@emotion/react';
 
 import Grids from './grids';
@@ -20,11 +19,14 @@ interface CalendarProps {
   [key: string]: unknown;
 }
 
-const Calendar: FunctionComponent<CalendarProps> = ({ yearMonth, calendar, onPre, onNext, ...props }) => {
+const Calendar: React.FC<CalendarProps> = ({ yearMonth, calendar, onPre, onNext, ...props }) => {
   return (
     <Neu
       css={css`
         padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
       `}
       {...props}
     >
