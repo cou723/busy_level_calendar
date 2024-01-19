@@ -1,6 +1,5 @@
 'use client';
 import type { FunctionComponent } from 'react';
-import { useState } from 'react';
 
 import { css } from '@emotion/react';
 import { Button } from '@mui/material';
@@ -20,31 +19,14 @@ export type NeuButtonProps = {
 const NeuButton: FunctionComponent<NeuButtonProps> = ({
   label,
   onClick,
-  disabled = false,
+  disabled: _disabled = false,
   concave = false,
   children,
   radius = 2,
   className,
 }) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const [isActive, setIsActive] = useState(false);
-
-  const handleMouseUp = () => {
-    setIsActive(false);
-    setIsHovered(false);
-  };
-
-  const handleMouseLeave = () => {
-    setIsActive(false);
-    setIsHovered(false);
-  };
-
   return (
     <Button
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={handleMouseLeave}
-      onMouseDown={() => setIsActive(true)}
-      onMouseUp={handleMouseUp}
       onClick={onClick}
       css={css({
         fontSize: '14px',
@@ -59,24 +41,15 @@ const NeuButton: FunctionComponent<NeuButtonProps> = ({
         ...generateNeuStyle({
           radius,
           intensity: 1,
-          inset: isActive,
           concave,
-          size: isHovered ? 'small' : 'medium',
+          size: 'medium',
+          isTouchable: true,
         }),
       })}
       className={className}
     >
-      {/* <Neu
-        css={buttonStyles()}
-        {...rest}
-        intensity={1}
-        inset={isActive}
-        concave={concave}
-        size={isHovered ? 'small' : 'medium'}
-      > */}
       <p>{label}</p>
       {children}
-      {/* </Neu> */}
     </Button>
   );
 };

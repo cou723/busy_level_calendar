@@ -4,13 +4,32 @@ import { generateBoxShadow, generateDropShadow } from './generateBoxShadow';
 import type { NeuStyleOption } from '@/components/utils/neu/NeuStyleOption';
 
 export const generateNeuStyle = (
-  { radius, intensity, inset, concave, size }: NeuStyleOption,
-  usingFilter?: boolean
+  { radius, intensity, inset, concave, size, isTouchable }: NeuStyleOption,
+  usingFilter: boolean = false
 ) => {
+  inset = inset ?? false;
+  concave = concave ?? false;
+  isTouchable = isTouchable ?? false;
+
+  const shadow = generateShadow(usingFilter, inset, intensity, size);
+
   return {
-    background: generateBackground(concave ?? false),
+    transition: 'all 0.3s ease',
+    background: generateBackground(concave),
     borderRadius: radius * 5,
-    filter: usingFilter ? generateDropShadow(intensity, size) : undefined,
-    boxShadow: usingFilter ? undefined : generateBoxShadow(inset ?? false, intensity, size),
+    '&:hover': isTouchable ? generateShadow(usingFilter, inset, intensity - 1, 'small') : undefined,
+    ...shadow,
   };
 };
+
+function generateShadow(usingFilter: boolean, inset: boolean, intensity: number, size: NeuStyleOption['size']) {
+  if (usingFilter) {
+    return {
+      filter: generateDropShadow(intensity, size),
+    };
+  } else {
+    return {
+      boxShadow: generateBoxShadow(inset ?? false, intensity, size),
+    };
+  }
+}

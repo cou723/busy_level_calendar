@@ -1,30 +1,24 @@
-'use client';
 import React from 'react';
 
-import { css } from '@emotion/react';
+import { Checkbox, FormControlLabel } from '@mui/material';
 
-import NeuCheckBoxInput from './neuCheckBoxInput';
-
-import type { Props as InputProps } from './neuCheckBoxInput';
-
-type Props = InputProps & {
-  children?: React.ReactNode;
-  error?: boolean;
+import type { FormControlLabelProps } from '@mui/material';
+type Props = Omit<Omit<FormControlLabelProps, 'control'>, 'onClick'> & {
+  onClick: (checked: boolean) => void;
 };
 
-const NeuCheckBox = ({ children, ...other }: Props) => {
+const NeuCheckbox = ({ ...props }: Props) => {
+  const [checked, setChecked] = React.useState(false);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
+    setChecked(checked);
+    console.log(`Checkbox is now ${event.target.checked ? 'checked' : 'unchecked'}`);
+    props.onClick(checked);
+  };
+
   return (
-    <div
-      css={css({
-        display: 'flex',
-        alignItems: 'center',
-        gap: '10px',
-      })}
-    >
-      <NeuCheckBoxInput {...other} />
-      {children}
-    </div>
+    <FormControlLabel {...props} onClick={undefined} control={<Checkbox checked={checked} onChange={handleChange} />} />
   );
 };
 
-export default NeuCheckBox;
+export default NeuCheckbox;

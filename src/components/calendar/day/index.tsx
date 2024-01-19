@@ -12,7 +12,7 @@ import Neu from '@/components/utils/neu';
 import { getMentalLevelColor } from '@/libs/peaceOfMindToColor';
 import { josefinSans } from '@/styles/font';
 
-interface DayProps {
+export interface DayProps {
   day: number;
   schedules: Schedule[];
   busyLevel?: Count;
@@ -31,6 +31,7 @@ const Day: FunctionComponent<DayProps> = React.memo(({ day, schedules, busyLevel
         minHeight: '100px',
       })}
       concave
+      radius={5}
     >
       <p
         css={css({

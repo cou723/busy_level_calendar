@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material';
 
-import { backgroundColor } from '@/global';
+import { backgroundColor, fontColor } from '@/global';
 import { generateNeuStyle } from '@/libs/generateNeuStyle';
 
 export const theme = createTheme({
@@ -11,13 +11,28 @@ export const theme = createTheme({
     },
   },
   components: {
+    MuiInput: {
+      styleOverrides: {
+        root: {
+          border: 'none',
+        },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          color: fontColor,
+          marginLeft: '1rem',
+        },
+      },
+    },
     // コンポーネント名
     MuiButton: {
       styleOverrides: {
         // CSSルール名
         root: {
           // CSS定義
-          color: 'black',
+          color: fontColor,
           fontSize: '1rem',
         },
       },

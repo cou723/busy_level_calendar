@@ -1,5 +1,8 @@
 import type { Preview } from '@storybook/react';
 import { Global } from '@emotion/react';
+import { LocalizationProvider, type DatePickerProps } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { ja } from 'date-fns/locale';
 import { globalStyle } from '../src/components/globalStyle';
 import { backgroundColor } from '../src/global';
 import 'the-new-css-reset/css/reset.css';
@@ -24,10 +27,12 @@ const preview: Preview = {
 export const decorators = [
   (Story) => (
     <>
-      <ThemeProvider {...{ theme }}>
-        <Global styles={globalStyle} />
-        <Story />
-      </ThemeProvider>
+      <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ja}>
+        <ThemeProvider {...{ theme }}>
+          <Global styles={globalStyle} />
+          <Story />
+        </ThemeProvider>
+      </LocalizationProvider>
     </>
   ),
 ];

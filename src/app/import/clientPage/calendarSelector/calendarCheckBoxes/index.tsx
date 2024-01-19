@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import type { calendar_v3 } from 'googleapis';
 
-import NeuCheckBox from '@/components/utils/neuCheckBox';
+import NeuCheckbox from '@/components/utils/neuCheckBox';
 
 type Props = {
   calendars: calendar_v3.Schema$CalendarListEntry[];
@@ -11,7 +11,7 @@ type Props = {
   error?: string;
 };
 
-export const CalendarCheckBoxes: React.FC<Props> = ({ calendars, onChange, error }) => {
+export const CalendarCheckBoxes: React.FC<Props> = ({ calendars, onChange, error: _error }) => {
   const [selectCalendars, setSelectCalendars] = useState<{
     [key: string]: boolean;
   }>({});
@@ -30,8 +30,7 @@ export const CalendarCheckBoxes: React.FC<Props> = ({ calendars, onChange, error
       }}
     >
       {calendars.map((item) => (
-        <NeuCheckBox
-          error={!!error}
+        <NeuCheckbox
           onClick={(checked) => {
             const newSelectCalendars = JSON.parse(JSON.stringify(selectCalendars));
 
@@ -41,9 +40,8 @@ export const CalendarCheckBoxes: React.FC<Props> = ({ calendars, onChange, error
             onChange(Object.keys(newSelectCalendars).filter((key) => newSelectCalendars[key]));
           }}
           key={item.id}
-        >
-          {item.summary}
-        </NeuCheckBox>
+          label={item.summary}
+        />
       ))}
     </div>
   );

@@ -48,10 +48,8 @@ const TextBox: FunctionComponent<TextBoxProps> = ({
 }) => {
   return (
     <div>
-      <Label inputId={id} disabled={disabled}>
-        {label}
-      </Label>
       <NeuInput
+        label={label}
         css={css`
           padding: 0.5rem;
         `}

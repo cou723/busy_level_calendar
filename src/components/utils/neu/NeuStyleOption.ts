@@ -6,4 +6,5 @@ export type NeuStyleOption = {
   inset?: boolean;
   concave?: boolean;
   size: NeuSize;
+  isTouchable?: boolean;
 };
