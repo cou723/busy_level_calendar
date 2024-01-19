@@ -11,29 +11,23 @@ export const theme = createTheme({
     },
   },
   components: {
-    MuiInput: {
-      styleOverrides: {
-        root: {
-          border: 'none',
-        },
-      },
-    },
     MuiInputLabel: {
       styleOverrides: {
         root: {
+          paddingLeft: '8px',
+        },
+        shrink: {
           color: fontColor,
-          marginLeft: '1rem',
+          backgroundColor, // 追加
+          ...generateNeuStyle({ radius: 1, intensity: 1, size: 'medium' }),
+          padding: '0 8px',
         },
       },
     },
-    // コンポーネント名
     MuiButton: {
       styleOverrides: {
-        // CSSルール名
         root: {
-          // CSS定義
           color: fontColor,
-          fontSize: '1rem',
         },
       },
     },
@@ -42,6 +36,16 @@ export const theme = createTheme({
         root: {
           ...generateNeuStyle({ radius: 3, intensity: 1, size: 'medium' }),
           backgroundColor,
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          '& .MuiOutlinedInput-notchedOutline': {
+            border: 'none',
+            ...generateNeuStyle({ inset: true, radius: 3, intensity: 1, size: 'medium' }),
+          },
         },
       },
     },

@@ -4,11 +4,7 @@ import { css } from '@emotion/react';
 
 import NeuButton from '@/components/utils/neuButton';
 
-type Props = {
-  handleSubmit: () => void;
-};
-
-const importButton: React.FC<Props> = ({ handleSubmit }) => {
+const importButton: React.FC = () => {
   return (
     <div
       css={css({
@@ -17,7 +13,6 @@ const importButton: React.FC<Props> = ({ handleSubmit }) => {
       })}
     >
       <NeuButton
-        onClick={handleSubmit}
         css={css({
           display: 'block',
           width: '200px',

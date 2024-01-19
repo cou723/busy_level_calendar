@@ -34,24 +34,15 @@ const NeuInput: FunctionComponent<NeuInputProps> = ({
 }) => {
   return (
     <TextField
-      variant="standard"
-      InputProps={{ disableUnderline: true }}
+      variant="outlined"
       css={[
         css`
-          border: none;
+          /* border: none; */
           outline: none;
           background: none;
           width: 100%;
-          padding: 0.5rem 1rem;
           height: auto;
         `,
-        generateNeuStyle({
-          radius,
-          intensity,
-          inset: true,
-          size: disabled ? 'small' : 'medium',
-          isTouchable: !disabled,
-        }),
         css({ backgroundColor: disabled ? '#0000002d' : error ? '#ff1b1b44' : 'none' }),
       ]}
       {...register}

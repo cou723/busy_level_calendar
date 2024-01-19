@@ -1,6 +1,9 @@
 import React from 'react';
 
 import { isBefore } from 'date-fns';
+import { Controller, useFormContext, type UseFormRegister, type UseFormRegisterReturn } from 'react-hook-form';
+
+import type { ImportEventOptions } from '@/types/importEventOptions';
 
 import { NeuDatePicker } from '@/components/neuDatePicker';
 import FlexBox from '@/components/utils/flexBox';
@@ -8,20 +11,47 @@ import FlexBox from '@/components/utils/flexBox';
 type Props = {
   range: { start: Date; end: Date };
   onChange: (range: { start: Date; end: Date }) => void;
+  register: UseFormRegister<ImportEventOptions>;
 };
 
-const RangeSelector: React.FC<Props> = ({ range, onChange }) => {
+const RangeSelector: React.FC<Props> = ({ range, onChange, register }) => {
+  const { control } = useFormContext();
   return (
     <FlexBox gap={2} flexWrap="wrap">
-      <NeuDatePicker
-        label="開始"
-        value={range.start}
-        onChange={(newDate) => onChange({ start: newDate as Date, end: range.end })}
+      <Controller
+        name="rangeStart"
+        control={control}
+        render={({ field }) => (
+          <NeuDatePicker
+            label="開始"
+            value={field.value}
+            inputRef={field.ref}
+            onChange={(date) => {
+              field.onChange(date);
+            }}
+          />
+        )}
       />
+
+      <Controller
+        name="rangeStart"
+        control={control}
+        render={({ field }) => (
+          <NeuDatePicker
+            label="終了"
+            value={field.value}
+            minDate={range.start}
+            inputRef={field.ref}
+            onChange={(date) => {
+              field.onChange(date);
+            }}
+          />
+        )}
+      />
+
       <NeuDatePicker
         label="終了"
-        value={range.end}
-        onChange={(newDate) => onChange({ start: range.start, end: newDate as Date })}
+        {...register('range.end')}
         minDate={range.start}
         slotProps={{
           textField: {

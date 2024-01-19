@@ -1,24 +1,20 @@
 import React from 'react';
 
-import { Checkbox, FormControlLabel } from '@mui/material';
+import { Checkbox, css } from '@mui/material';
+import { BsCheck } from 'react-icons/bs';
 
-import type { FormControlLabelProps } from '@mui/material';
-type Props = Omit<Omit<FormControlLabelProps, 'control'>, 'onClick'> & {
-  onClick: (checked: boolean) => void;
-};
+import type { CheckboxProps } from '@mui/material';
 
-const NeuCheckbox = ({ ...props }: Props) => {
-  const [checked, setChecked] = React.useState(false);
+import { generateNeuStyle } from '@/libs/generateNeuStyle';
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
-    setChecked(checked);
-    console.log(`Checkbox is now ${event.target.checked ? 'checked' : 'unchecked'}`);
-    props.onClick(checked);
-  };
+type SizeProps = { boxSize?: number };
+export type NeuCheckboxProps = CheckboxProps & SizeProps;
 
-  return (
-    <FormControlLabel {...props} onClick={undefined} control={<Checkbox checked={checked} onChange={handleChange} />} />
-  );
+const NeuCheckbox: React.FC<NeuCheckboxProps> = ({ boxSize = 24, ...props }) => {
+  const sizeStyle = css({ height: `${boxSize}px`, width: `${boxSize}px` });
+  const neuStyle = generateNeuStyle({ inset: true, radius: 1, size: 'small', intensity: 2 });
+  const style = css([sizeStyle, neuStyle]);
+  return <Checkbox {...props} icon={<div css={style} />} checkedIcon={<BsCheck css={style} />} />;
 };
 
 export default NeuCheckbox;

@@ -6,15 +6,16 @@ import Neu from '@/components/utils/neu';
 
 type Props = {
   children: React.ReactNode;
+  top?: number;
 };
 
-const SmallContainer = ({ children }: Props) => {
+const SmallContainer = ({ children, top = 10 }: Props) => {
   return (
     <Neu
       css={css({
         maxWidth: '40%',
         margin: '0 auto',
-        marginTop: '10rem',
+        marginTop: top + 'rem',
         padding: '2rem',
         display: 'flex',
         justifyContent: 'center',

@@ -15,6 +15,7 @@ interface GridsProps {
 }
 
 const Grids: FunctionComponent<GridsProps> = ({ dates, schedules, busyLevels }) => {
+  const today = new Date();
   return (
     <div
       css={css`
@@ -34,6 +35,8 @@ const Grids: FunctionComponent<GridsProps> = ({ dates, schedules, busyLevels }) 
           })}
           schedules={schedules.filter((schedule) => isSameDay(date, schedule.date))}
           busyLevel={busyLevels.find((busyLevel) => isSameDay(date, busyLevel.date))?.level}
+          isToday={isSameDay(date, today)}
+          currentMonth={date.getMonth() === today.getMonth()}
         />
       ))}
     </div>
