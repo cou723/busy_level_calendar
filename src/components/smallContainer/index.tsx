@@ -20,9 +20,10 @@ const SmallContainer = ({ children, top = 10 }: Props) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        flexDirection: 'column',
       })}
     >
-      <div>{children}</div>
+      {children}
     </Neu>
   );
 };

@@ -19,7 +19,11 @@ const ScheduleForm: FunctionComponent<ScheduleFormProps> = ({ defaultValue }) =>
   const [disabled, setDisabled] = useState(false);
 
   return (
-    <div>
+    <div
+      css={css({
+        width: '100%',
+      })}
+    >
       <FlexBox flexDirection="column" gap={1}>
         <TextBox
           id="title"
@@ -53,13 +57,7 @@ const ScheduleForm: FunctionComponent<ScheduleFormProps> = ({ defaultValue }) =>
           register={register('date')}
         />
       </FlexBox>
-      <div
-        css={css({
-          display: 'flex',
-          justifyContent: 'end',
-          alignItems: 'row',
-        })}
-      >
+      <FlexBox justifyContent="end" alignItems="row">
         <NeuButton
           css={css({ width: '8rem', marginTop: '1rem' })}
           label={defaultValue ? '編集' : '作成'}
@@ -69,8 +67,9 @@ const ScheduleForm: FunctionComponent<ScheduleFormProps> = ({ defaultValue }) =>
             await onSubmit();
             setDisabled(false);
           }}
+          radius={4}
         />
-      </div>
+      </FlexBox>
     </div>
   );
 };
