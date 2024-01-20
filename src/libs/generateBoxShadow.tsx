@@ -1,7 +1,5 @@
+import { NeuSize } from '@/types/neuSize';
 import { transparentize } from 'color2k';
-
-import type { NeuSize } from '@/types/NeuSize';
-
 const black = 'rgb(90, 25, 25)';
 const white = 'rgb(255, 255, 255)';
 
@@ -11,13 +9,21 @@ const white = 'rgb(255, 255, 255)';
 //   large: { offset: 12, blur: 16 },
 // };
 
+function calculateOffset(size: NeuSize): number {
+  return size * (size + 1);
+}
+
+function calculateBlur(size: NeuSize): number {
+  return (size - 1) * 6;
+}
+
 export const generateBoxShadow = (inset: boolean, intensity: number, size: NeuSize) => {
   const shadow = transparentize(black, 1.3 - (intensity + 2) / 5);
   const highlight = transparentize(white, 1.0 - (intensity + 2) / 5);
 
   // const { offset, blur } = shadowSize[size];
-  const offset = size * (size + 1);
-  const blur = (size - 1) * 6;
+  const offset = calculateOffset(size);
+  const blur = calculateBlur(size);
 
   return `${inset ? 'inset' : ''} ${offset}px ${offset}px ${blur}px ${shadow}, ${inset ? 'inset' : ''} -${
     inset ? offset : offset / 2
@@ -25,14 +31,14 @@ export const generateBoxShadow = (inset: boolean, intensity: number, size: NeuSi
 };
 
 export const generateDropShadow = (intensity: number, size: NeuSize | { offset: number; blur: number }) => {
-  let offset = 0;
-  let blur = 0;
   const shadow = transparentize(black, 1.3 - (intensity + 2) / 5);
   const highlight = transparentize(white, 1.0 - (intensity + 2) / 2);
 
+  let offset = 0;
+  let blur = 0;
   if (typeof size === 'number') {
-    offset = size * (size + 1);
-    blur = (size - 1) * 6;
+    offset = calculateOffset(size);
+    blur = calculateBlur(size);
   } else {
     offset = size.offset;
     blur = size.blur;

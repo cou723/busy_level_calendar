@@ -5,11 +5,10 @@ import { css } from '@emotion/react';
 import { Button } from '@mui/material';
 
 import type { NeuStyleOption } from '@/types/neuStyleOption';
-import type { Undefinable } from '@/types/undefinable';
 
 import { generateNeuStyle } from '@/libs/generateNeuStyle';
 
-export type NeuButtonProps = Undefinable<Omit<Omit<NeuStyleOption, 'isTouchable'>, 'inset'>> & {
+export type NeuButtonProps = Partial<Omit<Omit<NeuStyleOption, 'isTouchable'>, 'inset'>> & {
   label?: string;
   children?: React.ReactNode;
   onClick?: () => void;

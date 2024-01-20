@@ -127,13 +127,25 @@ export const schedule = {
     if (validateResult.err) return Err(validateResult.val);
 
     const calendar: Calendar = fetchCalendars(accessToken);
-    const events: calendar_v3.Schema$Event[] = await fetchGoogleEvents(options, calendar);
+    const events = (await fetchGoogleEvents(options, calendar)).filter(
+      (event) => event.start && event.end && event.start.date && event.summary
+    );
 
     for (const event of events) {
+      if (
+        await db.schedule.findFirst({
+          where: { userId: userId, title: event.summary!, date: new Date(event.start!.date!).toISOString() },
+        })
+      )
+        continue;
+
       const resultResponse = await schedule._create(userId, GoogleCalendarEventToScheduleForm(event));
       if (resultResponse.err) return Err(resultResponse.val.message);
     }
 
     return Ok.EMPTY;
   },
+};
+type Required<T> = {
+  [P in keyof T]-?: T[P];
 };

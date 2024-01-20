@@ -15,7 +15,7 @@ interface Props {
 
 const ScheduleAlerts: FunctionComponent<Props> = ({ alerts, ...props }) => {
   return (
-    <Neu
+    <div
       {...props}
       css={css({
         display: 'flex',
@@ -27,7 +27,7 @@ const ScheduleAlerts: FunctionComponent<Props> = ({ alerts, ...props }) => {
       {alerts.map((alert: ScheduleAlert, i) => (
         <ScheduleAlertView key={i} alert={alert} to={'/edit/' + alert.target} />
       ))}
-    </Neu>
+    </div>
   );
 };
 

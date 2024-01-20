@@ -4,10 +4,9 @@ import { css } from '@emotion/react';
 
 import { generateNeuStyle } from '../../../libs/generateNeuStyle';
 
-import type { NeuSize } from '../../../types/neuSize';
-import type { NeuStyleOption } from '@/components/utils/neu/NeuStyleOption';
+import type { NeuStyleOption } from '@/types/neuStyleOption';
 
-export type NeuProps = NeuStyleOption & {
+export type NeuProps = Partial<NeuStyleOption> & {
   children: React.ReactNode;
   [key: string]: unknown;
 };

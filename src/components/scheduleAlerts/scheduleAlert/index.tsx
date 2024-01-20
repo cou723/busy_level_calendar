@@ -20,11 +20,11 @@ export interface Props {
 const ScheduleAlertView: FunctionComponent<Props> = ({ alert: { title, message, level }, to }) => {
   return (
     <Neu
-      inset
+      // inset
       intensity={0.8}
       size={1.5}
       css={css({
-        padding: '1rem',
+        padding: '0.8rem',
       })}
     >
       <FlexBox flexDirection="row" gap="6px">
