@@ -21,6 +21,8 @@ const ScheduleAlertView: FunctionComponent<Props> = ({ alert: { title, message, 
   return (
     <Neu
       inset
+      intensity={0.8}
+      size={1.5}
       css={css({
         padding: '1rem',
       })}

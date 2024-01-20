@@ -4,6 +4,8 @@ import type { DayProps } from '.';
 import 'the-new-css-reset/css/reset.css';
 import type { Meta, StoryFn } from '@storybook/react';
 
+import { generate } from '@/types/schedule';
+
 export default {
   title: 'Calendar/Day',
   component: Day,
@@ -13,13 +15,12 @@ const Template: StoryFn<DayProps> = (args) => <Day {...args} />;
 
 const commonArgs = {
   day: 1,
-  schedule: [
-    {
-      title: 'test',
-      start: new Date(),
-      end: new Date(),
-      color: 'red',
-    },
+  schedules: [
+    generate({
+      title: 'sample',
+      requiredDays: 2,
+      date: new Date(),
+    }),
   ],
 };
 

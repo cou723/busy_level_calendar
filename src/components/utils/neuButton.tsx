@@ -4,28 +4,29 @@ import type { FunctionComponent } from 'react';
 import { css } from '@emotion/react';
 import { Button } from '@mui/material';
 
+import type { NeuStyleOption } from '@/types/neuStyleOption';
+import type { Undefinable } from '@/types/undefinable';
+
 import { generateNeuStyle } from '@/libs/generateNeuStyle';
 
-export type NeuButtonProps = {
+export type NeuButtonProps = Undefinable<Omit<Omit<NeuStyleOption, 'isTouchable'>, 'inset'>> & {
   label?: string;
   children?: React.ReactNode;
   onClick?: () => void;
   disabled?: boolean;
-  concave?: boolean;
-  radius?: number;
   className?: string;
-  size?: number;
 };
 
 const NeuButton: FunctionComponent<NeuButtonProps> = ({
   label,
   onClick,
   disabled: _disabled = false,
-  concave = false,
   children,
   radius = 2,
-  className,
+  intensity = 1,
+  concave = false,
   size = 2,
+  className,
 }) => {
   return (
     <Button
@@ -43,7 +44,8 @@ const NeuButton: FunctionComponent<NeuButtonProps> = ({
         textTransform: 'none',
         ...generateNeuStyle({
           radius,
-          intensity: 1,
+          intensity,
+          inset: false,
           concave,
           size,
           isTouchable: true,

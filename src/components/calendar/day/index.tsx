@@ -2,7 +2,7 @@ import React from 'react';
 import type { FunctionComponent } from 'react';
 
 import { css } from '@emotion/react';
-import { darken, lighten } from 'color2k';
+import { lighten } from 'color2k';
 
 import ScheduleView from './schedule';
 
@@ -43,7 +43,9 @@ const Day: FunctionComponent<DayProps> = React.memo(
           flex: 1, // flexで横に伸ばす
         })}
         concave
+        intensity={0.5}
         radius={5}
+        size={1.5}
       >
         <p
           css={css({

@@ -1,4 +1,4 @@
-import type { NeuSize } from './NeuSize';
+import type { NeuSize } from './neuSize';
 
 export type NeuStyleOption = {
   radius: number;

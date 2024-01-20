@@ -31,14 +31,13 @@ const ScheduleView: FunctionComponent<ScheduleProps> = ({ schedule }) => {
         justify-content: left;
       `}
       onClick={() => router.push('/edit/' + schedule.id)}
-      concave
-      radius={2}
-      size={1}
+      // concave
+      radius={3}
+      size={1.5}
+      intensity={0.1}
     >
-      {/* <FlexBox justifyContent="left"> */}
       <Title>{schedule.title}</Title>
       <RequiredDaysChip requiredDays={schedule.requiredDays} />
-      {/* </FlexBox> */}
     </NeuButton>
   );
 };
