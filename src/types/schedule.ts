@@ -2,12 +2,11 @@ import { subDays } from 'date-fns';
 import { v4 } from 'uuid';
 import { z } from 'zod';
 
-import type { Default} from '@/types/defaultSchema';
+import type { Default } from '@/types/defaultSchema';
 import type { ScheduleForm } from '@/types/scheduleForm';
 
 import { DefaultSchema } from '@/types/defaultSchema';
 import { nullToUndefined } from '@/utils/nullToUndefined';
-
 
 export const ScheduleSchema = DefaultSchema.extend({
   title: z.string(),
@@ -53,10 +52,13 @@ export function getAllDatesUntilSchedule(schedule: Schedule): Date[] {
 }
 
 export function toScheduleForm(schedule: Schedule): ScheduleForm {
+  const date = schedule.date.toISOString().split('T')[0];
+  if (date == undefined) throw new Error('date is undefined');
+  // if (date instanceof Date) throw new Error('date is not Date');
   return {
     title: schedule.title,
     description: nullToUndefined(schedule.description),
-    date: schedule.date.toISOString().split('T')[0] as unknown as Date,
+    date: new Date(schedule.date.toISOString().split('T')[0]),
     requiredDays: nullToUndefined(schedule.requiredDays),
   };
 }

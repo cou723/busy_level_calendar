@@ -29,7 +29,7 @@ export const theme = createTheme({
         root: {
           color: fontColor,
           '&:hover': {
-            backgroundColor: 'transparent', // ここを変更
+            backgroundColor: 'transparent',
           },
           '&:active': {
             ...generateNeuStyle({ radius: 3, intensity: 1, size: 2, inset: true }),

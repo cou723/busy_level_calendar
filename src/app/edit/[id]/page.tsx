@@ -1,12 +1,16 @@
 'use client';
+import { css } from '@emotion/react';
 import { notFound, useParams, useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
+import { FaRegTrashAlt } from 'react-icons/fa';
+import { MdEditSquare } from 'react-icons/md';
 
 import LoadingPage from '@/components/loadingPage';
 import NormalContainer from '@/components/normalContainer';
 import PageTitle from '@/components/pageTitle';
-import ScheduleForm from '@/components/scheduleForm';
+import ScheduleFormView from '@/components/scheduleFormView';
 import FlexBox from '@/components/utils/flexBox';
+import { iconNeuStyle } from '@/components/utils/iconNeuStyle';
 import NeuButton from '@/components/utils/neuButton';
 import { apiAdapter } from '@/global';
 import { useSchedule } from '@/hooks/useSchedule';
@@ -43,11 +47,24 @@ export const EditPage: React.FC = () => {
 
   return (
     <NormalContainer>
-      <FlexBox justifyContent="space-between" alignItems="row">
-        <PageTitle>編集</PageTitle>
-        <NeuButton onClick={handleDelete}>削除</NeuButton>
+      <FlexBox justifyContent="space-between" alignItems="center">
+        <PageTitle>
+          編集
+          <MdEditSquare />
+        </PageTitle>
+        <NeuButton
+          css={css({
+            height: '2rem',
+            gap: '0.5rem',
+            backgroundColor: '#ff000047',
+          })}
+          onClick={handleDelete}
+        >
+          <FaRegTrashAlt css={[css({ color: '#ffffff' })]} />
+          削除
+        </NeuButton>
       </FlexBox>
-      {isError ? <p>エラー</p> : <ScheduleForm defaultValue={schedule} />}
+      {isError ? <p>エラー</p> : <ScheduleFormView defaultValue={schedule} />}
     </NormalContainer>
   );
 };

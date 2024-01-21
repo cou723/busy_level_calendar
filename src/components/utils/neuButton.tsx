@@ -52,7 +52,7 @@ const NeuButton: FunctionComponent<NeuButtonProps> = ({
       })}
       className={className}
     >
-      <p>{label}</p>
+      {label ? <p>{label}</p> : undefined}
       {children}
     </Button>
   );

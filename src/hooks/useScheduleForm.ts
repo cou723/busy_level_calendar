@@ -20,7 +20,7 @@ export const useScheduleForm = (initSchedule?: Schedule) => {
   const queryClient = useQueryClient();
   const router = useRouter();
 
-  const { register, handleSubmit, formState } = useForm<ScheduleForm>({
+  const { register, handleSubmit, formState, control, setValue, watch } = useForm<ScheduleForm>({
     resolver: zodResolver(scheduleFormSchema),
     defaultValues: initSchedule ? toScheduleForm(initSchedule) : undefined,
   });
@@ -56,5 +56,8 @@ export const useScheduleForm = (initSchedule?: Schedule) => {
     register,
     onSubmit: handleSubmit(onSubmit),
     formState,
+    control,
+    setValue,
+    watch,
   };
 };
