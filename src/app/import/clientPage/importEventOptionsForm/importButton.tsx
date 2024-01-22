@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { css } from '@emotion/react';
 
 import NeuButton from '@/components/utils/neuButton';
 
-const importButton: React.FC = () => {
+type Props = { disabled: boolean; onClick: () => void };
+
+const ImportButton: React.FC<Props> = ({ disabled, onClick }) => {
   return (
     <div
       css={css({
@@ -13,10 +15,12 @@ const importButton: React.FC = () => {
       })}
     >
       <NeuButton
+        disabled={disabled}
         css={css({
           display: 'block',
           width: '200px',
         })}
+        onClick={onClick}
       >
         インポート
       </NeuButton>
@@ -24,4 +28,4 @@ const importButton: React.FC = () => {
   );
 };
 
-export default importButton;
+export default ImportButton;

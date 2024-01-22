@@ -16,12 +16,12 @@ const Neu: FunctionComponent<NeuProps> = ({
   radius = 2,
   intensity = 1,
   inset = false,
-  concave = false,
+  surface = 'flat',
   size = 2,
   ...props
 }) => {
   const neuStyle = {
-    ...generateNeuStyle({ radius, intensity, inset, concave, size }),
+    ...generateNeuStyle({ radius, intensity, inset, surface, size }),
   };
 
   return (

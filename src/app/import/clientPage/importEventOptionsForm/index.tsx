@@ -2,50 +2,32 @@
 import React from 'react';
 
 import { css } from '@emotion/react';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { TextField, FormGroup, FormControlLabel, MenuItem } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers';
 import { useForm, Controller } from 'react-hook-form';
 
-import ImportButton from './importButton';
+import { SubmitButton } from './submitButton';
 
-import type { ImportEventOptions } from '@/types/importEventOptions';
 import type { calendar_v3 } from 'googleapis';
 
+import ImportButton from '@/app/import/clientPage/importEventOptionsForm/importButton';
 import FlexBox from '@/components/utils/flexBox';
 import NeuCheckbox from '@/components/utils/neuCheckBox';
-import { generateNeuStyle } from '@/libs/generateNeuStyle';
-
-const SubmitButton = () => {
-  return (
-    <input
-      type="submit"
-      value="インポート"
-      css={[
-        generateNeuStyle({
-          radius: 3,
-          intensity: 2,
-          size: 2,
-          isTouchable: true,
-        }),
-        css({
-          padding: '10px',
-        }),
-      ]}
-    />
-  );
-};
+import { ImportEventOptionsSchema, type ImportEventOptions } from '@/types/importEventOptions';
 
 type Props = {
   calendars: calendar_v3.Schema$CalendarListEntry[];
-  onSubmit: (data: ImportEventOptions) => void;
+  onSubmit: (data: ImportEventOptions) => Promise<void>;
+  disabled: boolean;
 };
 
-const ImportEventOptionsForm: React.FC<Props> = ({ calendars, onSubmit }) => {
+const ImportEventOptionsForm: React.FC<Props> = ({ calendars, onSubmit, disabled }) => {
   const {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<ImportEventOptions>();
+  } = useForm<ImportEventOptions>({ resolver: zodResolver(ImportEventOptionsSchema) });
 
   return (
     <form
@@ -54,7 +36,6 @@ const ImportEventOptionsForm: React.FC<Props> = ({ calendars, onSubmit }) => {
         flexDirection: 'column',
         gap: '1rem',
       })}
-      onSubmit={handleSubmit(onSubmit)}
     >
       <Controller
         name="calendars"
@@ -100,18 +81,32 @@ const ImportEventOptionsForm: React.FC<Props> = ({ calendars, onSubmit }) => {
           name="range.start"
           control={control}
           defaultValue={new Date()}
-          render={({ field }) => <DatePicker {...field} label="開始日" />}
+          render={({ field }) => (
+            <DatePicker
+              {...field}
+              label="開始日"
+              css={css({
+                flexGrow: 1,
+              })}
+            />
+          )}
         />
         <Controller
           name="range.end"
           control={control}
           defaultValue={new Date()}
-          render={({ field }) => <DatePicker {...field} label="終了日" />}
+          render={({ field }) => (
+            <DatePicker
+              {...field}
+              label="終了日"
+              css={css({
+                flexGrow: 1,
+              })}
+            />
+          )}
         />
       </FormGroup>
-      <FlexBox justifyContent="end">
-        <SubmitButton />
-      </FlexBox>
+      <ImportButton disabled={disabled} onClick={handleSubmit(onSubmit)} />
     </form>
   );
 };

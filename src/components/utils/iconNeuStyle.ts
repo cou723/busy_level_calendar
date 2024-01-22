@@ -13,8 +13,6 @@ export const iconNeuStyle = [
     {
       radius: 10,
       intensity: 1,
-      inset: false,
-      concave: false,
       size: 1,
     },
     true

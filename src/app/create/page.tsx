@@ -10,10 +10,10 @@ import SmallContainer from '@/components/smallContainer';
 
 export const CreatePage: React.FC = () => {
   return (
-    <SmallContainer>
+    <NormalContainer>
       <PageTitle>予定の作成</PageTitle>
       <ScheduleFormView />
-    </SmallContainer>
+    </NormalContainer>
   );
 };
 

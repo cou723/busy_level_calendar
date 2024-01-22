@@ -19,17 +19,18 @@ export type NeuButtonProps = Partial<Omit<Omit<NeuStyleOption, 'isTouchable'>, '
 const NeuButton: FunctionComponent<NeuButtonProps> = ({
   label,
   onClick,
-  disabled: _disabled = false,
+  disabled = false,
   children,
   radius = 2,
   intensity = 1,
-  concave = false,
+  surface = 'flat',
   size = 2,
   className,
 }) => {
   return (
     <Button
       onClick={onClick}
+      disabled={disabled}
       css={css({
         fontSize: '14px',
         backgroundColor: 'transparent',
@@ -45,9 +46,9 @@ const NeuButton: FunctionComponent<NeuButtonProps> = ({
           radius,
           intensity,
           inset: false,
-          concave,
+          surface,
           size,
-          isTouchable: true,
+          isTouchable: !disabled,
         }),
       })}
       className={className}

@@ -42,7 +42,7 @@ const Day: FunctionComponent<DayProps> = React.memo(
           width: '10px', // widthを小さくした後に
           flex: 1, // flexで横に伸ばす
         })}
-        concave
+        convex
         intensity={0.5}
         radius={5}
         size={1.5}

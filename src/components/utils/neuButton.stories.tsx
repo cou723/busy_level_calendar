@@ -14,5 +14,11 @@ export const Default = Template.bind({});
 Default.args = {
   label: 'Default Button',
   onClick: () => {},
-  disabled: false,
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  label: 'Disabled Button',
+  onClick: () => {},
+  disabled: true,
 };

@@ -1,3 +1,5 @@
+import { log } from 'console';
+
 import { NextResponse } from 'next/server';
 import { Err, Ok } from 'ts-results';
 
@@ -128,16 +130,21 @@ export const schedule = {
 
     const calendar: Calendar = fetchCalendars(accessToken);
     const events = (await fetchGoogleEvents(options, calendar)).filter(
-      (event) => event.start && event.end && event.start.date && event.summary
+      (event) => event.start && (event.start.date || event.start.dateTime) && event.end && event.summary
     );
 
+    console.log('import:', events);
+
     for (const event of events) {
+      const date = new Date(event.start!.dateTime ?? event.start!.date!);
       if (
         await db.schedule.findFirst({
-          where: { userId: userId, title: event.summary!, date: new Date(event.start!.date!).toISOString() },
+          where: { userId: userId, title: event.summary!, date: date.toISOString() },
         })
-      )
+      ) {
+        console.log(event.summary + 'はすでに登録されています');
         continue;
+      }
 
       const resultResponse = await schedule._create(userId, GoogleCalendarEventToScheduleForm(event));
       if (resultResponse.err) return Err(resultResponse.val.message);

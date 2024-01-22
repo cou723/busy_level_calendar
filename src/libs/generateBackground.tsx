@@ -1,3 +1,11 @@
-export const generateBackground = (concave: boolean) => {
-  return concave ? `linear-gradient(145deg, rgba(255, 255, 255, 0.13), rgba(211, 211, 211, 0.37))` : undefined;
+import { type NeuSurface } from '@/types/neuStyleOption';
+
+function linearGradient(deg: number) {
+  return `linear-gradient(${deg}deg,rgba(83, 3, 3, 0.22),rgba(255, 255, 255, 0.25))`;
+}
+
+export const generateBackground = (surface: NeuSurface) => {
+  if (surface === 'flat') return undefined;
+  if (surface === 'convex') return linearGradient(-45);
+  return linearGradient(135);
 };

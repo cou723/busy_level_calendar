@@ -7,13 +7,12 @@ import type { Metadata } from 'next';
 import { ClientLayout } from '@/components/clientLayout';
 import Header from '@/components/header';
 import { backgroundColor } from '@/global';
-import { generateNeuStyle } from '@/libs/generateNeuStyle';
 import { Providers } from '@/providers';
 import 'the-new-css-reset/css/reset.css';
 import { roboto } from '@/styles/font';
 
 export const metadata: Metadata = {
-  title: 'Harmony',
+  title: 'Mental Harmony',
   description: 'Visualize your mental leeway from deadlines',
 };
 

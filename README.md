@@ -1,4 +1,4 @@
-# Harmony
+# Mental Harmony
 
 ## 使用ツール
 - Volta

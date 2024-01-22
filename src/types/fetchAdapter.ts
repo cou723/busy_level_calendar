@@ -100,6 +100,7 @@ export class FetchAdapter implements ApiAdapter {
     });
 
     if (res.err) return Err(res.val);
+    console.log('status', res.val.status);
     if (res.val.status === 401) return Err(new Error('unauthorized'));
     if (!isStatusSuccess(res.val.status)) return Err(await createError(res.val));
 

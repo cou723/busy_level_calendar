@@ -52,10 +52,16 @@ Radius10.args = {
   radius: 10,
 };
 
+export const Convex = Template.bind({});
+Convex.args = {
+  ...commonArgs,
+  surface: 'convex',
+};
+
 export const Concave = Template.bind({});
 Concave.args = {
   ...commonArgs,
-  concave: true,
+  surface: 'concave',
 };
 
 export const Inset = Template.bind({});
@@ -64,11 +70,11 @@ Inset.args = {
   inset: true,
 };
 
-export const ConcaveInset = Template.bind({});
-ConcaveInset.args = {
+export const ConvexInset = Template.bind({});
+ConvexInset.args = {
   ...commonArgs,
   inset: true,
-  concave: true,
+  surface: 'convex',
 };
 
 export const Intensity0 = Template.bind({});

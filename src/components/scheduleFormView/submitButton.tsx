@@ -7,7 +7,7 @@ import NeuButton from '@/components/utils/neuButton';
 
 type SubmitButtonProps = {
   mode: 'edit' | 'create';
-  onSubmit: () => void;
+  onSubmit: () => Promise<void>;
 };
 export const SubmitButton: React.FC<SubmitButtonProps> = ({ mode, onSubmit }) => {
   const [disabled, setDisabled] = useState(false);
@@ -19,8 +19,9 @@ export const SubmitButton: React.FC<SubmitButtonProps> = ({ mode, onSubmit }) =>
         label={label[mode]}
         disabled={disabled}
         onClick={async () => {
+          console.log('submit');
           setDisabled(true);
-          onSubmit();
+          await onSubmit();
           setDisabled(false);
         }}
         radius={4}
