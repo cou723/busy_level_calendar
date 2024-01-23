@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 
 import NormalContainer from '@/components/normalContainer';

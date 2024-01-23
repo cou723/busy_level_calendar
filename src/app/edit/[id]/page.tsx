@@ -1,3 +1,4 @@
+'use client';
 import { css } from '@emotion/react';
 import { notFound, useParams, useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
