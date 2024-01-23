@@ -28,6 +28,7 @@
     "@typescript-eslint/eslint-plugin": "^6.15.0",
     "@typescript-eslint/parser": "^6.15.0",
     "@vercel/analytics": "^1.1.2",
+    "@vercel/speed-insights": "^1.0.7",
     "color2k": "^2.0.3",
     "date-fns": "^2.30.0",
     "eslint-config-prettier": "^9.1.0",

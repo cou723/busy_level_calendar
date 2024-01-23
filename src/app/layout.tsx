@@ -2,6 +2,8 @@ import React from 'react';
 
 import '@/styles/index.css';
 
+import { SpeedInsights } from '@vercel/speed-insights/next';
+
 import type { Metadata } from 'next';
 
 import { ClientLayout } from '@/components/clientLayout';
@@ -21,6 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="jp" style={{ backgroundColor }}>
       <body className={[roboto.variable].join(' ')}>
         <Header />
+        <SpeedInsights />
         <Providers>
           <ClientLayout>{children}</ClientLayout>
         </Providers>
