@@ -1,7 +1,7 @@
 import { type NeuSurface } from '@/types/neuStyleOption';
 
 function linearGradient(deg: number) {
-  return `linear-gradient(${deg}deg,rgba(83, 3, 3, 0.22),rgba(255, 255, 255, 0.25))`;
+  return `linear-gradient(${deg}deg,rgba(83, 3, 3, 0.116),transparent,rgba(255, 255, 255, 0.438))`;
 }
 
 export const generateBackground = (surface: NeuSurface) => {

@@ -1,21 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import type { FunctionComponent } from 'react';
 
 import { css } from '@emotion/react';
+import { Button } from '@mui/material';
 import { lighten } from 'color2k';
 
+import { dayStyle } from './dayStyle';
 import ScheduleView from './schedule';
 
 import type { Count } from '@/types/count';
 import type { Schedule } from '@/types/schedule';
 
+import DetailedModal from '@/components/calendar/day/detailedModal';
 import FlexBox from '@/components/utils/flexBox';
 import Neu from '@/components/utils/neu';
 import { fontColor } from '@/global';
 import { getMentalLevelColor } from '@/libs/peaceOfMindToColor';
 import { josefinSans } from '@/styles/font';
 
-function generateDayFontColor(isToday: boolean, currentMonth: boolean): string {
+export function generateDayFontColor(isToday: boolean, currentMonth: boolean): string {
   if (isToday) return 'white';
   if (!currentMonth) return lighten(fontColor, 0.5);
   return fontColor;
@@ -31,6 +34,8 @@ export interface DayProps {
 
 const Day: FunctionComponent<DayProps> = React.memo(
   ({ day, schedules, busyLevel = 0, isToday = false, currentMonth = true }) => {
+    const [modalOpen, setModalOpen] = useState(false);
+
     return (
       <Neu
         inset
@@ -41,32 +46,44 @@ const Day: FunctionComponent<DayProps> = React.memo(
           overflow: 'hidden',
           width: '10px', // widthを小さくした後に
           flex: 1, // flexで横に伸ばす
+          justifyContent: 'center',
+          alignItems: 'center',
         })}
-        convex
-        intensity={0.5}
+        surface="concave"
+        intensity={0.2}
         radius={5}
-        size={1.5}
+        size={2}
       >
-        <p
-          css={css({
-            fontSize: '1.25rem',
-            fontWeight: 'bold',
-            color: generateDayFontColor(isToday, currentMonth),
-            backgroundColor: isToday ? fontColor : 'transparent',
-            padding: '0.2rem 0.3rem 0.1rem 0.3rem',
-            borderRadius: '10rem',
-            marginBottom: '0.2rem',
-            width: 'fit-content',
-          })}
+        <button
+          css={[
+            ...dayStyle(isToday),
+            css({
+              cursor: 'pointer', // 追加
+              '&:hover': {
+                backgroundColor: '#91919170',
+                filter: 'none',
+              },
+            }),
+          ]}
           className={josefinSans.className}
+          onClick={() => setModalOpen(true)}
         >
           {day}
-        </p>
+        </button>
         <FlexBox flexDirection="column" gap={0.5}>
           {schedules.map((schedule: Schedule) => (
             <ScheduleView key={schedule.id} schedule={schedule} />
           ))}
         </FlexBox>
+        <DetailedModal
+          open={modalOpen}
+          day={day}
+          onClose={() => {
+            setModalOpen(false);
+            console.log('close');
+          }}
+          schedules={schedules}
+        />
       </Neu>
     );
   }

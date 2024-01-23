@@ -22,6 +22,9 @@ const preview: Preview = {
       default: 'light',
       values: [{ name: 'light', value: backgroundColor }],
     },
+    nextjs: {
+      appDirectory: true,
+    },
   },
 };
 export const decorators = [

@@ -34,6 +34,9 @@ export const theme = createTheme({
           '&:active': {
             ...generateNeuStyle({ radius: 3, intensity: 1, size: 2, inset: true }),
           },
+          '& .MuiTouchRipple-root': {
+            width: '100%',
+          },
         },
       },
     },

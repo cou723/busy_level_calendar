@@ -6,6 +6,8 @@ import type { Meta, StoryFn } from '@storybook/react';
 
 import { generate } from '@/types/schedule';
 
+import { css } from '@emotion/react';
+
 export default {
   title: 'Calendar/Day',
   component: Day,
@@ -22,6 +24,7 @@ const commonArgs = {
       date: new Date(),
     }),
   ],
+  style: { width: '200px' },
 };
 
 export const Default = Template.bind({});
