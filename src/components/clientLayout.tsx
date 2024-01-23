@@ -4,7 +4,7 @@ import { Toaster } from 'react-hot-toast';
 
 import { globalStyle } from '@/components/globalStyle';
 import { backgroundColor } from '@/global';
-import { generateBoxShadow } from '@/libs/generateBoxShadow';
+import { generateBoxShadow } from '@/libs/styles/generateBoxShadow';
 
 type ClientLayoutProps = {
   children: React.ReactNode;

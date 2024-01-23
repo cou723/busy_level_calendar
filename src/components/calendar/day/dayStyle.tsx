@@ -1,7 +1,9 @@
 import { css } from '@emotion/react';
+
+import { generateDayFontColor } from '.';
+
 import { iconNeuStyle } from '@/components/utils/iconNeuStyle';
 import { fontColor } from '@/global';
-import { generateDayFontColor } from '.';
 
 export const dayStyle = (isToday: boolean) => [
   iconNeuStyle,

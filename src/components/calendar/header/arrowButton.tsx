@@ -2,7 +2,6 @@ import type { FunctionComponent } from 'react';
 
 import { css } from '@emotion/react';
 import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
-import { MdArrowRight, MdArrowLeft } from 'react-icons/md';
 
 import { iconNeuStyle } from '@/components/utils/iconNeuStyle';
 import NeuButton from '@/components/utils/neuButton';
@@ -15,7 +14,7 @@ export const ArrowButton: FunctionComponent<ArrowButtonProps> = ({ onClick, dire
   const Arrow = direction === 'left' ? IoIosArrowBack : IoIosArrowForward;
 
   return (
-    <NeuButton {...{ onClick }} convex>
+    <NeuButton {...{ onClick }} surface="convex">
       <Arrow
         css={[
           css`

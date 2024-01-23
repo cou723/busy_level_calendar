@@ -5,7 +5,7 @@ import { BsCheck } from 'react-icons/bs';
 
 import type { CheckboxProps } from '@mui/material';
 
-import { generateNeuStyle } from '@/libs/generateNeuStyle';
+import { generateNeuStyle } from '@/libs/styles/generateNeuStyle';
 
 type SizeProps = { boxSize?: number };
 export type NeuCheckboxProps = CheckboxProps & SizeProps;

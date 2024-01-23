@@ -1,9 +1,6 @@
-import type { FunctionComponent } from 'react';
+import React from 'react';
 
-import { css } from '@emotion/react';
-import { getDate, isSameDay } from 'date-fns';
-
-import Day from './day';
+import { isSameDay } from 'date-fns';
 
 import type { BusyLevel } from '@/types/busyLevel';
 import type { Schedule } from '@/types/schedule';
@@ -33,7 +30,7 @@ function isIncludeDate(dates: Date[], date: Date): boolean {
   return dates.some((d) => isSameDay(d, date));
 }
 
-const Grids: FunctionComponent<GridsProps> = ({ dates, schedules, busyLevels }) => {
+const Grids: React.FC<GridsProps> = ({ dates, schedules, busyLevels }) => {
   const weeks = chunkArray(dates, 7);
   return (
     <FlexBox gap={0.6} flexDirection="column">

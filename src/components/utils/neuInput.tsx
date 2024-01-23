@@ -2,11 +2,9 @@
 import type { FunctionComponent, InputHTMLAttributes } from 'react';
 
 import { css } from '@emotion/react';
-import { Input, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
 
 import type { UseFormRegisterReturn } from 'react-hook-form';
-
-import { generateNeuStyle } from '@/libs/generateNeuStyle';
 
 export interface NeuInputProps {
   type: InputHTMLAttributes<HTMLInputElement>['type'];
@@ -33,7 +31,6 @@ const NeuInput: FunctionComponent<NeuInputProps> = ({
       variant="outlined"
       css={[
         css`
-          /* border: none; */
           outline: none;
           background: none;
           width: 100%;

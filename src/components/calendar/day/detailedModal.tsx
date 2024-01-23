@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { css } from '@emotion/react';
 
 import type { Schedule } from '@/types/schedule';

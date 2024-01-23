@@ -2,8 +2,6 @@ import type { FunctionComponent } from 'react';
 
 import { css } from '@emotion/react';
 
-import Neu from '../utils/neu';
-
 import ScheduleAlertView from './scheduleAlert';
 
 import { type ScheduleAlert } from '@/types';

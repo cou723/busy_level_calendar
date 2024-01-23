@@ -1,8 +1,6 @@
 'use client';
 
 import { css } from '@emotion/react';
-import { useRouter } from 'next/navigation';
-import { signOut } from 'next-auth/react';
 
 import type Calendar from '@/components/calendar';
 import type { ScheduleAlert } from '@/types';
@@ -10,7 +8,6 @@ import type { ScheduleAlert } from '@/types';
 import CalendarView from '@/components/calendar';
 import ScheduleAlerts from '@/components/scheduleAlerts';
 import FlexBox from '@/components/utils/flexBox';
-import NeuButton from '@/components/utils/neuButton';
 import { useCalendar } from '@/hooks/useCalendar';
 import { useSessionCheck } from '@/hooks/useSessionCheck';
 import { defaultState, useYearMonth } from '@/hooks/useYearMonth';

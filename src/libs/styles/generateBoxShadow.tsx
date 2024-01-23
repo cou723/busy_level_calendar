@@ -1,5 +1,6 @@
-import { NeuSize } from '@/types/neuSize';
 import { transparentize } from 'color2k';
+
+import type { NeuSize } from '@/types/neuSize';
 const black = 'rgb(90, 25, 25)';
 const white = 'rgb(255, 255, 255)';
 

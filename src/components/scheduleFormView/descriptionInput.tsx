@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material';
+import TextField from '@mui/material/TextField';
 import { Controller } from 'react-hook-form';
 
 import type { ScheduleForm } from '@/types/scheduleForm';

@@ -1,28 +1,11 @@
 import React from 'react';
 
-// import { Modal } from '@mui/base/Modal';
 import { css } from '@emotion/react';
-import { Box, Typography } from '@mui/material';
 import Modal from '@mui/material/Modal';
-
-const style = {
-  position: 'absolute' as const,
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: backgroundColor,
-  p: 4,
-  ...generateNeuStyle({
-    radius: 2,
-    intensity: 3,
-    size: 2,
-  }),
-};
 
 import Neu from '@/components/utils/neu';
 import { backgroundColor } from '@/global';
-import { generateNeuStyle } from '@/libs/generateNeuStyle';
+import { generateNeuStyle } from '@/libs/styles/generateNeuStyle';
 
 export type Props = {
   children: React.ReactNode;

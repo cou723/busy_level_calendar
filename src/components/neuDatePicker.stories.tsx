@@ -11,8 +11,9 @@ export default {
   component: NeuDatePicker,
 } as Meta;
 
-export const decorators = [
-  (Story: any) => (
+export const Decorators = [
+  // (Story: StoryObj) => ( // StoryObjではJSX.Elementを返す関数ではないといわれてしまう
+  (Story: () => JSX.Element) => (
     <>
       <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ja}>
         <Story />

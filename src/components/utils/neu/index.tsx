@@ -2,7 +2,7 @@ import type { FunctionComponent } from 'react';
 
 import { css } from '@emotion/react';
 
-import { generateNeuStyle } from '../../../libs/generateNeuStyle';
+import { generateNeuStyle } from '../../../libs/styles/generateNeuStyle';
 
 import type { NeuStyleOption } from '@/types/neuStyleOption';
 

@@ -28,4 +28,3 @@ const Home: React.FC = async () => {
 };
 
 export default Home;
-9;

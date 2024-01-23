@@ -1,4 +1,5 @@
-import React, { type FunctionComponent } from 'react';
+'use client';
+import React from 'react';
 
 import { css } from '@emotion/react';
 
@@ -19,7 +20,7 @@ interface ScheduleFormProps {
 }
 
 const ScheduleFormView: React.FC<ScheduleFormProps> = ({ defaultValue }) => {
-  const { onSubmit, formState, control, setValue, watch} = useScheduleForm(defaultValue);
+  const { onSubmit, formState, control, setValue, watch } = useScheduleForm(defaultValue);
 
   return (
     <div

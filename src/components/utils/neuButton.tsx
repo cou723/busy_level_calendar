@@ -6,7 +6,7 @@ import { Button } from '@mui/material';
 
 import type { NeuStyleOption } from '@/types/neuStyleOption';
 
-import { generateNeuStyle } from '@/libs/generateNeuStyle';
+import { generateNeuStyle } from '@/libs/styles/generateNeuStyle';
 
 export type NeuButtonProps = Partial<Omit<Omit<NeuStyleOption, 'isTouchable'>, 'inset'>> & {
   label?: string;

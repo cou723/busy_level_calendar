@@ -1,7 +1,7 @@
 import { createTheme } from '@mui/material';
 
 import { backgroundColor, fontColor } from '@/global';
-import { generateNeuStyle } from '@/libs/generateNeuStyle';
+import { generateNeuStyle } from '@/libs/styles/generateNeuStyle';
 
 export const theme = createTheme({
   palette: {

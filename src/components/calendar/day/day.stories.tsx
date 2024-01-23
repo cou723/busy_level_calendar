@@ -6,8 +6,6 @@ import type { Meta, StoryFn } from '@storybook/react';
 
 import { generate } from '@/types/schedule';
 
-import { css } from '@emotion/react';
-
 export default {
   title: 'Calendar/Day',
   component: Day,

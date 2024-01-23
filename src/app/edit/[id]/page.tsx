@@ -1,4 +1,3 @@
-'use client';
 import { css } from '@emotion/react';
 import { notFound, useParams, useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
@@ -10,7 +9,6 @@ import NormalContainer from '@/components/normalContainer';
 import PageTitle from '@/components/pageTitle';
 import ScheduleFormView from '@/components/scheduleFormView';
 import FlexBox from '@/components/utils/flexBox';
-import { iconNeuStyle } from '@/components/utils/iconNeuStyle';
 import NeuButton from '@/components/utils/neuButton';
 import { apiAdapter } from '@/global';
 import { useSchedule } from '@/hooks/useSchedule';

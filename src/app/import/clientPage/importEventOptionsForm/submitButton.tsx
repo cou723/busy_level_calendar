@@ -3,7 +3,7 @@ import React from 'react';
 
 import { css } from '@emotion/react';
 
-import { generateNeuStyle } from '@/libs/generateNeuStyle';
+import { generateNeuStyle } from '@/libs/styles/generateNeuStyle';
 
 type Props = {
   disabled: boolean;

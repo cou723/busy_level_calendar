@@ -10,7 +10,7 @@ import GoogleLogoutBtn from '@/components/googleLogout';
 import ServiceLogo from '@/components/header/serviceLogo';
 import UserData from '@/components/header/userData';
 import FlexBox from '@/components/utils/flexBox';
-import { generateNeuStyle } from '@/libs/generateNeuStyle';
+import { generateNeuStyle } from '@/libs/styles/generateNeuStyle';
 
 type Props = {
   username?: string;
