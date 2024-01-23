@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 
-import type { ErrorResponse} from '@/types/server/ErrorResponse';
-import type { NextRequest} from 'next/server';
+import type { ErrorResponse } from '@/types/server/ErrorResponse';
+import type { NextRequest } from 'next/server';
 
 import { extractBody } from '@/app/api/schedule/extractScheduleData';
 import { options } from '@/app/options';
@@ -27,7 +27,10 @@ export async function POST(req: NextRequest): Promise<NextResponse<null | ErrorR
     accessToken: session?.accessToken,
     options: option.val,
   });
-  if (result.err) return makeErrorResponse(500, result.val);
+  if (result.err) {
+    console.log(result.val);
+    return makeErrorResponse(500, result.val);
+  }
 
   return NextResponse.json(null, { status: 200 });
 }
