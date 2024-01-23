@@ -31,6 +31,7 @@ export const RequiredDaysInput: React.FC<RequiredDaysProps> = ({ control, defaul
             })}
             type="number"
             {...field}
+            value={field.value || ''}
             label="必要日数"
             InputProps={{
               inputProps: {
