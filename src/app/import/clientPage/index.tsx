@@ -40,7 +40,7 @@ export const ClientPage: React.FC<Props> = ({ calendars }) => {
             if (result.val.message == 'unauthorized') navigate.push('/login');
             else {
               setDisabled(false);
-              toast.error('申し訳ございません。内部的なエラーによりインポートに失敗しました');
+              toast.error('申し訳ございません。内部的なエラーによりインポートに失敗しました:' + result.val.message);
             }
           }}
           calendars={calendars}
