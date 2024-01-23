@@ -19,7 +19,7 @@ interface ScheduleFormProps {
 }
 
 const ScheduleFormView: React.FC<ScheduleFormProps> = ({ defaultValue }) => {
-  const { onSubmit, formState, control, setValue, watch, disabled } = useScheduleForm(defaultValue);
+  const { onSubmit, formState, control, setValue, watch} = useScheduleForm(defaultValue);
 
   return (
     <div
