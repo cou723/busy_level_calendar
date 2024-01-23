@@ -7,8 +7,6 @@ import type { Month } from '@/types/month';
 import { getMonth } from '@/types/month';
 import { getNext, getPrevious } from '@/types/yearMonth';
 
-
-
 type State = {
   year: number;
   month: Month;
@@ -18,7 +16,7 @@ type Action = {
   type: 'next' | 'previous';
 };
 
-export function reducer(state: State, action: Action): State {
+function reducer(state: State, action: Action): State {
   switch (action.type) {
     case 'next':
       return getNext(state);

@@ -2,15 +2,14 @@ import { isSameDay } from 'date-fns';
 import { z } from 'zod';
 
 import type { Calendar } from '@/types/calendar';
-import type { Schedule} from '@/types/schedule';
+import type { Schedule } from '@/types/schedule';
 
-import { LevelSchema } from '@/types/level';
 import { getAllDatesUntilSchedule } from '@/types/schedule';
 import { normalize, normalizeVector } from '@/utils/normalizeVector';
 
-export const BusyLevelSchema = z.object({
+const BusyLevelSchema = z.object({
   date: z.coerce.date(),
-  level: LevelSchema,
+  level: z.number().min(0),
 });
 
 export type BusyLevel = z.infer<typeof BusyLevelSchema>;
@@ -30,7 +29,7 @@ export function generateBusyLevels(calendar: Calendar): BusyLevel[] {
   }));
 }
 
-export function generateBusyLevel(schedule: Schedule): BusyLevel[] {
+function generateBusyLevel(schedule: Schedule): BusyLevel[] {
   if (schedule.requiredDays == undefined) {
     return [];
   }
