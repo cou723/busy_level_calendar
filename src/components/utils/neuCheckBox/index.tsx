@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Checkbox, css } from '@mui/material';
+import { css } from '@emotion/react';
+import Checkbox from '@mui/material/Checkbox';
 import { BsCheck } from 'react-icons/bs';
 
 import type { CheckboxProps } from '@mui/material';

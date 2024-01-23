@@ -4,7 +4,7 @@ import React from 'react';
 import { css } from '@emotion/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { TextField, FormGroup, FormControlLabel, MenuItem } from '@mui/material';
-import DatePicker from '@mui/x-date-pickers/DatePicker';
+import { DatePicker } from '@mui/x-date-pickers';
 import { useForm, Controller } from 'react-hook-form';
 
 import type { calendar_v3 } from 'googleapis';

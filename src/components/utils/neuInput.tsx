@@ -2,7 +2,7 @@
 import type { FunctionComponent, InputHTMLAttributes } from 'react';
 
 import { css } from '@emotion/react';
-import { TextField } from '@mui/material';
+import TextField from '@mui/material/TextField';
 
 import type { UseFormRegisterReturn } from 'react-hook-form';
 

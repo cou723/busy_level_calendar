@@ -5,9 +5,8 @@ import Modal from '@mui/material/Modal';
 
 import Neu from '@/components/utils/neu';
 import { backgroundColor } from '@/global';
-import { generateNeuStyle } from '@/libs/styles/generateNeuStyle';
 
-export type Props = {
+type Props = {
   children: React.ReactNode;
   open: boolean;
   onClose: () => void;

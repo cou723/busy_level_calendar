@@ -12,7 +12,8 @@
     "test": "vitest",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "reset-db": "rm -rf ./prisma/dev.db && bunx prisma db push"
+    "reset-db": "rm -rf ./prisma/dev.db && bunx prisma db push",
+    "analyze": "ANALYZE=true bun run build"
   },
   "dependencies": {
     "@emotion/babel-preset-css-prop": "^11.11.0",

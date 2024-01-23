@@ -2,7 +2,7 @@
 import type { FunctionComponent } from 'react';
 
 import { css } from '@emotion/react';
-import { Button } from '@mui/material';
+import Button from '@mui/material/Button';
 
 import type { NeuStyleOption } from '@/types/neuStyleOption';
 

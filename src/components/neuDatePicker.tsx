@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { css } from '@emotion/react';
-import DatePicker from '@mui/x-date-pickers/DatePicker';
+import { DatePicker } from '@mui/x-date-pickers';
 
 import type { DatePickerProps } from '@mui/x-date-pickers';
 
