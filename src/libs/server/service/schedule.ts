@@ -1,4 +1,6 @@
+import { rejects } from 'assert';
 import { log } from 'console';
+import { resolve } from 'path';
 
 import { NextResponse } from 'next/server';
 import { Err, Ok } from 'ts-results';
@@ -135,7 +137,7 @@ export const schedule = {
 
     console.log('import:', events);
 
-    for (const event of events) {
+    const promises = events.map(async (event) => {
       const date = new Date(event.start!.dateTime ?? event.start!.date!);
       if (
         await db.schedule.findFirst({
@@ -143,16 +145,17 @@ export const schedule = {
         })
       ) {
         console.log(event.summary + 'はすでに登録されています');
-        continue;
+        return;
       }
 
       const resultResponse = await schedule._create(userId, GoogleCalendarEventToScheduleForm(event));
       if (resultResponse.err) return Err(resultResponse.val.message);
-    }
+      if (resultResponse.val == null) return Err('scheduleの作成に失敗しました');
+      console.log('add ', resultResponse.val);
+    });
+    await Promise.all(promises);
+    console.log('done');
 
     return Ok.EMPTY;
   },
-};
-type Required<T> = {
-  [P in keyof T]-?: T[P];
 };
