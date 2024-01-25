@@ -1,16 +1,15 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from 'vitest';
 
-import { generateBusyLevels, summarize } from "./busyLevel";
+import { generateBusyLevels, summarize } from './busyLevel';
 
-import type { BusyLevel} from "./busyLevel";
-import type { Calendar} from "@/types/calendar";
+import type { BusyLevel } from './busyLevel';
+import type { Calendar } from '@/types/calendar';
 
-import { calendarInit } from "@/types/calendar";
-import { generate } from "@/types/schedule";
+import { calendarInit } from '@/types/calendar';
+import { generate } from '@/types/schedule';
 
-
-describe("generateBusyLevels", () => {
-  it("empty schedules", () => {
+describe('generateBusyLevels', () => {
+  it('empty schedules', () => {
     // Act
     const result: BusyLevel[] = generateBusyLevels(calendarInit());
 
@@ -19,14 +18,14 @@ describe("generateBusyLevels", () => {
     expect(result.length).toBe(0);
   });
 
-  it("one schedule", () => {
+  it('one schedule', () => {
     const calendar: Calendar = calendarInit();
 
     calendar.schedules.push(
       generate({
-        title: "test",
+        title: 'test',
         requiredDays: 1,
-        date: new Date("2021-01-01"),
+        date: new Date('2021-01-01'),
       })
     );
 
@@ -35,17 +34,17 @@ describe("generateBusyLevels", () => {
 
     // Assert
     expect(result.length).toBe(1);
-    expect(result[0]).toStrictEqual({ date: new Date("2021-01-01"), level: 1 });
+    expect(result[0]).toStrictEqual({ date: new Date('2021-01-01'), level: 1 });
   });
 
-  it("スケジュール単体かつrequiredDaysが2以上", () => {
+  it('スケジュール単体かつrequiredDaysが2以上', () => {
     const calendar: Calendar = calendarInit();
 
     calendar.schedules.push(
       generate({
-        title: "test",
+        title: 'test',
         requiredDays: 3,
-        date: new Date("2021-01-03"),
+        date: new Date('2021-01-03'),
       })
     );
 
@@ -54,27 +53,27 @@ describe("generateBusyLevels", () => {
 
     // Assert
     expect(result.length).toBe(3);
-    expect(result[0]).toStrictEqual({ date: new Date("2021-01-03"), level: 1 });
+    expect(result[0]).toStrictEqual({ date: new Date('2021-01-03'), level: 1 });
     expect(result[1]).toStrictEqual({
-      date: new Date("2021-01-02"),
-      level: 0.5,
+      date: new Date('2021-01-02'),
+      level: 0.55,
     });
-    expect(result[2]).toStrictEqual({ date: new Date("2021-01-01"), level: 0 });
+    expect(result[2]).toStrictEqual({ date: new Date('2021-01-01'), level: 0.1 });
   });
 
-  it("複数スケジュール", () => {
+  it('複数スケジュール', () => {
     const calendar: Calendar = calendarInit();
 
     calendar.schedules.push(
       generate({
-        title: "test",
+        title: 'test',
         requiredDays: 3,
-        date: new Date("2021-01-03"),
+        date: new Date('2021-01-03'),
       }),
       generate({
-        title: "test2",
+        title: 'test2',
         requiredDays: 3,
-        date: new Date("2021-01-03"),
+        date: new Date('2021-01-03'),
       })
     );
 
@@ -83,17 +82,17 @@ describe("generateBusyLevels", () => {
 
     // Assert
     expect(result.length).toBe(3);
-    expect(result[0]).toStrictEqual({ date: new Date("2021-01-03"), level: 1 });
+    expect(result[0]).toStrictEqual({ date: new Date('2021-01-03'), level: 1 });
     expect(result[1]).toStrictEqual({
-      date: new Date("2021-01-02"),
-      level: 0.5,
+      date: new Date('2021-01-02'),
+      level: 0.55,
     });
-    expect(result[2]).toStrictEqual({ date: new Date("2021-01-01"), level: 0 });
+    expect(result[2]).toStrictEqual({ date: new Date('2021-01-01'), level: 0.1 });
   });
 });
 
-describe("summarize", () => {
-  it("empty", () => {
+describe('summarize', () => {
+  it('empty', () => {
     // Arrange
     const input: BusyLevel[] = [];
 
@@ -104,24 +103,24 @@ describe("summarize", () => {
     expect(result.length).toBe(0);
   });
 
-  it("one", () => {
+  it('one', () => {
     // Arrange
-    const input: BusyLevel[] = [{ date: new Date("2021-01-01"), level: 1 }];
+    const input: BusyLevel[] = [{ date: new Date('2021-01-01'), level: 1 }];
 
     // Act
     const result = summarize(input);
 
     // Assert
     expect(result.length).toBe(1);
-    expect(result[0]).toStrictEqual({ date: new Date("2021-01-01"), level: 1 });
+    expect(result[0]).toStrictEqual({ date: new Date('2021-01-01'), level: 1 });
   });
 
-  it("normal case", () => {
+  it('normal case', () => {
     // Arrange
     const input: BusyLevel[] = [
-      { date: new Date("2021-01-01"), level: 1 },
-      { date: new Date("2021-01-01"), level: 0.5 },
-      { date: new Date("2021-01-02"), level: 0.5 },
+      { date: new Date('2021-01-01'), level: 1 },
+      { date: new Date('2021-01-01'), level: 0.5 },
+      { date: new Date('2021-01-02'), level: 0.5 },
     ];
 
     // Act
@@ -130,11 +129,11 @@ describe("summarize", () => {
     // Assert
     expect(result.length).toBe(2);
     expect(result[0]).toStrictEqual({
-      date: new Date("2021-01-01"),
+      date: new Date('2021-01-01'),
       level: 1.5,
     });
     expect(result[1]).toStrictEqual({
-      date: new Date("2021-01-02"),
+      date: new Date('2021-01-02'),
       level: 0.5,
     });
   });

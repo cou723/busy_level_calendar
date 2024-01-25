@@ -1,7 +1,3 @@
-import { rejects } from 'assert';
-import { log } from 'console';
-import { resolve } from 'path';
-
 import { NextResponse } from 'next/server';
 import { Err, Ok } from 'ts-results';
 
@@ -9,7 +5,6 @@ import { fetchCalendars } from './fetchCalendars';
 import { fetchGoogleEvents } from './fetchGoogleEvents';
 
 import type { ImportEventOptions } from '@/types/importEventOptions';
-import type { ScheduleWithoutDefault } from '@/types/schedule';
 import type { ScheduleForm } from '@/types/scheduleForm';
 import type { ErrorResponse } from '@/types/server/ErrorResponse';
 import type { User } from '@/types/user';
@@ -17,8 +12,8 @@ import type { Schedule } from '@prisma/client';
 import type { calendar_v3 } from 'googleapis';
 import type { Result } from 'ts-results';
 
-import { GoogleCalendarEventToScheduleForm } from '@/libs/googleCalendar';
 import { validateOptions } from '@/libs/server/service/validateOptions';
+import { toSchedules, type ScheduleWithoutDefault } from '@/types/schedule';
 import { makeErrorResponse } from '@/types/server/ErrorResponse';
 import { tryCatchToResult } from '@/utils/resultToTryCatch';
 import { db } from '@/utils/server/db';
@@ -131,30 +126,10 @@ export const schedule = {
     if (validateResult.err) return Err(validateResult.val);
 
     const calendar: Calendar = fetchCalendars(accessToken);
-    const events = (await fetchGoogleEvents(options, calendar)).filter(
-      (event) => event.start && (event.start.date || event.start.dateTime) && event.end && event.summary
-    );
-
-    console.log('import:', events);
-
-    const promises = events.map(async (event) => {
-      const date = new Date(event.start!.dateTime ?? event.start!.date!);
-      if (
-        await db.schedule.findFirst({
-          where: { userId: userId, title: event.summary!, date: date.toISOString() },
-        })
-      ) {
-        console.log(event.summary + 'はすでに登録されています');
-        return;
-      }
-
-      const resultResponse = await schedule._create(userId, GoogleCalendarEventToScheduleForm(event));
-      if (resultResponse.err) return Err(resultResponse.val.message);
-      if (resultResponse.val == null) return Err('scheduleの作成に失敗しました');
-      console.log('add ', resultResponse.val);
+    const events = toSchedules(await fetchGoogleEvents(options, calendar), userId);
+    await db.schedule.createMany({
+      data: events,
     });
-    await Promise.all(promises);
-    console.log('done');
 
     return Ok.EMPTY;
   },

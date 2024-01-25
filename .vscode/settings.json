@@ -4,5 +4,16 @@
     "Josefin",
     "NEXTAUTH",
     "roboto"
+  ],
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "username": "main",
+      "database": "harmony",
+      "name": "harmony"
+    }
   ]
 }
