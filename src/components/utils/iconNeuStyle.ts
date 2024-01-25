@@ -6,7 +6,6 @@ import { generateNeuStyle } from '@/libs/styles/generateNeuStyle';
 
 export const iconNeuStyle = [
   css`
-    font-size: 1.5rem;
     color: ${backgroundColor};
   `,
   generateNeuStyle(

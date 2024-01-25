@@ -20,7 +20,7 @@ type Props = {
 const ClientPage: React.FC<Props> = ({ calendar, alerts }) => {
   useSessionCheck();
   const { state: yearMonth, next, previous } = useYearMonth(defaultState);
-  const { data } = useCalendar();
+  const { data, refetch } = useCalendar();
 
   return (
     <div
@@ -38,6 +38,7 @@ const ClientPage: React.FC<Props> = ({ calendar, alerts }) => {
           calendar={data ? data : calendar}
           onPre={previous}
           onNext={next}
+          reload={refetch}
         />
         <ScheduleAlerts css={css({ flex: 1 })} alerts={alerts} />
       </FlexBox>

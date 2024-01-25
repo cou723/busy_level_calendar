@@ -13,8 +13,9 @@ type Props = {
   dates: Date[];
   schedules: Schedule[];
   busyLevels: BusyLevel[];
+  reload: () => void;
 };
-const Week: React.FC<Props> = ({ dates, schedules, busyLevels }) => {
+const Week: React.FC<Props> = ({ dates, schedules, busyLevels, reload }) => {
   if (dates.length !== 7) throw new Error('dates.length must be 7');
 
   return (
@@ -30,6 +31,7 @@ const Week: React.FC<Props> = ({ dates, schedules, busyLevels }) => {
           busyLevel={busyLevels.find((busyLevel) => isSameDay(date, busyLevel.date))?.level}
           isToday={isSameDay(date, today)}
           currentMonth={date.getMonth() === today.getMonth()}
+          reload={reload}
         />
       ))}
     </FlexBox>

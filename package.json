@@ -16,6 +16,7 @@
     "analyze": "ANALYZE=true bun run build"
   },
   "dependencies": {
+    "@emotion/babel-preset-css-prop": "^11.11.0",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@google-cloud/local-auth": "2.1.0",
@@ -29,6 +30,7 @@
     "@typescript-eslint/parser": "^6.15.0",
     "@vercel/analytics": "^1.1.2",
     "@vercel/speed-insights": "^1.0.7",
+    "D": "^1.0.0",
     "color2k": "^2.0.3",
     "date-fns": "^2.30.0",
     "eslint-config-prettier": "^9.1.0",

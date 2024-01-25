@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { isSameDay } from 'date-fns';
+import { chunkArray } from './chunkArray';
+import { isIncludeDate } from './isIncludeDate';
 
 import type { BusyLevel } from '@/types/busyLevel';
 import type { Schedule } from '@/types/schedule';
@@ -12,25 +13,9 @@ interface GridsProps {
   dates: Date[];
   schedules: Schedule[];
   busyLevels: BusyLevel[];
+  reload: () => void;
 }
-function chunkArray(array: Date[], chunkSize: number): Date[][] {
-  let index = 0;
-  const arrayLength = array.length;
-  const tempArray = [];
-
-  for (index = 0; index < arrayLength; index += chunkSize) {
-    const chunk = array.slice(index, index + chunkSize);
-    tempArray.push(chunk);
-  }
-
-  return tempArray;
-}
-
-function isIncludeDate(dates: Date[], date: Date): boolean {
-  return dates.some((d) => isSameDay(d, date));
-}
-
-const Grids: React.FC<GridsProps> = ({ dates, schedules, busyLevels }) => {
+const Grids: React.FC<GridsProps> = ({ dates, schedules, busyLevels, reload }) => {
   const weeks = chunkArray(dates, 7);
   return (
     <FlexBox gap={0.6} flexDirection="column">
@@ -42,6 +27,7 @@ const Grids: React.FC<GridsProps> = ({ dates, schedules, busyLevels }) => {
             dates={week}
             schedules={schedules.filter((schedule) => isIncludeDate(week, schedule.date))}
             busyLevels={busyLevels.filter((busyLevel) => isIncludeDate(week, busyLevel.date))}
+            reload={reload}
           />
         );
       })}

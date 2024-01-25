@@ -29,9 +29,10 @@ export interface DayProps {
   busyLevel?: Count;
   isToday?: boolean;
   currentMonth?: boolean;
+  reload: () => void;
 }
 
-const Day: React.FC<DayProps> = React.memo(({ day, schedules, busyLevel = 0, isToday = false }) => {
+const Day: React.FC<DayProps> = React.memo(({ day, schedules, busyLevel = 0, isToday = false, reload }) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
@@ -57,6 +58,7 @@ const Day: React.FC<DayProps> = React.memo(({ day, schedules, busyLevel = 0, isT
           ...dayStyle(isToday),
           css({
             cursor: 'pointer', // 追加
+            fontSize: '1.5rem',
             '&:hover': {
               backgroundColor: '#91919170',
               filter: 'none',
@@ -81,6 +83,7 @@ const Day: React.FC<DayProps> = React.memo(({ day, schedules, busyLevel = 0, isT
           console.log('close');
         }}
         schedules={schedules}
+        reload={reload}
       />
     </Neu>
   );

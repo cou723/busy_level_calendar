@@ -35,10 +35,11 @@ interface CalendarProps {
   calendar: Calendar;
   onPre: () => void;
   onNext: () => void;
+  reload: () => void;
   [key: string]: unknown;
 }
 
-const Calendar: React.FC<CalendarProps> = ({ yearMonth, calendar, onPre, onNext, ...props }) => {
+const Calendar: React.FC<CalendarProps> = ({ yearMonth, calendar, onPre, onNext, reload, ...props }) => {
   return (
     <Neu
       css={css`
@@ -55,6 +56,7 @@ const Calendar: React.FC<CalendarProps> = ({ yearMonth, calendar, onPre, onNext,
         dates={getCalendarDates(yearMonth)}
         schedules={calendar.schedules}
         busyLevels={generateBusyLevels(calendar)}
+        reload={reload}
       />
     </Neu>
   );
