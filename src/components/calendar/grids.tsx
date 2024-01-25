@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { chunkArray } from './chunkArray';
-import { isIncludeDate } from './isIncludeDate';
+import { chunkArray } from '../../utils/chunkArray';
+import { isIncludeDate } from '../../utils/isIncludeDate';
 
 import type { BusyLevel } from '@/types/busyLevel';
 import type { Schedule } from '@/types/schedule';
