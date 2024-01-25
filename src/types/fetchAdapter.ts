@@ -108,6 +108,11 @@ export class FetchAdapter implements ApiAdapter {
   };
 
   clear = async (): Promise<Result<void, Error>> => {
-    return Err(new Error('not implemented'));
+    const res = await fetch(`${apiEndpoints.calendar.get}`, { credentials: 'include', method: 'DELETE' });
+
+    if (res.err) return Err(res.val);
+    if (res.val.status === 401) return Err(new Error('unauthorized'));
+    if (!isStatusSuccess(res.val.status)) return Err(await createError(res.val));
+    return Ok.EMPTY;
   };
 }

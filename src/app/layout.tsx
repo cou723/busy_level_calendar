@@ -13,9 +13,35 @@ import { Providers } from '@/providers';
 import 'the-new-css-reset/css/reset.css';
 import { roboto } from '@/styles/font';
 
+const title = 'Mental Harmony';
+const description = '締め切りからあなたの心を可視化します';
+const url = process.env.DOMAIN;
+
 export const metadata: Metadata = {
-  title: 'Mental Harmony',
-  description: 'Visualize your mental leeway from deadlines',
+  metadataBase: new URL(process.env.URL ?? 'http://localhost:3000'),
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    url,
+    siteName: title,
+    locale: 'ja_JP',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title,
+    description,
+    // site: '@サイト用アカウントのTwitterID',
+    // creator: '@作者のTwitterID',
+  },
+  verification: {
+    google: 'サーチコンソールのやつ',
+  },
+  alternates: {
+    canonical: url,
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

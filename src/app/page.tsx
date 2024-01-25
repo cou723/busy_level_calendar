@@ -17,13 +17,6 @@ const Home: React.FC = async () => {
   const calendar: Calendar = { id: userId, schedules: schedules };
   const alerts = extractFromCalendar(calendar.schedules);
 
-  console.log(
-    'schedules',
-    schedules.map((schedule) => schedule.title),
-    'alerts',
-    alerts.map((alert) => alert.title)
-  );
-
   return <ClientPage calendar={calendar} alerts={alerts} />;
 };
 
