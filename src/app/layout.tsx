@@ -18,7 +18,6 @@ const description = '締め切りからあなたの心を可視化します';
 const url = process.env.DOMAIN;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.URL ?? 'http://localhost:3000'),
   title,
   description,
   openGraph: {
