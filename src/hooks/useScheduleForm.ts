@@ -34,6 +34,7 @@ export const useScheduleForm = (initSchedule?: Schedule) => {
    * @param data スケジュールフォームのデータ
    */
   const onSubmit = async (data: ScheduleForm) => {
+    toast(`${!initSchedule ? '作成' : '編集'}中…`);
     router.push('/');
     const result = await apiAdapter.schedule.update(
       initSchedule
@@ -51,7 +52,7 @@ export const useScheduleForm = (initSchedule?: Schedule) => {
 
     await queryClient.invalidateQueries({ queryKey: ['calendar'] });
     if (initSchedule) await queryClient.invalidateQueries({ queryKey: [initSchedule.id] });
-    toast.success('作成、編集に成功しました');
+    toast.success(`${!initSchedule ? '作成' : '編集'}に成功しました`);
   };
 
   return {

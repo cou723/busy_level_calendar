@@ -8,9 +8,10 @@ import NeuButton from '@/components/utils/neuButton';
 type SubmitButtonProps = {
   mode: 'edit' | 'create';
   onSubmit: () => Promise<void>;
+  disabled: boolean;
+  setDisabled: React.Dispatch<React.SetStateAction<boolean>>;
 };
-export const SubmitButton: React.FC<SubmitButtonProps> = ({ mode, onSubmit }) => {
-  const [disabled, setDisabled] = useState(false);
+export const SubmitButton: React.FC<SubmitButtonProps> = ({ mode, onSubmit, disabled, setDisabled }) => {
   const label = { edit: '編集', create: '作成' };
   return (
     <FlexBox justifyContent="end" alignItems="row">

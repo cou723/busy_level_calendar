@@ -17,9 +17,11 @@ import { nullToUndefined } from '@/utils/nullToUndefined';
 
 interface ScheduleFormProps {
   defaultValue?: Schedule;
+  disabled: boolean;
+  setDisabled: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ScheduleFormView: React.FC<ScheduleFormProps> = ({ defaultValue }) => {
+const ScheduleFormView: React.FC<ScheduleFormProps> = ({ defaultValue, disabled, setDisabled }) => {
   const { onSubmit, formState, control, setValue, watch } = useScheduleForm(defaultValue);
 
   return (
@@ -37,7 +39,7 @@ const ScheduleFormView: React.FC<ScheduleFormProps> = ({ defaultValue }) => {
         />
         <RequiredDaysInput {...{ control, setValue, watch }} />
         <ScheduleFormDateInput {...{ control, setValue, watch, defaultValue: defaultValue?.date }} />
-        <SubmitButton mode={defaultValue ? 'edit' : 'create'} onSubmit={onSubmit} />
+        <SubmitButton mode={defaultValue ? 'edit' : 'create'} {...{ onSubmit, disabled, setDisabled }} />
       </FlexBox>
     </div>
   );

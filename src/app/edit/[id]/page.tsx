@@ -71,7 +71,11 @@ export const EditPage: React.FC = () => {
           disabled={disabled}
         />
       </FlexBox>
-      {isError ? <p>エラー</p> : <ScheduleFormView defaultValue={schedule} />}
+      {isError ? (
+        <p>エラー</p>
+      ) : (
+        <ScheduleFormView defaultValue={schedule} disabled={disabled} setDisabled={setDisabled} />
+      )}
     </NormalContainer>
   );
 };
