@@ -20,7 +20,6 @@ export const SubmitButton: React.FC<SubmitButtonProps> = ({ mode, onSubmit, disa
         label={label[mode]}
         disabled={disabled}
         onClick={async () => {
-          console.log('submit');
           setDisabled(true);
           await onSubmit();
           setDisabled(false);
