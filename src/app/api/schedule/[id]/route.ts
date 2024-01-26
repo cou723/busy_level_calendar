@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
-import type { Schedule } from '@/types/schedule';
 import type { ErrorResponse } from '@/types/server/ErrorResponse';
+import type { Schedule } from '@prisma/client';
 import type { NextRequest } from 'next/server';
 
 import { extractBody } from '@/app/api/schedule/extractScheduleData';

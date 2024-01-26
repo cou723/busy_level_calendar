@@ -2,7 +2,7 @@ import { isSameDay } from 'date-fns';
 import { z } from 'zod';
 
 import type { Calendar } from '@/types/calendar';
-import type { Schedule } from '@/types/schedule';
+import type { Schedule } from '@prisma/client';
 
 import { getAllDatesUntilSchedule } from '@/types/schedule';
 import { normalize, normalizeVector } from '@/utils/normalizeVector';

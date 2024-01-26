@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-import type { Schedule } from '@/types/schedule';
+import type { Schedule } from '@prisma/client';
 
 export const RequiredDaysChip = ({ requiredDays }: { requiredDays: Schedule['requiredDays'] }) => {
   if (!requiredDays) return <></>;

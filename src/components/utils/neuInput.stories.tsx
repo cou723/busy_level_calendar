@@ -6,6 +6,7 @@ import type { StoryFn, Meta } from '@storybook/react';
 export default {
   title: 'Components/NeuInput',
   component: NeuInput,
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn<NeuInputProps> = (args) => <NeuInput {...args} />;

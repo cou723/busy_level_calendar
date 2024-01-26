@@ -47,9 +47,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="jp" style={{ backgroundColor }}>
       <body className={[roboto.variable].join(' ')}>
-        <Header />
         <SpeedInsights />
         <Providers>
+          <Header />
           <ClientLayout>{children}</ClientLayout>
         </Providers>
       </body>

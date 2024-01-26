@@ -6,6 +6,7 @@ import NeuCheckbox from '@/components/utils/neuCheckBox';
 export default {
   title: 'Components/NeuCheckbox',
   component: NeuCheckbox,
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn<NeuCheckboxProps> = (args) => <NeuCheckbox {...args} />;

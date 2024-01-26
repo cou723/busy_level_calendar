@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 
 import type { Calendar } from '@/types/calendar';
-import type { Schedule } from '@/types/schedule';
+import type { Schedule } from '@prisma/client';
 
 import ClientPage from '@/components/clientPage';
 import { getUserData } from '@/libs/server/getUserData';

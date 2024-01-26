@@ -1,10 +1,8 @@
 import type { FunctionComponent } from 'react';
 
-import { css } from '@emotion/react';
 import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
 
-import { iconNeuStyle } from '@/components/utils/iconNeuStyle';
-import NeuButton from '@/components/utils/neuButton';
+import NeuIconButton from '@/components/utils/neuIconButton';
 
 interface ArrowButtonProps {
   onClick: () => void;
@@ -13,16 +11,5 @@ interface ArrowButtonProps {
 export const ArrowButton: FunctionComponent<ArrowButtonProps> = ({ onClick, direction }) => {
   const Arrow = direction === 'left' ? IoIosArrowBack : IoIosArrowForward;
 
-  return (
-    <NeuButton {...{ onClick }} surface="convex">
-      <Arrow
-        css={[
-          css`
-            font-size: 1rem;
-          `,
-          ...iconNeuStyle,
-        ]}
-      />
-    </NeuButton>
-  );
+  return <NeuIconButton Icon={Arrow} onClick={onClick} />;
 };

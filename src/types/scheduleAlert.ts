@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 import { z } from 'zod';
 
-import type { Schedule} from '@/types/schedule';
+import type { Schedule } from '@prisma/client';
 
 import { extractNonCompletedSchedules } from '@/types/schedule';
 import { ScheduleAlertTypesSchema } from '@/types/scheduleAlertType';

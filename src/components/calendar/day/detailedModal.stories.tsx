@@ -11,6 +11,7 @@ import { generate } from '@/types/schedule';
 export default {
   title: 'Calendar/DetailedModal',
   component: DetailedModal,
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn<Props> = (args) => <DetailedModal {...args} />;

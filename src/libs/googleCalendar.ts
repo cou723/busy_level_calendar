@@ -1,8 +1,8 @@
 import { Err, Ok } from 'ts-results';
 
 import type { CalendarList, Event } from '@/types/gapiCalendar';
-import type { Schedule } from '@/types/schedule';
 import type { ScheduleForm } from '@/types/scheduleForm';
+import type { Schedule } from '@prisma/client';
 import type { calendar_v3 } from 'googleapis';
 import type { Result } from 'ts-results';
 
@@ -26,8 +26,9 @@ export function GoogleCalendarEventToScheduleForm(e: calendar_v3.Schema$Event): 
   if (!date) throw new Error('e.start.date is undefined :' + JSON.stringify(e));
   return {
     title: e.summary ?? 'untitled',
-    description: nullToUndefined(e.description),
+    description: e.description ?? null,
     date: new Date(date),
+    requiredDays: null,
   };
 }
 

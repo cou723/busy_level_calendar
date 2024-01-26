@@ -9,6 +9,7 @@ import { generate } from '@/types/schedule';
 export default {
   title: 'Calendar/Day',
   component: Day,
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn<DayProps> = (args) => <Day {...args} />;

@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import { FaRegTrashAlt } from 'react-icons/fa';
 
-import type { Schedule } from '@/types/schedule';
+import type { Schedule } from '@prisma/client';
 
 import { dayStyle } from '@/components/calendar/day/dayStyle';
 import ScheduleView from '@/components/calendar/day/schedule';
@@ -20,7 +20,7 @@ export type Props = {
   reload: () => void;
 };
 
-const DetailedModal: React.FC<Props> = ({ day, schedules, isToday = false, onClose, open ,reload}) => {
+const DetailedModal: React.FC<Props> = ({ day, schedules, isToday = false, onClose, open, reload }) => {
   const { handleDelete } = useDeleteSchedule();
 
   return (

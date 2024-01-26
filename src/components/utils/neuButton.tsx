@@ -11,7 +11,7 @@ import { generateNeuStyle } from '@/libs/styles/generateNeuStyle';
 export type NeuButtonProps = Partial<Omit<Omit<NeuStyleOption, 'isTouchable'>, 'inset'>> & {
   label?: string;
   children?: React.ReactNode;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;
   className?: string;
 };

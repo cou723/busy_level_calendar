@@ -6,8 +6,8 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 
-import type { Schedule } from '@/types/schedule';
 import type { ScheduleForm } from '@/types/scheduleForm';
+import type { Schedule } from '@prisma/client';
 
 import { apiAdapter } from '@/global';
 import { toScheduleForm } from '@/types/schedule';

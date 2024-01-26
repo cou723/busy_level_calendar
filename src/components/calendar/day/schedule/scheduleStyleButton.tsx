@@ -1,7 +1,5 @@
 import { css } from '@emotion/react';
 
-import type { Schedule } from '@/types/schedule';
-
 import NeuButton from '@/components/utils/neuButton';
 
 export const ScheduleStyleButton: React.FC<{

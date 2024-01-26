@@ -4,7 +4,7 @@ import { css } from '@emotion/react';
 import { getDate, isSameDay } from 'date-fns';
 
 import type { BusyLevel } from '@/types/busyLevel';
-import type { Schedule } from '@/types/schedule';
+import type { Schedule } from '@prisma/client';
 
 import Day from '@/components/calendar/day';
 import FlexBox from '@/components/utils/flexBox';

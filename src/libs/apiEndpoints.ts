@@ -33,6 +33,7 @@ const apiEndpoints = {
     update: `${resources.user}/:id`,
     delete: `${resources.user}/:id`,
   },
+  notification: `${root}/notification`,
   googleCalendar: {
     calendarList: `${resources.googleCalendar}/users/me/calendarList`,
     events: (calendarId: string) => `${resources.googleCalendar}/calendars/${calendarId}/events`,

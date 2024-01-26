@@ -9,6 +9,7 @@ import { NeuDatePicker } from '@/components/neuDatePicker';
 export default {
   title: 'Components/NeuDatePicker',
   component: NeuDatePicker,
+  tags: ['autodocs'],
 } as Meta;
 
 export const Decorators = [

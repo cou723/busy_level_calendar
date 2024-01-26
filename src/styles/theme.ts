@@ -19,7 +19,7 @@ export const theme = createTheme({
         shrink: {
           color: fontColor,
           backgroundColor, // 追加
-          ...generateNeuStyle({ radius: 1, intensity: 0.5, size: 1.5 }),
+          ...generateNeuStyle({ intensity: 0.5, size: 1.5 }),
           padding: '0 8px',
         },
       },
@@ -31,11 +31,9 @@ export const theme = createTheme({
           '&:hover': {
             backgroundColor: 'transparent',
           },
-          '&:active': {
-            ...generateNeuStyle({ radius: 3, intensity: 1, size: 2, inset: true }),
-          },
           '& .MuiTouchRipple-root': {
             width: '100%',
+            backgroundColor: 'transparent',
           },
         },
       },

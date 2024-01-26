@@ -5,7 +5,7 @@ import { z } from 'zod';
 
 import type { Default } from '@/types/defaultSchema';
 import type { ScheduleForm } from '@/types/scheduleForm';
-import type { User } from '@prisma/client';
+import type { Schedule, User } from '@prisma/client';
 import type { calendar_v3 } from 'googleapis';
 import type { Result } from 'ts-results';
 
@@ -14,13 +14,12 @@ import { nullToUndefined } from '@/utils/nullToUndefined';
 
 export const ScheduleSchema = DefaultSchema.extend({
   title: z.string(),
-  description: z.string().nullable().optional(),
+  description: z.string().nullable(),
   date: z.coerce.date(),
-  requiredDays: z.number().nullable().optional(),
+  requiredDays: z.number().nullable(),
   userId: z.string(),
-});
+}) satisfies z.ZodType<Schedule>;
 
-export type Schedule = z.infer<typeof ScheduleSchema>;
 export type ScheduleWithoutDefault = Omit<Schedule, keyof Default>;
 
 export function extractNonCompletedSchedules(schedules: Schedule[]): Schedule[] {
@@ -31,13 +30,16 @@ export function isSchedule(object: unknown): object is Schedule {
   return ScheduleSchema.safeParse(object).success;
 }
 
-export function generate({ title, description, date, requiredDays }: ScheduleForm, id?: Schedule['id']): Schedule {
+export function generate(
+  { title = '', description = null, date = new Date(), requiredDays = null }: Partial<ScheduleForm>,
+  id?: Schedule['id']
+): Schedule {
   return {
     id: id ?? v4(),
     title,
     description: description ?? '',
     date,
-    requiredDays,
+    requiredDays: requiredDays ?? null,
     createdAt: new Date(),
     updatedAt: new Date(),
     userId: '',
@@ -61,15 +63,15 @@ export function toScheduleForm(schedule: Schedule): ScheduleForm {
   // if (date instanceof Date) throw new Error('date is not Date');
   return {
     title: schedule.title,
-    description: nullToUndefined(schedule.description),
+    description: schedule.description,
     date: new Date(schedule.date.toISOString().split('T')[0]),
-    requiredDays: nullToUndefined(schedule.requiredDays),
+    requiredDays: schedule.requiredDays,
   };
 }
 
 const ConversableGoogleEventSchema = z.object({
   summary: z.string(),
-  description: z.string().nullable().optional(),
+  description: z.string().nullable(),
   start: z.object({
     date: z.string().optional(),
     dateTime: z.string().optional(),

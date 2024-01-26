@@ -8,7 +8,7 @@ import { dayStyle } from './dayStyle';
 import ScheduleView from './schedule';
 
 import type { Count } from '@/types/count';
-import type { Schedule } from '@/types/schedule';
+import type { Schedule } from '@prisma/client';
 
 import DetailedModal from '@/components/calendar/day/detailedModal';
 import { ScheduleStyleButton } from '@/components/calendar/day/schedule/scheduleStyleButton';

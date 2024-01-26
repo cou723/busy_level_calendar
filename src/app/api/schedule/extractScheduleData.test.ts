@@ -4,10 +4,10 @@ import { describe, it, expect } from 'vitest';
 
 import { extractBody } from './extractScheduleData';
 
-import type { ScheduleForm} from '@/types/scheduleForm';
-import type { ErrorResponse} from '@/types/server/ErrorResponse';
+import type { ScheduleForm } from '@/types/scheduleForm';
+import type { ErrorResponse } from '@/types/server/ErrorResponse';
 import type { NextRequest, NextResponse } from 'next/server';
-import type { Result} from 'ts-results';
+import type { Result } from 'ts-results';
 
 import { scheduleFormSchema } from '@/types/scheduleForm';
 import { makeErrorResponse } from '@/types/server/ErrorResponse';
@@ -32,6 +32,8 @@ describe('extractScheduleData', () => {
     const scheduleFormData: ScheduleForm = {
       title: 'title',
       date: new Date('2021-01-01'),
+      requiredDays: null,
+      description: null,
     };
     // Act
     const result: Result<ScheduleForm, NextResponse<ErrorResponse>> = await extractBody(

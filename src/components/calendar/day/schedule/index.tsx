@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { RequiredDaysChip } from './requiredDaysChip';
 import { Title } from './title';
 
-import type { Schedule } from '@/types/schedule';
+import type { Schedule } from '@prisma/client';
 
 import { ScheduleStyleButton } from '@/components/calendar/day/schedule/scheduleStyleButton';
 
@@ -18,11 +18,7 @@ const ScheduleView: FunctionComponent<ScheduleProps> = ({ schedule }) => {
   const router = useRouter();
 
   return (
-    <ScheduleStyleButton
-      onClick={() => router.push('/edit/' + schedule.id)}
-      schedule={schedule}
-      error={!!schedule.requiredDays}
-    >
+    <ScheduleStyleButton onClick={() => router.push('/edit/' + schedule.id)} error={!!schedule.requiredDays}>
       <Title>{schedule.title}</Title>
       <RequiredDaysChip requiredDays={schedule.requiredDays} />
     </ScheduleStyleButton>

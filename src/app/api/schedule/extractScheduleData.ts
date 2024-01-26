@@ -1,13 +1,11 @@
 import { Err, Ok } from 'ts-results';
 
-import type { ErrorResponse} from '@/types/server/ErrorResponse';
+import type { ErrorResponse } from '@/types/server/ErrorResponse';
 import type { NextRequest, NextResponse } from 'next/server';
 import type { User } from 'next-auth';
-import type { Result} from 'ts-results';
+import type { Result } from 'ts-results';
 import type { z } from 'zod';
 
-import { ScheduleWithoutDefault } from '@/types/schedule';
-import { scheduleFormSchema } from '@/types/scheduleForm';
 import { makeErrorResponse } from '@/types/server/ErrorResponse';
 import { parseBySchema } from '@/utils/parseBySchema';
 

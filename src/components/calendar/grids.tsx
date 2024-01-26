@@ -4,7 +4,7 @@ import { chunkArray } from '../../utils/chunkArray';
 import { isIncludeDate } from '../../utils/isIncludeDate';
 
 import type { BusyLevel } from '@/types/busyLevel';
-import type { Schedule } from '@/types/schedule';
+import type { Schedule } from '@prisma/client';
 
 import Week from '@/components/calendar/week';
 import FlexBox from '@/components/utils/flexBox';

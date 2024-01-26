@@ -7,6 +7,7 @@ import type { Meta, StoryFn } from '@storybook/react';
 export default {
   title: 'Components/Neu',
   component: Neu,
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn<NeuProps> = (args) => <Neu {...args} />;

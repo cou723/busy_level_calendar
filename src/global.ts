@@ -1,4 +1,4 @@
-import type { ApiAdapter } from '@/types/calendar';
+import type { ApiAdapter } from './types/apiAdapter';
 
 import { FetchAdapter } from '@/types/fetchAdapter';
 

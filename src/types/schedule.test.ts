@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 
-import type { Schedule } from '@/types/schedule';
+import type { Schedule } from '@prisma/client';
 
 import { getAllDatesUntilSchedule, generate, toSchedule, toSchedules } from '@/types/schedule';
 
@@ -29,6 +29,7 @@ describe('getAllDatesUntilSchedule', () => {
       title: 'Test Schedule',
       description: 'This is a test schedule',
       date: new Date('2022-01-01'),
+      requiredDays: null,
     });
 
     const result = getAllDatesUntilSchedule(schedule);

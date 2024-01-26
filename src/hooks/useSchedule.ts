@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import type { Schedule } from '@/types/schedule';
+import type { Schedule } from '@prisma/client';
 
 import { apiAdapter } from '@/global';
 import { resultToTryCatch } from '@/utils/resultToTryCatch';

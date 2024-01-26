@@ -6,6 +6,7 @@ import type { Meta, StoryFn } from '@storybook/react';
 export default {
   title: 'ScheduleAlert',
   component: ScheduleAlertView,
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn<Props> = (args) => <ScheduleAlertView {...args} />;

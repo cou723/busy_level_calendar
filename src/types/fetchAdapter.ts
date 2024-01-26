@@ -1,13 +1,16 @@
+import { NextResponse } from 'next/server';
 import { Err, Ok } from 'ts-results';
 
-import type { Calendar, ApiAdapter } from '@/types/calendar';
+import type { ApiAdapter } from './apiAdapter';
+import type { Calendar } from '@/types/calendar';
 import type { ImportEventOptions } from '@/types/importEventOptions';
-import type { Schedule } from '@/types/schedule';
 import type { ScheduleForm } from '@/types/scheduleForm';
+import type { Schedule } from '@prisma/client';
 import type { Result } from 'ts-results';
 
 import apiEndpoints from '@/libs/apiEndpoints';
 import { CalendarSchema } from '@/types/calendar';
+import { NotificationSchema, type Notification } from '@/types/notification';
 import { ScheduleSchema, isSchedule, toScheduleForm } from '@/types/schedule';
 import { fetch } from '@/utils/fetch';
 import { isSuccessStatus as isStatusSuccess } from '@/utils/isSuccessStatus';
@@ -114,5 +117,14 @@ export class FetchAdapter implements ApiAdapter {
     if (res.val.status === 401) return Err(new Error('unauthorized'));
     if (!isStatusSuccess(res.val.status)) return Err(await createError(res.val));
     return Ok.EMPTY;
+  };
+  notification = async (): Promise<Result<Notification[], Error>> => {
+    const res = await fetch(`${apiEndpoints.notification}`);
+    console.log('Error', res.val);
+
+    if (res.err) return Err(res.val);
+    if (!isStatusSuccess(res.val.status)) return Err(await createError(res.val));
+
+    return parseBySchema({ schema: NotificationSchema.array(), target: await res.val.json() });
   };
 }

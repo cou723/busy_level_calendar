@@ -4,7 +4,7 @@ import { generateBoxShadow, generateDropShadow } from './generateBoxShadow';
 import type { NeuStyleOption } from '@/types/neuStyleOption';
 
 export const generateNeuStyle = (
-  { radius, intensity, inset = false, surface = 'flat', size, isTouchable = false }: NeuStyleOption,
+  { radius, intensity = 2, inset = false, surface = 'flat', size = 2, isTouchable = false }: Partial<NeuStyleOption>,
   usingFilter: boolean = false
 ) => {
   const shadow = generateShadow(usingFilter, inset, intensity, size);
@@ -12,8 +12,9 @@ export const generateNeuStyle = (
   return {
     transition: 'all 0.3s ease',
     background: generateBackground(surface),
-    borderRadius: radius * 5,
+    borderRadius: radius ? radius * 5 : undefined,
     '&:hover': isTouchable ? generateShadow(usingFilter, inset, intensity - 0.5, size - 0.5) : undefined,
+    '&:active': isTouchable ? generateShadow(usingFilter, true, intensity - 0.5, size - 0.5) : undefined,
     ...shadow,
   };
 };

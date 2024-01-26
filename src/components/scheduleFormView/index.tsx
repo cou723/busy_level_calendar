@@ -9,7 +9,7 @@ import { ScheduleFormDateInput } from './scheduleFormDateInput';
 import { SubmitButton } from './submitButton';
 import { TitleInput } from './titleInput';
 
-import type { Schedule } from '@/types/schedule';
+import type { Schedule } from '@prisma/client';
 
 import FlexBox from '@/components/utils/flexBox';
 import { useScheduleForm } from '@/hooks/useScheduleForm';

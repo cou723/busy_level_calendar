@@ -11,12 +11,12 @@ export const iconNeuStyle = [
   generateNeuStyle(
     {
       radius: 10,
-      intensity: 1,
+      intensity: 2,
       size: 1,
     },
     true
   ),
   css({
-    filter: generateDropShadow(1, { offset: 1, blur: 1 }),
+    filter: generateDropShadow(2, { offset: 1, blur: 1 }),
   }),
 ];

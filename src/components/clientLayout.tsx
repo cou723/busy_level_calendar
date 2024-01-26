@@ -12,7 +12,7 @@ type ClientLayoutProps = {
 
 export function ClientLayout({ children }: ClientLayoutProps) {
   return (
-    <div style={{ padding: '2rem', height: '100%', marginTop: '30px' }}>
+    <div>
       <Global styles={globalStyle} />
       {children}
       <Toaster
