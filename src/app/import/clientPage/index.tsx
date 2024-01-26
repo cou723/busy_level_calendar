@@ -12,8 +12,6 @@ import ImportEventOptionsForm from '@/app/import/clientPage/importEventOptionsFo
 import SmallContainer from '@/components/smallContainer';
 import { apiAdapter } from '@/global';
 
-type Calendar = calendar_v3.Calendar;
-
 type Props = {
   calendars: calendar_v3.Schema$CalendarListEntry[];
 };

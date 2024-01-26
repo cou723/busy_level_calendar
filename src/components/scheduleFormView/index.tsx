@@ -37,7 +37,7 @@ const ScheduleFormView: React.FC<ScheduleFormProps> = ({ defaultValue, disabled,
           defaultValue={nullToUndefined(defaultValue?.description)}
           error={formState.errors.description?.message}
         />
-        <RequiredDaysInput {...{ control, setValue, watch }} />
+        <RequiredDaysInput {...{ control, setValue, watch }} error={formState.errors.requiredDays?.message} />
         <ScheduleFormDateInput {...{ control, setValue, watch, defaultValue: defaultValue?.date }} />
         <SubmitButton mode={defaultValue ? 'edit' : 'create'} {...{ onSubmit, disabled, setDisabled }} />
       </FlexBox>

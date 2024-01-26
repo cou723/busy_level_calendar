@@ -38,7 +38,13 @@ export const RequiredDaysInput: React.FC<RequiredDaysProps> = ({ control, defaul
                 min: 0,
               },
             }}
+            error={!!error}
             helperText={error}
+            onChange={(e) => {
+              const v = e.target.value;
+              if (typeof v === 'string') field.onChange(parseInt(v));
+              else field.onChange(v);
+            }}
           />
         )}
       />
