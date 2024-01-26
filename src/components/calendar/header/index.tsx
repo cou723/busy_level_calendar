@@ -1,14 +1,16 @@
 import type { FunctionComponent } from 'react';
 
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+
 import { Month } from './Month';
 import { Year } from './Year';
-import { ArrowButton } from './arrowButton';
 import { CreateScheduleButton } from './createScheduleButton';
 import { HeaderBox } from './headerBox';
 
 import type { YearMonth } from '@/types/yearMonth';
 
 import FlexBox from '@/components/utils/flexBox';
+import NeuIconButton from '@/components/utils/neuIconButton';
 
 interface HeaderProps {
   yearMonth: YearMonth;
@@ -22,9 +24,9 @@ const Header: FunctionComponent<HeaderProps> = ({ yearMonth: { year, month }, on
       <Year {...{ year }} />
 
       <FlexBox alignItems="center" justifyContent="center">
-        <ArrowButton onClick={onPre} direction="left" />
+        <NeuIconButton Icon={IoIosArrowBack} onClick={onPre} />;
         <Month {...{ month }} />
-        <ArrowButton onClick={onNext} direction="right" />
+        <NeuIconButton Icon={IoIosArrowForward} onClick={onNext} />;
       </FlexBox>
 
       <FlexBox gap={1}>
