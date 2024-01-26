@@ -1,4 +1,6 @@
 'use client';
+import { useState } from 'react';
+
 import { css } from '@emotion/react';
 import { notFound, useParams, useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
@@ -17,8 +19,9 @@ import { useSchedule } from '@/hooks/useSchedule';
 
 type Props = {
   handleDelete: () => void;
+  disabled: boolean;
 };
-const DeleteButton: React.FC<Props> = ({ handleDelete }) => {
+const DeleteButton: React.FC<Props> = ({ handleDelete, disabled }) => {
   return (
     <NeuButton
       css={css({
@@ -26,7 +29,10 @@ const DeleteButton: React.FC<Props> = ({ handleDelete }) => {
         gap: '0.5rem',
         backgroundColor: '#ff000047',
       })}
-      onClick={handleDelete}
+      onClick={() => {
+        handleDelete();
+      }}
+      disabled={disabled}
     >
       <FaRegTrashAlt css={[css({ color: '#ffffff' })]} />
       削除
@@ -39,6 +45,7 @@ const DeleteButton: React.FC<Props> = ({ handleDelete }) => {
  * @returns JSX.Element
  */
 export const EditPage: React.FC = () => {
+  const [disabled, setDisabled] = useState(false);
   // URL から id パラメーターを取得
   const param = useParams<{ id: string }>();
   if (!param) notFound();
@@ -55,7 +62,14 @@ export const EditPage: React.FC = () => {
           編集
           <MdEditSquare />
         </PageTitle>
-        <DeleteButton handleDelete={() => handleDelete(param.id)} />
+        <DeleteButton
+          handleDelete={async () => {
+            setDisabled(true);
+            await handleDelete(param.id);
+            setDisabled(false);
+          }}
+          disabled={disabled}
+        />
       </FlexBox>
       {isError ? <p>エラー</p> : <ScheduleFormView defaultValue={schedule} />}
     </NormalContainer>
