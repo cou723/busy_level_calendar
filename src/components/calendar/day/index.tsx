@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import React from 'react';
 
 import { css } from '@emotion/react';
@@ -11,6 +11,7 @@ import type { Count } from '@/types/count';
 import type { Schedule } from '@/types/schedule';
 
 import DetailedModal from '@/components/calendar/day/detailedModal';
+import { ScheduleStyleButton } from '@/components/calendar/day/schedule/scheduleStyleButton';
 import FlexBox from '@/components/utils/flexBox';
 import Neu from '@/components/utils/neu';
 import { fontColor } from '@/global';
@@ -33,6 +34,7 @@ export interface DayProps {
 }
 
 const Day: React.FC<DayProps> = React.memo(({ day, schedules, busyLevel = 0, isToday = false, reload }) => {
+  const maxSchedules = 2;
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
@@ -71,9 +73,16 @@ const Day: React.FC<DayProps> = React.memo(({ day, schedules, busyLevel = 0, isT
         {day}
       </button>
       <FlexBox flexDirection="column" gap={0.5}>
-        {schedules.map((schedule: Schedule) => (
+        {schedules.slice(0, maxSchedules).map((schedule: Schedule) => (
           <ScheduleView key={schedule.id} schedule={schedule} />
         ))}
+        {schedules.length > maxSchedules ? (
+          <ScheduleStyleButton onClick={() => setModalOpen(true)} error={false}>
+            ...
+          </ScheduleStyleButton>
+        ) : (
+          ''
+        )}
       </FlexBox>
       <DetailedModal
         open={modalOpen}

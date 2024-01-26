@@ -5,7 +5,7 @@
 - Node.js
 - Bun
 
-## スタック
+## 技術スタック
 - TypeScript
 - Next.js(App Router)
 - React
@@ -43,7 +43,13 @@
 ```
 
 
-## 開発サーバー起動
+# セットアップ
+- 1. postgresの環境を作る
+- 2. postgresでユーザーを作る
+- 3. postgresでデータベースを作る
+- 4. .env.local.sampleを参考に.env.localファイルを設定する
+- 5. prismaのmigrateを実行する
+- 6. ローカルサーバーを起動する
 ```bash
 bun run dev
 ```
