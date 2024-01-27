@@ -12,6 +12,7 @@
     "test": "vitest",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
+    "migrate": "bunx prisma migrate dev",
     "reset-db": "rm -rf ./prisma/dev.db && bunx prisma db push",
     "analyze": "ANALYZE=true bun run build"
   },

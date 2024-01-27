@@ -24,9 +24,9 @@ const Header: FunctionComponent<HeaderProps> = ({ yearMonth: { year, month }, on
       <Year {...{ year }} />
 
       <FlexBox alignItems="center" justifyContent="center">
-        <NeuIconButton Icon={IoIosArrowBack} onClick={onPre} />;
+        <NeuIconButton Icon={IoIosArrowBack} onClick={onPre} />
         <Month {...{ month }} />
-        <NeuIconButton Icon={IoIosArrowForward} onClick={onNext} />;
+        <NeuIconButton Icon={IoIosArrowForward} onClick={onNext} />
       </FlexBox>
 
       <FlexBox gap={1}>
